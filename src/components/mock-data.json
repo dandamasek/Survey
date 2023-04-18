@@ -1,0 +1,59 @@
+[
+    {
+      "id": 1,
+      "fullName": "Petra Králová",
+      "address": "Praha 5  ",
+      "phoneNumber": "604 213 565",
+      "email": "kralova.p@gmail.com",
+      "gender": "Z"
+
+    },
+    {
+      "id": 2,
+      "fullName": "Pavel Grupa",
+      "address": "Třebíč",
+      "phoneNumber": "631 201 964",
+      "email": "grupa.p@email.com",
+      "gender": "M"
+    },
+    {
+      "id": 3,
+      "fullName": "Antonín Pizdák",
+      "address": "Velké Meziříčí 42",
+      "phoneNumber": "642 981 153",
+      "email": "pizda.a@gmail.com",
+      "gender": "M"
+    },
+    {
+      "id": 4,
+      "fullName": "Pavlina Slovackova",
+      "address": "Mladá Boleslav 34",
+      "phoneNumber": "654 294 120",
+      "email": "slovackova@seznam.cz",
+      "gender": "Z"
+    },
+    {
+      "id": 5,
+      "fullName": "Vlastimil Velký",
+      "address": "Pardubice 45",
+      "phoneNumber": "720 561 051",
+      "email": "velky.vlasta@seznam.cz",
+      "gender": "M"
+    },
+    {
+      "id": 6,
+      "fullName": "Josefina Valkova",
+      "address": "Aš 75",
+      "phoneNumber": "725 485 091",
+      "email": "valkova.j@seznam.cz",
+      "gender": "Z"
+    },
+    {
+      "id": 7,
+      "fullName": "Radek Navratil",
+      "address": "Chrudim 3",
+      "phoneNumber": "602 186 054",
+      "email": "navratil.r@seznam.cz",
+      "gender": "M"
+    }
+  ]
