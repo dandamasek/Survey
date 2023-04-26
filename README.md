@@ -30,7 +30,7 @@ SURVEYS Zobrazení ankety (název, anketní otázky), editace ankety (vložení 
 * 1.5. button pro vytvoření kopie otázky z jiné ankety radiobutton pro výběr odpovědi z uzavřené otázky
 * 8.5. select pro výběr odpovědi z uzavřené otázky input pro definici odpovědi pro otevřenou otázku button pro uzavření otázky odpovídajícím
 * 15.5. button pro ukončení ankety odpovídajícím button pro přiřazení ankety uživateli
-* 17.5. (verze alfa)
+* 17.5. (verze alfa) stavová komponenta komunikující se serverem
 * 12.6. button pro přiřazení otázky skupině uživatelů button pro ukončení ankety zadavatelem
 * 19.6. projektový den (verze beta)
 * 22.6. uzavření projektu
