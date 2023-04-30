@@ -1,17 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import TableData from './components/TableData';
-import TobyTable from './components/TobyTable';
-import TomyTable from './components/TomyTable';
-
+import MySurvey from './components/surveyDisplay/surveyone';
 
 function App() {
   return (
     <div className="App">
-      <TobyTable></TobyTable>
-      <TomyTable></TomyTable>
-      <TableData></TableData>
-      
+      <MySurvey />
     </div>
   );
 }
