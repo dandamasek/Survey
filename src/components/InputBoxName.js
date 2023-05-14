@@ -36,7 +36,7 @@ function AddDynamicInput() {
         setQuestionPref(pomoc)
     }
 
-    console.log(questionPref)
+    console.log(question)
 
 
     return(

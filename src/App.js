@@ -4,19 +4,37 @@ import store from './redux/store';
 
 import './App.css';
 import AddDynamicInput from './components/InputBoxName';
-import ShowQuestion from './components/ShowQuestion';
 
+import HooksCakeContainer from './components/HooksCakeContainer';
+import IceCreamContaine from './components/IceCreamContainer';
+import NewCakeContainer from './components/NewCakeContainer';
+import ItemContainer from './components/ItemContainer';
 
-import CakeCotainer from './components/CakeCotainer';
+import CreateQuestion from './components/CreateQuestion';
+import CreateQuestions from './components/CreateQuestions';
 
 function App() {
+
+
   return (
     
-      <Provider store={store}>
-        <div className="App">
-          <CakeCotainer />
-        </div>
-      </Provider>
+    <div className="App">
+    <CreateQuestions />
+
+    </div>
+      
+      // <Provider store={store}>
+      //   <div className="App">
+      //     {/* <ItemContainer cake/>
+      //     <ItemContainer />
+      
+      //     <HooksCakeContainer /> 
+      //     <CakeCotainer />
+      //     <IceCreamContaine />  */}
+      //     {/* <NewCakeContainer /> */}
+      //     {/* <CreateQuestions /> */}
+      //   </div>
+      // </Provider>
     
   );
 }
