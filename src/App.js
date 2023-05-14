@@ -13,29 +13,17 @@ import ItemContainer from './components/ItemContainer';
 import CreateQuestion from './components/CreateQuestion';
 import CreateQuestions from './components/CreateQuestions';
 
+import CreateQuestionContainer from './components/CreateQuestionContainer';
+
 function App() {
 
 
   return (
     
     <div className="App">
-    <CreateQuestions />
+      <CreateQuestions />
 
     </div>
-      
-      // <Provider store={store}>
-      //   <div className="App">
-      //     {/* <ItemContainer cake/>
-      //     <ItemContainer />
-      
-      //     <HooksCakeContainer /> 
-      //     <CakeCotainer />
-      //     <IceCreamContaine />  */}
-      //     {/* <NewCakeContainer /> */}
-      //     {/* <CreateQuestions /> */}
-      //   </div>
-      // </Provider>
-    
   );
 }
 
