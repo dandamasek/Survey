@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import store from '../redux/store';
 
+
 import CreateTitleContainer from './CreateTitleContainer';
 import CreateTypeContainer from './CreateTypeContainer';
 
@@ -11,6 +12,7 @@ function CreateQuestion() {
     const [question,setQuestion] = useState([]);
 
     const handleAdd = () => {
+        
         const abc=[...question,[]]
         setQuestion(abc)
     }
