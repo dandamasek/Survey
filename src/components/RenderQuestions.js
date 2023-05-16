@@ -1,82 +1,112 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import store from '../redux/store';
 
 const RenderQuestions = () => {
-  // const questions = useSelector(state => state.createQuestions ? state.createQuestions.questions : []);
-  console.log(store.getState().createQuestion.questions);
-  const question = store.getState().createQuestion.questions
+  const questions = store.getState().createQuestion.questions;
 
-  console.log(question)
-  console.log('get staaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate');
+  const [selectedOptions, setSelectedOptions] = useState({});
 
+  const handleRadioButtonChange = (questionId, optionValue) => {
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [questionId]: optionValue,
+    }));
+  };
 
+  const tableRows = [];
+  for (let i = 0; i < questions.length; i++) {
+    const question = questions[i];
 
-
-  const renderTable = question => {
-    if (question.typeofanswer === 'text') {
-      return (
-        <tr key={question.id}>
-          <td>{question.question}</td>
-          <td><input type="text" /></td>
+    if (question.typeOfAnswer === 'text') {
+      tableRows.push(
+        <table key={question.id}>
+        <tr >
+          <th>{question.name}</th>
+         
+          </tr>
+          <tr>
+          <td>
+            <input type="text" />
+          </td>
         </tr>
+        </table>
       );
-    } else if (question.typeofanswer === 'radiobutton') {
-      return (
-        <tr key={question.id}>
-          <td>{question.question}</td>
+    } else if (question.typeOfAnswer === 'radiobutton') {
+      tableRows.push(
+        <table key={question.order}>
+        <tr >
+          <th>{question.name}</th >
+          </tr>
+          <tr>
           <td>
             <label>
-              <input type="radio" name={question.id} value="option1" />
+              <input
+                type="radio"
+                name={question.id}
+                value="option1"
+                checked={selectedOptions[question.id] === 'option1'}
+                onChange={() => handleRadioButtonChange(question.id, 'option1')}
+              />
               Option 1
             </label>
-            <br />
+            </td>
+            </tr>
+            <tr>
+              <td>
             <label>
-              <input type="radio" name={question.id} value="option2" />
+              <input
+                type="radio"
+                name={question.id}
+                value="option2"
+                checked={selectedOptions[question.id] === 'option2'}
+                onChange={() => handleRadioButtonChange(question.id, 'option2')}
+              />
               Option 2
             </label>
           </td>
         </tr>
+        </table>
       );
-    } else if (question.typeofanswer === 'select') {
-      return (
-        <tr key={question.id}>
-          <td>{question.question}</td>
+    } else if (question.typeOfAnswer === 'select') {
+      tableRows.push(
+        <table key={question.order}>
+        <tr >
+          <th>{question.name}</th>
+          </tr>
+          <tr>
           <td>
             <label>
               <input type="checkbox" name={question.id} value="option1" />
               Option 1
             </label>
-            <br />
+            </td>
+            </tr>
+            <tr>
+             <td>
             <label>
               <input type="checkbox" name={question.id} value="option2" />
               Option 2
+
             </label>
-            <br />
-            <label>
+            </td>
+            </tr>
+<tr>
+  <td>
+  <label>
               <input type="checkbox" name={question.id} value="option3" />
               Option 3
-            </label>    
-          </td>
-        </tr>
+            </label>
+  </td>
+</tr>
+           
+        </table>
       );
     }
-  };
-  
+  }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Question</th>
-          <th>Answer</th>
-        </tr>
-      </thead>
-      <tbody>
-        {/* {questions.map(question => renderTable(question))} */}
-        
-      </tbody>
-    </table>
+    
+    tableRows
   );
 };
 
