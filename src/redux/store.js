@@ -5,4 +5,4 @@ import rootReducer from './rootReducer'
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)))
 
-export default store
+export default store;

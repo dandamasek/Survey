@@ -1,8 +1,11 @@
+
+
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from './redux/store'
+import RenderQuestions from "./components/RenderQuestions";
 
-import './App.css';
+
 import AddDynamicInput from './components/InputBoxName';
 
 import HooksCakeContainer from './components/HooksCakeContainer';
@@ -16,14 +19,13 @@ import CreateQuestions from './components/CreateQuestions';
 import CreateQuestionContainer from './components/CreateQuestionContainer';
 
 function App() {
-
-
   return (
-    
-    <div className="App">
-      <CreateQuestions />
-
-    </div>
+    <Provider store={store}>
+      <div className="App">
+       <CreateQuestions />
+       
+      </div>
+    </Provider>
   );
 }
 

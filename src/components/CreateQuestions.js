@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import CreateQuestionContainer from '../components/CreateQuestionContainer';
+import RenderQuestions from "./RenderQuestions";
 
 function CreateQuestions() {
     const [formFields, setFormFields] = useState([
@@ -37,21 +38,21 @@ function CreateQuestions() {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(formFields)
-        
-        const formUpdate =  <div>
+        console.log(formFields);
+        RenderQuestions(formFields);
+            const formUpdate =  <div>
                                 <Provider store={store}>
                                     <div className="App">
                                 
                                     <CreateQuestionContainer inData={formFields}/>
-
+    
                                     </div>
                                 </Provider>
                             </div>
-
-        setForm(formUpdate)
+    
+        setForm(formUpdate);
+    
     }
-
     const addFields = () => {
         let object = {
             name: '', 
