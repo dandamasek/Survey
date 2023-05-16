@@ -1,8 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import store from '../redux/store';
 
 const RenderQuestions = () => {
-    const questions = useSelector(state => state.createQuestions ? state.createQuestions.questions : []);
+  // const questions = useSelector(state => state.createQuestions ? state.createQuestions.questions : []);
+  console.log(store.getState().createQuestion.questions);
+  const question = store.getState().createQuestion.questions
+
+  console.log(question)
+  console.log('get staaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaate');
+
+
+
 
   const renderTable = question => {
     if (question.typeofanswer === 'text') {
@@ -53,6 +62,7 @@ const RenderQuestions = () => {
       );
     }
   };
+  
 
   return (
     <table>
@@ -63,7 +73,8 @@ const RenderQuestions = () => {
         </tr>
       </thead>
       <tbody>
-        {questions.map(question => renderTable(question))}
+        {/* {questions.map(question => renderTable(question))} */}
+        
       </tbody>
     </table>
   );

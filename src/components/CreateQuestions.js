@@ -39,7 +39,7 @@ function CreateQuestions() {
     const submit = (e) => {
         e.preventDefault();
         console.log(formFields);
-        RenderQuestions(formFields);
+
             const formUpdate =  <div>
                                 <Provider store={store}>
                                     <div className="App">
@@ -119,7 +119,7 @@ function CreateQuestions() {
       <button onClick={addFields}>Add more</button>
       <br />
       <button onClick={submit}>submit</button>
-        
+      <RenderQuestions />
     </div>
   )
 }
