@@ -1,7 +1,7 @@
 import { CREATE_QUESTIONS } from "./createQuestionsActions"
 
 const initialState = {
-    questions: 'What is RGB'
+    questions: ''
 }
 
 const createQuestionsReducer = (state = initialState, action) => {

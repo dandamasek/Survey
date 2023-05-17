@@ -1,25 +1,24 @@
 import React, { useState } from 'react'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import CreateQuestionContainer from '../components/CreateQuestionContainer';
 import RenderQuestions from "./RenderQuestions";
+
+
 
 function CreateQuestions() {
     const [formFields, setFormFields] = useState([
         {name: '', typeOfAnswer: 'text', order: "0"},
     ])
 
-    const [formRedux, setForm] = useState(<div>Hi</div>)
+    const [formRedux, setForm] = useState(<div></div>)
 
     const handleFormChange = (event, index) => {
        
         let data = [...formFields];
 
         if (event.target.name === 'order') {
-            // console.log(index)
-            console.log(event.target.value)
-            console.log(index)
 
             const Helper = data[index][event.target.name]
             console.log(Helper)
@@ -27,15 +26,14 @@ function CreateQuestions() {
             data[index][event.target.name] = data[event.target.value][event.target.name]
             data[event.target.value][event.target.name] = Helper
         }
-
         
         data[index][event.target.name] = event.target.value;
         
         const sortedFormFields = [...data].sort((a, b) => a.order - b.order);
         
         setFormFields(sortedFormFields);
-    } 
-
+    }
+    
     const submit = (e) => {
         e.preventDefault();
         console.log(formFields);
@@ -49,7 +47,6 @@ function CreateQuestions() {
                                     </div>
                                 </Provider>
                             </div>
-    
         setForm(formUpdate);
     
     }
@@ -59,7 +56,6 @@ function CreateQuestions() {
             typeOfAnswer: 'text',
             order: formFields.length
         }
-    
         setFormFields([...formFields, object])
     }
 
@@ -71,7 +67,6 @@ function CreateQuestions() {
         for (var i = index; i < formFields.length-1; i++) {
             data[i]['order'] =  data[i]['order'] - 1
         }
-
         setFormFields(data)
     }
 
@@ -89,36 +84,40 @@ function CreateQuestions() {
         <form onSubmit={submit}>
             {formFields.map((form, index) => {
                 return (
-                    <div key = {index}>
+                    <table class="table" key={index}>
+                        <div class="d-flex justify-content-center">
+                            
+                            <select name='order' class="col-md form-select" value={form.order} onChange={event=>handleFormChange(event, index)}>
+                                {renderIndexOfFields()}
 
-                        <select name='order'  value={form.order} onChange={event=>handleFormChange(event, index)}>
-                            {renderIndexOfFields()}
+                            </select>
 
-                        </select>
+                            <input
+                                class="col-md form-control "
+                                name = 'name'
+                                placeholder='Name of Question'
+                                onChange={event => handleFormChange(event, index)}
+                                value={form.name}
+                            />
+                
+                            <select name='typeOfAnswer' class="col-sm orm-select" value={form.typeOfAnswer} onChange={event => handleFormChange(event, index)}>
+                                <option>text</option>
+                                <option>radiobutton</option>
+                                <option>select</option>
+                            </select>
 
-                        <input
-                            name = 'name'
-                            placeholder='Name of Question'
-                            onChange={event => handleFormChange(event, index)}
-                            value={form.name}
-                        />
-            
-                        <select name='typeOfAnswer' value={form.typeOfAnswer} onChange={event => handleFormChange(event, index)}>
-                            <option>text</option>
-                            <option>radiobutton</option>
-                            <option>select</option>
+                            <button class="btn btn-danger " onClick={() => removeFields(index)}>Remove</button>
+                        </div>
+                        </table>
 
-                        </select>
-
-                        <button onClick={() => removeFields(index)}>Remove</button>
-                    </div>
+                    
                 )
             })}
         </form>
        <>{formRedux}</> 
-      <button onClick={addFields}>Add more</button>
+      <button class="btn btn-success border" onClick={addFields}>Add more</button>
       <br />
-      <button onClick={submit}>submit</button>
+      <button class="btn btn-primary border" onClick={submit}>Submit</button>
       <RenderQuestions />
     </div>
   )

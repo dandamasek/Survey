@@ -1,14 +1,95 @@
-[
-    {
-        "id": "5b7e4ae7-9bb9-4e2f-829b-c2763ac1092e",
-        "name": "Jak hodnotíte předmět X",
-        "order": 2,
-        "answers": []
-    },
-    {
-        "id": "984120da-ab92-44bd-9389-5f47ed9b3225",
-        "name": "Jak hodnotíte výuku předmětu Y",
-        "order": 1,
-        "answers": []
+{
+
+    "data": {
+      "surveyPage": [
+        {
+          "id": "910d54a9-7f2e-41ca-b811-3c600ef82fda",  
+          "name": "Studentské hodnocení 2022",
+          "lastchange": "2023-05-03T19:23:42.773762",
+          "questions": [
+            {  
+              "id": "5b7e4ae7-9bb9-4e2f-829b-c2763ac1092e",  
+              "name": "Jak hodnotíte předmět xy",
+              "order": 1,
+              "answers": [
+                {
+                  "id": "ad0f53fb-240b-47de-ab1d-871bbde6f972",
+                  "value": "8",
+                  "aswered": true,
+                  "expired": false,
+                  "user": {
+                    "id": "2d9dc5ca-a4a2-11ed-b9df-0242ac120003",
+                    "email": "john.newbie@world.com"
+                  }
+                },
+                {
+                  "id": "e054d1a5-f259-429d-9f7a-f35d55caf2ab",
+                  "value": null,
+                  "aswered": false,
+                  "expired": false,
+                  "user": {
+                    "id": "2d9dc868-a4a2-11ed-b9df-0242ac120003",
+                    "email": "julia.newbie@world.com"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "984120da-ab92-44bd-9389-5f47ed9b3225",
+              "name": "Jak hodnotíte výuku předmětu xy",
+              "order": 2,
+              "answers": [
+                {
+                  "id": "dd7dc78f-534d-4c33-a979-2dfd41a53a84", 
+                  "value": "OK",
+                  "aswered": true,
+                  "expired": false,
+                  "user": {
+                    "id": "2d9dc5ca-a4a2-11ed-b9df-0242ac120003",
+                    "email": "john.newbie@world.com"
+                  }
+                },
+                {
+                  "id": "600a7008-44b6-46e9-a546-d934731a0603",
+                  "value": null,
+                  "aswered": true,
+                  "expired": false,
+                  "user": {
+                    "id": "2d9dc868-a4a2-11ed-b9df-0242ac120003",
+                    "email": "julia.newbie@world.com"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "2b27adcc-0b7e-40c4-a430-8e0aa551ae3e",
+              "name": "Který předmět považujete za nejvíc přínosný?",
+              "order": 3,
+              "answers": [
+                {
+                  "id": "bb0cd1b9-15ba-4f80-a6a0-7a9dc65deb13",
+                  "value": "Analýza informačních zdrojů",
+                  "aswered": true,
+                  "expired": false,
+                  "user": {
+                    "id": "2d9dc5ca-a4a2-11ed-b9df-0242ac120003",
+                    "email": "john.newbie@world.com"
+                  }
+                },
+                {
+                  "id": "ed33c145-c295-41c2-be49-5037837ee974",
+                  "value": null,
+                  "aswered": true,
+                  "expired": false,
+                  "user": {
+                    "id": "2d9dc868-a4a2-11ed-b9df-0242ac120003",
+                    "email": "julia.newbie@world.com"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
-]
+  }
