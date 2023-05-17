@@ -3,7 +3,7 @@ import store from '../redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RenderQuestions = () => {
-  const questions = store.getState().createQuestion.questions;
+  const questions = store.getState().survey.questions;
 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [answersArr, setAnswersArr] = useState([]);
@@ -37,6 +37,23 @@ const RenderQuestions = () => {
     });
   };
 
+
+  const handleCheckboxChange = (questionId, checkedOptions) => {
+    setAnswersArr((prevAnswersArr) => {
+      const updatedAnswers = [...prevAnswersArr];
+      const answerIndex = updatedAnswers.findIndex((answer) => answer.id === questionId);
+      if (answerIndex !== -1) {
+        updatedAnswers[answerIndex] = {
+          ...updatedAnswers[answerIndex],
+          value: checkedOptions,
+          answers: checkedOptions.length > 0,
+        };
+      }
+      return updatedAnswers;
+    });
+  };
+
+
   const handleRadioButtonChange = (questionId, optionValue) => {
     setSelectedOptions((prevSelectedOptions) => ({
       ...prevSelectedOptions,
@@ -56,20 +73,7 @@ const RenderQuestions = () => {
     });
   };
 
-  const handleCheckboxChange = (questionId, checkedOptions) => {
-    setAnswersArr((prevAnswersArr) => {
-      const updatedAnswers = [...prevAnswersArr];
-      const answerIndex = updatedAnswers.findIndex((answer) => answer.id === questionId);
-      if (answerIndex !== -1) {
-        updatedAnswers[answerIndex] = {
-          ...updatedAnswers[answerIndex],
-          value: checkedOptions,
-          answers: checkedOptions.length > 0,
-        };
-      }
-      return updatedAnswers;
-    });
-  };
+
 
   const tableRows = [];
   for (let i = 0; i < questions.length; i++) {
@@ -77,7 +81,7 @@ const RenderQuestions = () => {
 
     if (question.typeOfAnswer === 'text') {
       tableRows.push(
-        <table className="table w-75" key={i}>
+        <table className="table-responsive-sm d-flex justify-content-center" key={i}>
           <tbody>
             <tr>
               <th>{question.name}</th>
@@ -96,7 +100,7 @@ const RenderQuestions = () => {
       );
     } else if (question.typeOfAnswer === 'radiobutton') {
       tableRows.push(
-        <table className="table w-75" key={i}>
+        <table className="table-responsive-sm d-flex justify-content-center" key={i}>
           <tbody>
             <tr>
               <th>{question.name}</th>
@@ -130,9 +134,10 @@ const RenderQuestions = () => {
           </tbody>
         </table>
       );
-    } else if (question.typeOfAnswer === 'select') {
+    } 
+    else if (question.typeOfAnswer === 'select') {
       tableRows.push(
-        <table className="table w-75" key={i}>
+        <table className="table-responsive-sm d-flex justify-content-center" key={i}>
           <tbody>
             <tr>
               <th>{question.name}</th>
@@ -189,7 +194,7 @@ const RenderQuestions = () => {
       {tableRows}
       <div>
         <button className="btn btn-primary" onClick={handleSendAnswers}>
-          Send answers
+          Submit answers
         </button>
       </div>
     </>

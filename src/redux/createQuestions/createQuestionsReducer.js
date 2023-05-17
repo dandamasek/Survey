@@ -1,6 +1,10 @@
 import { CREATE_QUESTIONS } from "./createQuestionsActions"
+import { CREATE_NAME } from "./createQuestionsActions"
 
 const initialState = {
+    id: 'x',
+    name: 'x',
+    lastchange: '10.10',
     questions: ''
 }
 
@@ -10,6 +14,11 @@ const createQuestionsReducer = (state = initialState, action) => {
             ...state,
             questions : action.payload
         }
+        case CREATE_NAME: return {
+            ...state,
+            name : action.payload
+        }
+        
         default: return state
 
     }

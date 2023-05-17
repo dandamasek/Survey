@@ -5,7 +5,7 @@ import store from '../redux/store';
 import CreateQuestionContainer from '../components/CreateQuestionContainer';
 import RenderQuestions from "./RenderQuestions";
 
-
+import CreateIdContainer from './CreateIdContainer';
 
 function CreateQuestions() {
     const [formFields, setFormFields] = useState([
@@ -87,7 +87,7 @@ function CreateQuestions() {
                     <table class="table-responsive-sm d-flex justify-content-center" key={index}>
                         <thead>
                             <tr>
-                                <th>Question {index}</th>
+                                <th>Question: </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,7 +101,7 @@ function CreateQuestions() {
                                 </td>
                                 <td class='col-xs-2'>
                                     <input
-                                        class="form-control " name = 'name' placeholder='Name of Question' onChange={event => handleFormChange(event, index)}
+                                        class="form-control" name = 'name' placeholder='Name of Question' onChange={event => handleFormChange(event, index)}
                                         value={form.name}
                                     />
                                 </td>
@@ -117,9 +117,7 @@ function CreateQuestions() {
                                 </td>
                             </tr>
                         </tbody>
-                        </table>
-
-                    
+                        </table>   
                 )
             })}
         </form>
@@ -127,7 +125,7 @@ function CreateQuestions() {
       <button class="btn btn-success border" onClick={addFields}>Add more</button>
       <br />
       <button class="btn btn-primary border" onClick={submit}>Submit</button>
-      <RenderQuestions />
+      {/* <RenderQuestions /> */}
       </>
   )
 }

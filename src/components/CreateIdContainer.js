@@ -4,20 +4,19 @@ import { createQuestions } from '../redux'
 import { createId } from '../redux'
 
 
-function CreateQuestionsContainer(props) {
-    const [questionData, setquestionData] = useState(props.inData)
-    const [idData, setIdData] = useState('Hi')
+function CreateIdContainer(props) {
+    const [titleText, setTitleText] = useState(props.inData)
 
     const Update = () => {
-        props.createQuestions(props.inData)
-        props.createId('Ahoj')
+        props.create(props.inData)
+        setTitleText(props.inData)
     }
 
   return (
     Update()
     // <>
     //   <>Title: {props.inData.name} {props.question}</>
-    //   <input type='text' value = {questionData} onChange={e => setquestionData(e.target.value)} /> 
+    //   <input type='text' value = {titleText} onChange={e => setTitleText(e.target.value)} /> 
     //   <button onClick={() =>props.createQuestions(props.inData)}>Add</button>
     // </>
     
@@ -27,15 +26,13 @@ function CreateQuestionsContainer(props) {
 
 const mapStateToProps = state => {
   return {
-    questions: state.survey.questions
-
+    questions: state.survey.question
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    createQuestions: questionData => dispatch(createQuestions(questionData)),
-    createId: idData => dispatch(createId(idData))
+    createQuestions: titleText => dispatch(createQuestions(titleText))
   }
 }
 
@@ -43,4 +40,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CreateQuestionsContainer)
+)(CreateIdContainer)
