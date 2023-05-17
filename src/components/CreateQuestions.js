@@ -80,34 +80,43 @@ function CreateQuestions() {
     }
 
   return (
-    <div className="App">
+    <>
         <form onSubmit={submit}>
             {formFields.map((form, index) => {
                 return (
-                    <table class="table" key={index}>
-                        <div class="d-flex justify-content-center">
-                            
-                            <select name='order' class="col-md form-select" value={form.order} onChange={event=>handleFormChange(event, index)}>
-                                {renderIndexOfFields()}
+                    <table class="table-responsive-sm d-flex justify-content-center" key={index}>
+                        <thead>
+                            <tr>
+                                <th>Question {index}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class='col-xs-2'>
+                                    
+                                    <select name='order' class="form-select" value={form.order} onChange={event=>handleFormChange(event, index)}>
+                                        {renderIndexOfFields()}
 
-                            </select>
-
-                            <input
-                                class="col-md form-control "
-                                name = 'name'
-                                placeholder='Name of Question'
-                                onChange={event => handleFormChange(event, index)}
-                                value={form.name}
-                            />
-                
-                            <select name='typeOfAnswer' class="col-sm orm-select" value={form.typeOfAnswer} onChange={event => handleFormChange(event, index)}>
-                                <option>text</option>
-                                <option>radiobutton</option>
-                                <option>select</option>
-                            </select>
-
-                            <button class="btn btn-danger " onClick={() => removeFields(index)}>Remove</button>
-                        </div>
+                                    </select>
+                                </td>
+                                <td class='col-xs-2'>
+                                    <input
+                                        class="form-control " name = 'name' placeholder='Name of Question' onChange={event => handleFormChange(event, index)}
+                                        value={form.name}
+                                    />
+                                </td>
+                                <td class='col-xs-1'>
+                                    <select class="form-select" name='typeOfAnswer' value={form.typeOfAnswer} onChange={event => handleFormChange(event, index)}>
+                                        <option>text</option>
+                                        <option>radiobutton</option>
+                                        <option>select</option>
+                                    </select>
+                                </td>
+                                <td class='col-xs-1'>
+                                    <button class="btn btn-danger " onClick={() => removeFields(index)}>Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
                         </table>
 
                     
@@ -119,7 +128,7 @@ function CreateQuestions() {
       <br />
       <button class="btn btn-primary border" onClick={submit}>Submit</button>
       <RenderQuestions />
-    </div>
+      </>
   )
 }
 
