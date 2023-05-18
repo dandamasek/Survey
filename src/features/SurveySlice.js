@@ -10,6 +10,7 @@ export const surveySlice = createSlice({
         // A reducer that adds a new project to the projects state array
        loadData: (state) => {
         state = data()
+        console.log('SurveySlice',data())
         return state
        } , 
        addSurvey: (state, action) => {

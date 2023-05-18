@@ -7,18 +7,20 @@ import {store} from '../redux/store';
 
 function SurveysEditor() {
   
-  // const [surveys, SetSurveys] = useState([])
+  const [surveys, SetSurveys] = useState([])
   
   // Loading data from server to redux
-
   const dispacth = useDispatch() 
-  console.log("reload")
 
-  
+  const LoadData = () => {
+    dispacth(loadData(surveys))
+    console.log("Data loaded")
+
+  }
 
   return(
     <div>
-      <button type="button" onClick={() => {dispacth(loadData())}}>HI </button> 
+      <button type="button" onClick={LoadData}>HI </button> 
     </div>
   )
 }
