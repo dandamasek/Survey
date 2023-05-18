@@ -14,12 +14,6 @@ export const GroupsSelectQueryJSON = () => ({
                 id
                 name
                 order
-                answers {
-                  id
-                  value
-                  aswered
-                  expired
-                }
               }
              
             }
