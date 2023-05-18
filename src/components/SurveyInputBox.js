@@ -9,6 +9,9 @@ function InputBoxWithName(props) {
                 <td>
                     <input class="form-control" value={props.name}></input>
                 </td>
+                <td>
+                  <button>Uprav jmeno ankety </button>
+                </td>
             </tr>
         </tbody>
     </table>
