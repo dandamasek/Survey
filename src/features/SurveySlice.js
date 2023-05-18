@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from'../components/SurveySelect' 
-
 
 // A Redux slice for managing the state of the projects
 export const surveySlice = createSlice({
@@ -8,9 +6,9 @@ export const surveySlice = createSlice({
     initialState: [],
     reducers: {
         // A reducer that adds a new project to the projects state array
-       loadData: (state) => {
-        state = data()
-        console.log('SurveySlice',data())
+       loadData: (state, action) => {
+        const surveys = action.payload
+        state = [...state, ...surveys]
         return state
        } , 
        addSurvey: (state, action) => {

@@ -1,23 +1,27 @@
 import  {GroupsSelectQuery}  from '../queries/SurveyGroupQuery';
+import { useDispatch } from 'react-redux';
+import { loadData } from 'features/SurveySlice';
+import { useState } from 'react';
 
+export const SurveySelect= () => {
 
-export default function SurveySelect() {
-
-  let surveys = {}
+  const dispatch = useDispatch()  
+  const [dataLoaded, setDataLoaded] = useState(false)
 
     const fetchData = async () => {
       try {
         const response = await GroupsSelectQuery();
         const data = await response.json();
-        console.log('Data from SurveySelect',data);
-        // zmena return data
-        return data;
+        dispatch(loadData(data.data.surveyPage));
+        setDataLoaded(true);
       } catch (error) {
         console.error('Error fetching group names:', error);
       }
     };
-
-  fetchData();
  
-  return surveys
+  return (
+    <div>
+      <button  onClick={fetchData} disabled={dataLoaded} >Refresh</button>
+    </div>
+  )
 }

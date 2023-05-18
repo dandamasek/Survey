@@ -1,28 +1,18 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {SurveySelect} from '../components/SurveySelect';
+import { useEffect } from 'react';
 import { loadData } from '../features/SurveySlice';
-import {store} from '../redux/store';
 
-function SurveysEditor() {
-  
-  const [surveys, SetSurveys] = useState([])
-  
-  // Loading data from server to redux
-  const dispacth = useDispatch() 
+export default function SurveyEditor() {
 
-  const LoadData = () => {
-    dispacth(loadData(surveys))
-    console.log("Data loaded")
+  const surveys = useSelector(state => state.surveys);
 
-  }
 
-  return(
+  return (
     <div>
-      <button type="button" onClick={LoadData}>HI </button> 
-    </div>
-  )
+     
+          <SurveySelect />
+        </div>
+  );
 }
-
-export default SurveysEditor
