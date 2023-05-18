@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {SurveySelect} from '../components/SurveySelect';
-import { useEffect } from 'react';
-import { loadData, surveySlice } from '../features/SurveySlice';
-
+import SurveyInputBox from '../components/SurveyInputBox';
+import QuestionRender from 'components/SurveyQuestionTable';
 export default function SurveyEditor() {
 
   const surveys = useSelector(state => state.surveys);
@@ -14,6 +13,9 @@ export default function SurveyEditor() {
   return (
 
     <div>
+
+        <SurveySelect />
+
       <table>
         <thead>
           <tr>
@@ -23,13 +25,20 @@ export default function SurveyEditor() {
           </tr>
         </thead>
         <tbody>
-          { surveys.map((survey)=> <tr> {survey.name} </tr>)}
+          { surveys.map((survey)=> 
+            // <tr> {survey.name} </tr>
+            <table>
+            <tr>
+            <td> <SurveyInputBox name={survey.name} /> </td>
+            </tr>
+            <tr>
+              <td> <QuestionRender questions={survey.questions} /> </td>
+            </tr>
+          </table>
+          )}
           
         </tbody>
       </table>
-
-          <SurveySelect />
-          {surveys.name}
     </div>
   );
 }
