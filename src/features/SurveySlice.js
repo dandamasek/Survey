@@ -16,7 +16,14 @@ export const surveySlice = createSlice({
 
         state.push(newSurvey)
         return state
-       }  
+       }, 
+
+       updateProject: (state, action) => {
+        const updatedProject = action.payload
+
+        state = state.map(project => project.id === updatedProject.id ? {...project, ...updatedProject} : project)
+        return state
+    },
        
     },
 })
