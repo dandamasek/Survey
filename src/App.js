@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 
-import CreateQuestions from './components/CreateQuestions';
+import SurveyEditor from './pages/SurveysEditor';
 
-import Surveys from 'pages/Surveys';
 function App() {
-
 
   return (
     <div className="App">
-      {/* <CreateQuestions /> */}
-      <Surveys />
-      
+      <SurveyEditor />
     </div>
+    
   );
+
 }
 
 export default App;
