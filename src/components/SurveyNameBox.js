@@ -1,26 +1,28 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ButtonChangeSurveyName } from './ButtonChangeSurveyName';
 
 function SurveyNameBox(props) {
-  
-  const [dataLoaded , setDataLoaded] = useState(true);
-  
+  const [name, setName] = useState(props.name);
 
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
   return (
-            <tr>
-                <td>
-                  <input className="form-control" disabled={dataLoaded} value={props.name} ></input>
-                </td>
-                <td>
-                  <button >Change</button>
-                </td>
-                <td>
-                 <ButtonChangeSurveyName id={props.id} lastchange={props.lastchange} newName={props.newName} />
-                </td>
-            </tr>
-  )
+    <tr>
+      <td>
+        <input
+          className="form-control"
+          value={name}
+          onChange={handleNameChange}
+        />
+      </td>
+      <td>
+        <ButtonChangeSurveyName  id={props.id} lastchange={props.lastchange} newName={name}/>
+      </td>
+    </tr>
+  );
 }
 
-export default  SurveyNameBox
+export default SurveyNameBox;

@@ -8,7 +8,7 @@ export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
 
 
-  const newName = "Studentské hodnocení 2024 new"
+  const newName = "Studentské hodnocení 2024"
 
   return (
 
