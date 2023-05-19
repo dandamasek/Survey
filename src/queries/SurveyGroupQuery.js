@@ -10,6 +10,7 @@ export const GroupsSelectQueryJSON = () => ({
             surveyPage{
               id,
               name,
+              lastchange,
               questions {
                 id
                 name

@@ -1,23 +1,19 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function QuestionRender(props) {
+function SurveyQuestionTable(props) {
   return (
-    <table className="table">
-        <tbody>
-            <tr>
-                { props.questions.map((question)=>          
-            <table>
-            <tr>
-           <td><input value={question.order}></input></td>
-           <td> <input class="form-control" value={question.name}></input> </td> 
-           </tr>
-          </table>
+    <>
+
+      { props.questions.map((question)=>          
+        <tr>
+          <td> <input className="form-control" defaultValue={question.order} key={question.id}></input> </td>
+          <td> <input className="form-control" defaultValue={question.name}></input> </td> 
+        </tr>
           )}
-            </tr>
-        </tbody>
-    </table>
+
+    </>
   )
 }
 
-export default QuestionRender
+export default SurveyQuestionTable

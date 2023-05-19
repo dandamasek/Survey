@@ -1,43 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {SurveySelect} from '../components/SurveySelect';
-import SurveyInputBox from '../components/SurveyInputBox';
-import QuestionRender from 'components/SurveyQuestionTable';
+import  SurveyNameBox from '../components/SurveyNameBox';
+import SurveyQuestionTable from 'components/SurveyQuestionTable';
 export default function SurveyEditor() {
 
   const surveys = useSelector(state => state.surveys);
 
 
-
+  const newName = "Studentské hodnocení 2024 new"
 
   return (
 
     <div>
 
         <SurveySelect />
-
-      <table>
-        <thead>
-          <tr>
-            <th>
-              surveys name 
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+      <table className='table'>
+        
           { surveys.map((survey)=> 
-            // <tr> {survey.name} </tr>
-            <table>
-            <tr>
-            <td> <SurveyInputBox name={survey.name} /> </td>
-            </tr>
-            <tr>
-              <td> <QuestionRender questions={survey.questions} /> </td>
-            </tr>
-          </table>
+            <tbody>
+              <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} newName={newName} /> 
+
+              <SurveyQuestionTable questions={survey.questions}/> 
+            </tbody>
           )}
           
-        </tbody>
+        
       </table>
     </div>
   );
