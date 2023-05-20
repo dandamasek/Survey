@@ -15,10 +15,8 @@ const GroupsSelectQueryJSON = (id, lastchange, newName) => ({
   `
 });
 
-export const SurveyChangeName = (props) => {
-  const { id, lastchange, newName } = props;
-  console.log("SurveyChangeNameprops",props);
+export const SurveyChangeName = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(GroupsSelectQueryJSON(id, lastchange, newName))
+    body: JSON.stringify(GroupsSelectQueryJSON(props.id, props.lastchange, props.newName))
   })
-}
+

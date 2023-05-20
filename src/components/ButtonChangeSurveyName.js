@@ -1,19 +1,22 @@
 import  {SurveyChangeName}  from '../queries/SurveyChangeName';
 import { useDispatch } from 'react-redux';
-import { loadData } from 'features/SurveySlice';
+import { setMsg } from 'features/MsgSlice';
 import { useState } from 'react';
+import { updateSurveyName } from 'features/SurveySlice';
 
 export const ButtonChangeSurveyName= (props) => {
-  console.log("ButtonSurveyName", props)
+
   const dispatch = useDispatch()  
   const [dataLoaded, setDataLoaded] = useState(false)
     const fetchData = async () => {
       try {
         const response = await SurveyChangeName(props);
         const data = await response.json();
+        console.log("ButtonChangeSurveyName",data)
+        dispatch(setMsg(data.data.surveyUpdate.msg));
+        dispatch(updateSurveyName(props));
 
-        // dispatch(loadData(data.data.surveyPage));
-        // setDataLoaded(true);
+        setDataLoaded(true);
       } catch (error) {
         console.error('Error fetching group names:', error);
       }
