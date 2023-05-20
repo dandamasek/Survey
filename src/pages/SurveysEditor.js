@@ -6,26 +6,19 @@ import SurveyQuestionTable from 'components/SurveyQuestionTable';
 export default function SurveyEditor() {
 
   const surveys = useSelector(state => state.surveys);
-
-
-  const newName = "Studentské hodnocení 2024"
-
+  console.log("SurveyEditor",surveys);
+  
   return (
-
     <div>
+      <SurveySelect />
+      <table className='table'> 
+        { surveys.map((survey)=> 
+          <tbody>
+            <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} /> 
 
-        <SurveySelect />
-      <table className='table'>
-        
-          { surveys.map((survey)=> 
-            <tbody>
-              <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} newName={newName} /> 
-
-              <SurveyQuestionTable questions={survey.questions}/> 
-            </tbody>
-          )}
-          
-        
+            <SurveyQuestionTable questions={survey.questions}/> 
+          </tbody>
+        )}
       </table>
     </div>
   );
