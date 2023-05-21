@@ -1,4 +1,4 @@
-import { authorizedFetch } from '../queries/authorizedFetch';
+import { authorizedFetch } from './authorizedFetch';
 
 const GroupsSelectQueryJSON = (id, lastchange, newName) => ({
   query: `
@@ -6,8 +6,7 @@ const GroupsSelectQueryJSON = (id, lastchange, newName) => ({
       surveyUpdate(survey: {
         id: "${id}",
         lastchange: "${lastchange}",
-        name: "${newName}"
-      }) {
+        name: "${newName}"  }) {
         id
         msg
       }
@@ -15,7 +14,7 @@ const GroupsSelectQueryJSON = (id, lastchange, newName) => ({
   `
 });
 
-export const SurveyChangeName = (props) => 
+export const SurveyNameMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(GroupsSelectQueryJSON(props.id, props.lastchange, props.newName))
   })

@@ -6,18 +6,28 @@ import { authorizedFetch } from '../queries/authorizedFetch'
  */
 export const GroupsSelectQueryJSON = () => ({
     "query":
-        `query {
-            surveyPage{
-              id,
-              name,
-              lastchange,
-              questions {
+        `{
+          surveyPage {
+            id
+            name
+            lastchange
+            questions {
+              id
+              name
+              order
+              answers {
                 id
-                name
-                order
+                value
+                aswered
+                expired
+                lastchange
+                user {
+                  id
+                  email
+                }
               }
-             
             }
+          }
         }`
 })
 

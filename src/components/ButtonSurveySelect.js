@@ -21,7 +21,7 @@ export const SurveySelect= () => {
  
   return (
     <div>
-      <button  onClick={fetchData} disabled={dataLoaded} >Show Surveys</button>
+      <button  onClick={fetchData} disabled={dataLoaded} >Load</button>
     </div>
   )
 }

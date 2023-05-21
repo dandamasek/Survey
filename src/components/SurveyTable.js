@@ -9,9 +9,10 @@ function SurveyQuestionTable(props) {
         <tr>
           <td> <input className="form-control" defaultValue={question.order} key={question.id}></input> </td>
           <td> <input className="form-control" defaultValue={question.name}></input> </td> 
+          <td> <button>Change question</button></td>
         </tr>
           )}
-
+        
     </>
   )
 }

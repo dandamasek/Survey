@@ -12,11 +12,7 @@ function SurveyNameBox(props) {
   return (
     <tr>
       <td>
-        <input
-          className="form-control"
-          value={name}
-          onChange={handleNameChange}
-        />
+        <input className="form-control" value={name} onChange={handleNameChange}/>
       </td>
       <td>
         <ButtonChangeSurveyName  id={props.id} lastchange={props.lastchange} newName={name}/>

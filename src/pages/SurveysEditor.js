@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
-import {SurveySelect} from '../components/SurveySelect';
+import {SurveySelect} from '../components/ButtonSurveySelect';
 import  SurveyNameBox from '../components/SurveyNameBox';
-import SurveyQuestionTable from 'components/SurveyQuestionTable';
-export default function SurveyEditor() {
+import SurveyTable from 'components/SurveyTable';
 
+
+export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
-  console.log("SurveyEditor",surveys);
-  
+
   return (
     <div>
       <SurveySelect />
@@ -16,7 +16,7 @@ export default function SurveyEditor() {
           <tbody>
             <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} /> 
 
-            <SurveyQuestionTable questions={survey.questions}/> 
+            <SurveyTable questions={survey.questions}/> 
           </tbody>
         )}
       </table>
