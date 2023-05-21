@@ -2,7 +2,7 @@ import  {AnswerValueMutation}  from '../queries/AnswerValueMutation';
 import { useDispatch } from 'react-redux';
 import { setMsg } from 'features/MsgSlice';
 import { useState } from 'react';
-import { updateSurveyName } from 'features/SurveySlice';
+import { updateAnswerValue } from 'features/SurveySlice';
 
 export const ButtonChangeAnswerValue= (props) => {
   const dispatch = useDispatch()  
@@ -12,8 +12,8 @@ export const ButtonChangeAnswerValue= (props) => {
     try {
       const response = await AnswerValueMutation(props);
       const data = await response.json();
-      // dispatch(setMsg(data.data.surveyUpdate.msg));
-      // dispatch(updateSurveyName(props));
+      // dispatch(setMsg(data.data.answerUpdate.msg));
+      dispatch(updateAnswerValue(props));
       console.log(data)
       setDataLoaded(true);
     } catch (error) {
