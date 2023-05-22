@@ -28,8 +28,12 @@ export function AnswerFromUser(props) {
 
   return (
     <>
-      <td><input class = "form-control"value={Answer} onChange={handleInputChange} /></td>
-      <td><ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} /></td>
+      <td>
+  <input class="form-control" value={Answer} onChange={handleInputChange} />
+</td>
+<td>
+  <ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} />
+</td>
     </>
   
   );

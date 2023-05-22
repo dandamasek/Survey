@@ -14,7 +14,7 @@ export default function SurveyEditor() {
       <table className='table'> 
         { surveys.map((survey)=> 
           <tbody>
-            <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} /> 
+           <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} /> 
 
             <SurveyTable questions={survey.questions}/> 
           </tbody>

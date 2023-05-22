@@ -23,8 +23,8 @@ export const ButtonChangeSurveyName= (props) => {
     };
  
   return (
-    <div>
-      <button  class="btn btn-default"  onClick={fetchData} >Change Name</button>
-    </div>
+   
+   <td> <button className="btn btn-outline-dark" onClick={fetchData}>Change Name</button></td>
+  
   )
 }

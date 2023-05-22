@@ -23,7 +23,7 @@ export const ButtonChangeAnswerValue= (props) => {
  
   return (
     <div>
-      <button  class="btn btn-default" onClick={fetchData} >Change Name</button>
+      <button  class="btn btn-outline-dark" onClick={fetchData} >Change Name</button>
     </div>
   )
 }
