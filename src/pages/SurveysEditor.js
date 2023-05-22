@@ -11,7 +11,7 @@ export default function SurveyEditor() {
   return (
     <div class="form-group">
       <SurveySelect />
-      <table className='table'> 
+      <table className='table-responsive-sm'> 
         { surveys.map((survey)=> 
           <tbody>
            <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} /> 
