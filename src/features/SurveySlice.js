@@ -45,11 +45,15 @@ export const surveySlice = createSlice({
         });
           return state;
       },
+      surveyAssignTo:(state,action) =>{
+          
+          return state;
+      }
   },
 })
 
 // Export the addProject action creator from the projectsSlice
-export const { loadData, addSurvey, updateSurveyName, updateAnswerValue } = surveySlice.actions
+export const { loadData, addSurvey, updateSurveyName, updateAnswerValue,surveyAssignTo } = surveySlice.actions
 
 // Export the projectsSlice reducer
 export default surveySlice.reducer

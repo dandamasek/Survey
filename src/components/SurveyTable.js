@@ -7,11 +7,11 @@ function SurveyQuestionTable(props) {
 
       { props.questions.map((question)=>          
         <tr>
-          <td class ="col-2 "> 
-         <div class ="col-2" ><input className="form-control" defaultValue={question.order} key={question.id} /></div>
+          <td > 
+         <input className="form-control" defaultValue={question.order} key={question.id} />
          </td>
-          <td class = "col-4"> <div><input className="form-control" defaultValue={question.name}></input> </div></td> 
-          <td > <button class = "btn btn-outline-dark">Change question</button></td>
+          <td><input className="form-control" defaultValue={question.name}></input> </td> 
+          <td> <button class = "btn btn-outline-dark">Change question</button></td>
         </tr>
           )}
         
