@@ -11,7 +11,7 @@ export default function SurveyEditor() {
   return (
     <div class = "form-group">
       <SurveySelect />
-      <table className='table'> 
+      <table className='table' > 
 
       <thead>  
          <UserTable currentUser={currentUser}/>
