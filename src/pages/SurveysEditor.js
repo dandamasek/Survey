@@ -9,7 +9,7 @@ export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
 
   return (
-    <div>
+    <div class="form-group">
       <SurveySelect />
       <table className='table'> 
         { surveys.map((survey)=> 

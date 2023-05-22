@@ -24,7 +24,7 @@ export const ButtonChangeSurveyName= (props) => {
  
   return (
     <div>
-      <button  onClick={fetchData} >Change Name</button>
+      <button  class="btn btn-default"  onClick={fetchData} >Change Name</button>
     </div>
   )
 }
