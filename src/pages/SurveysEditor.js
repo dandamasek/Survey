@@ -22,7 +22,7 @@ export default function SurveyEditor() {
             <table class = "table table-bordered">
             <SurveyTable questions={survey.questions}/> 
             </table>
-            <ButtonSurveyAssignToUser userId={props.currentUser.id} surveyId={props.surveyId}/>
+            
            
           </tbody>
 
