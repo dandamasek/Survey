@@ -8,9 +8,28 @@ export const surveySlice = createSlice({
         // A reducer that adds a new project to the projects state array
       loadData: (state, action) => {
         const surveys = action.payload
-        state = [...state, ...surveys]
+        let newSurveys = []
+        let isAlreadyinStore = false
+
+            // Iterate through the projects to be loaded
+            for (let survey of surveys) {
+                // Check if the project is already present in the state
+                for (let surv of state) {
+                    if (survey.id === surv.id) {
+                        isAlreadyinStore = true
+                        console.log(`Survey "${survey.name}" is already loaded`)
+                    }
+                }
+                
+                if (!isAlreadyinStore) {
+                    newSurveys = [...newSurveys, survey]
+                }
+            }
+            
+        state = [...state, ...newSurveys]
         return state
-        } , 
+        }, 
+
       addSurvey: (state, action) => {
         const newSurvey = action.payload
 
@@ -53,7 +72,7 @@ export const surveySlice = createSlice({
 })
 
 // Export the addProject action creator from the projectsSlice
-export const { loadData, addSurvey, updateSurveyName, updateAnswerValue,surveyAssignTo } = surveySlice.actions
+export const { loadData, addSurvey, updateSurveyName, updateAnswerValue, surveyAssignTo } = surveySlice.actions
 
 // Export the projectsSlice reducer
 export default surveySlice.reducer

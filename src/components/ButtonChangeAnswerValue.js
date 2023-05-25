@@ -13,6 +13,7 @@ export const ButtonChangeAnswerValue= (props) => {
       const response = await AnswerValueMutation(props);
       const data = await response.json();
       // dispatch(setMsg(data.data.answerUpdate.msg));
+      // if(data.data.answerUpdate.mgs === 'true')
       dispatch(updateAnswerValue(props));
       console.log(data)
       setDataLoaded(true);
