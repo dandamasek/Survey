@@ -1,9 +1,5 @@
 # Surveys
 Nástroj na editaci ankety
-## To-Do
-* Danda - obeznámit se s reactem
-* Tobi - obeznámit se s reactem
-* Tomy - obeznámit se s reactem
 
 ## Zadání
 SURVEYS Zobrazení ankety (název, anketní otázky), editace ankety (vložení nové otázky, zneplatnění otázky), editace otázky (popis, volby odpovědi), Odpověď na anketu, odpověď na anketní otázku. Zobrazení souhrnných údajů o anketě, grafické znázornění (svg), statistika odpovědí u uzavřených otázek, Inspirujte se u https://www.surveymonkey.com/, 3 studenti
