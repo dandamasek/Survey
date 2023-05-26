@@ -4,7 +4,7 @@ import { authorizedFetch } from '../queries/authorizedFetch'
  * Funkce
  *  
  */
-export const GroupsSelectQueryJSON = () => ({
+export const SurveySelectQueryJSON = () => ({
     "query":
         `{
           surveyPage {
@@ -15,6 +15,7 @@ export const GroupsSelectQueryJSON = () => ({
               id
               name
               order
+              lastchange
               answers {
                 id
                 value
@@ -35,7 +36,7 @@ export const GroupsSelectQueryJSON = () => ({
  * Realizace dotazu na server. Vyuziva autorizedFetch (zapouzdreni)
  */
 
-export const GroupsSelectQuery = () =>
+export const SurveySelectQuery = () =>
     authorizedFetch('/gql', {
-        body: JSON.stringify(GroupsSelectQueryJSON()),
+        body: JSON.stringify(SurveySelectQueryJSON()),
     })

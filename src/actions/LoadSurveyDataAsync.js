@@ -1,4 +1,4 @@
-import { GroupsSelectQuery }  from '../queries/SurveyGroupQuery';
+import { SurveySelectQuery }  from '../queries/SurveyGroupQuery';
 import { loadData } from '../features/SurveySlice';
 
 
@@ -9,7 +9,7 @@ import { loadData } from '../features/SurveySlice';
  */
 export const SurveyFetchAsync = () => (dispatch, getState) => {
   // Call the ProjectsQuery function to fetch projects
-  GroupsSelectQuery()
+  SurveySelectQuery()
     .then(response => response.json())
     .then(json => {
       // Extract the projects data from the JSON response

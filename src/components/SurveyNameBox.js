@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ButtonChangeSurveyName } from './ButtonChangeSurveyName';
+import { ButtonChangeSurveyName } from '../actions/ButtonChangeSurveyName';
 
 function SurveyNameBox(props) {
   const [name, setName] = useState(props.name);
-
+    
+  // change const name, direct setName in onChange causing re-rendering
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
   return (
-    <tr class="text-center" >
-      <td  class = "col-2">
-       <input className="form-control" value={name} onChange={handleNameChange}/>
-      </td>
-      <td class="col-4 ">
-        <ButtonChangeSurveyName  id={props.id} lastchange={props.lastchange} newName={name}/>
-      </td>
+    <tr>       
+      <td><input key={props.id+"SurveyName"} className="form-control" value={name} onChange={handleNameChange}/></td>
+      <ButtonChangeSurveyName  id={props.id} lastchange={props.lastchange} newName={name}/>
     </tr>
+
   );
 }
 

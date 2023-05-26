@@ -1,12 +1,9 @@
 import  {AnswerValueMutation}  from '../queries/AnswerValueMutation';
 import { useDispatch } from 'react-redux';
-import { setMsg } from 'features/MsgSlice';
-import { useState } from 'react';
 import { updateAnswerValue } from 'features/SurveySlice';
 
 export const ButtonChangeAnswerValue= (props) => {
   const dispatch = useDispatch()  
-  const [dataLoaded, setDataLoaded] = useState(false)
 
   const fetchData = async () => {
     try {
@@ -16,15 +13,12 @@ export const ButtonChangeAnswerValue= (props) => {
       // if(data.data.answerUpdate.mgs === 'true')
       dispatch(updateAnswerValue(props));
       console.log(data)
-      setDataLoaded(true);
     } catch (error) {
       console.error('Error fetching group names:', error);
     }
   };
  
   return (
-    <div>
-      <button  class="btn btn-outline-dark" onClick={fetchData} >Change Name</button>
-    </div>
+      <button  className="btn btn-outline-dark" onClick={fetchData} >Change Value</button>
   )
 }

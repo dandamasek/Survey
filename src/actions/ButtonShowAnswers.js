@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ShowAnswerTable from './ShowAnswersTable';
+import ShowAnswerTable from '../components/ShowAnswersTable';
 
 const ShowAnswersButton = () => {
   const surveys = useSelector(state => state.surveys);

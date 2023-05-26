@@ -50,9 +50,12 @@ export const surveySlice = createSlice({
         return updatedSurveys;
       },
 
+      updateNewQuestion: (state, action) => {
+        
+      },
+
       updateAnswerValue: (state, action) => {
-        const { id, lastchange, value } = action.payload;
-        console.log(action.payload)
+        const { id, value } = action.payload;
           state.forEach((survey) => {
           survey.questions.forEach((question) => {
             question.answers.forEach((answer) => {

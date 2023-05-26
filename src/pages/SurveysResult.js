@@ -1,29 +1,25 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector, useDispatch } from 'react-redux';
-import {SurveySelect} from '../components/ButtonSurveySelect';
-import  SurveyNameBox from '../components/SurveyNameBox';
-import SurveyTable from 'components/SurveyTable';
-import ShowAnswersButton from 'components/ButtonShowAnswers';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import { useSelector, } from 'react-redux';
+// import {SurveySelect} from '../actions/ButtonSurveySelect';
+// import ShowAnswersButton from 'actions/ButtonShowAnswers';
 
 
-export default function SurveyResult() {
-  const surveys = useSelector(state => state.surveys);
+// export default function SurveyResult() {
+//   const surveys = useSelector(state => state.surveys);
 
-  return (
-    <div class="container ">
-      <SurveySelect/>
-      <ShowAnswersButton></ShowAnswersButton>
-      <table className='table table-bordered '> 
-        { surveys.map((survey)=> 
-          <tbody>
+//   return (
+//     <div class="container ">
+//       <SurveySelect/>
+//       <ShowAnswersButton></ShowAnswersButton>
+//       <table className='table table-bordered '> 
+//         { surveys.map((survey)=> 
+//           <tbody>
             
-             
             
-           
-          </tbody>
+//           </tbody>
 
-        )}
-      </table>
-    </div>
-  );
-}
+//         )}
+//       </table>
+//     </div>
+//   );
+// }

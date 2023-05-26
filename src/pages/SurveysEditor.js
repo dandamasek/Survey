@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
 import  SurveyNameBox from '../components/SurveyNameBox';
-import SurveyTable from 'components/SurveyTable';
+import SurveyQuestionTable from 'components/SurveyQuestionTable';
 import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 
@@ -16,26 +16,18 @@ export default function SurveyEditor() {
   }, []);
 
   return (
-    <div class="container ">
-      <table className='table table-bordered '> 
+      // table for editing surveys
+      <table className='table table-bordered' key={"Survey table"}> 
         { surveys.map((survey)=> 
-          <tbody>
-            <Card>
+          <tbody key={survey.id+"Survey tbody"}>
 
-            </Card>
-             <table class ="table table-bordered">
-           <SurveyNameBox key={survey.id} name={survey.name} id={survey.id} lastchange={survey.lastchange} /> 
-           </table>
-           
-            <table class = "table table-bordered">
-            <SurveyTable questions={survey.questions}/> 
-            </table>
-            
-           
+          {/* Showing name of survey and change name button*/}
+          <SurveyNameBox key={survey.id+"Survey name"} name={survey.name} id={survey.id} lastchange={survey.lastchange} />  
+
+          {/* Showing questions of survey and change question button*/}
+          <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
           </tbody>
-
         )}
       </table>
-    </div>
   );
 }

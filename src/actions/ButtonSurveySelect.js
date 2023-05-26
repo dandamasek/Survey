@@ -1,16 +1,16 @@
-import  {GroupsSelectQuery}  from '../queries/SurveyGroupQuery';
+import  {SurveySelectQuery}  from '../queries/SurveyGroupQuery';
 import { useDispatch } from 'react-redux';
 import { loadData } from 'features/SurveySlice';
 import { useState } from 'react';
 
-export const SurveySelect= () => {
+export const ButtonSurveySelect= () => {
 
   const dispatch = useDispatch()  
   const [dataLoaded, setDataLoaded] = useState(false)
 
     const fetchData = async () => {
       try {
-        const response = await GroupsSelectQuery();
+        const response = await SurveySelectQuery();
         const data = await response.json();
         dispatch(loadData(data.data.surveyPage));
         setDataLoaded(true);
@@ -21,7 +21,7 @@ export const SurveySelect= () => {
  
   return (
     <div>
-      <button class="btn btn-primary" onClick={fetchData} disabled={dataLoaded} >Load</button>
+      <button className="btn btn-primary" onClick={fetchData} disabled={dataLoaded} >Load</button>
     </div>
   )
 }

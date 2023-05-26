@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ButtonChangeAnswerValue } from './ButtonChangeAnswerValue';
+import { ButtonChangeAnswerValue } from '../actions/ButtonChangeAnswerValue';
 
 export function AnswerFromUser(props) {
-  const [Answer, setAnswer] = useState(null);
+  const [Answer, setAnswer] = useState("");
   const [id, setId] = useState(null);
   const [lastchange, setLastchange] = useState(null);
 
@@ -28,13 +28,9 @@ export function AnswerFromUser(props) {
 
   return (
     <>
-      <td>
-  <input class="form-control" value={Answer} onChange={handleInputChange} />
-</td>
-<td>
-  <ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} />
-</td>
+      <td><input className="form-control" value={Answer} onChange={handleInputChange}/></td>
+      <td><ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} /></td>
     </>
-  
+
   );
 }
