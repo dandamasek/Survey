@@ -3,16 +3,16 @@ import { useDispatch } from 'react-redux';
 import { updateAnswerValue } from 'features/SurveySlice';
 import {QuestionUpdateMutation} from '../queries/QuestionUpdateMutation';
 
-export const QuestionUpdateButton = (props) => {
+export const QuestionUpdateButton = (lastchange,id,name,order) => {
   const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
-      
-      const response = await QuestionUpdateMutation(props);
+      console.log("Lastchange ",lastchange);
+      const response = await QuestionUpdateMutation(lastchange,id,name,order);
       const data = await response.json();
       // dispatch(updateAnswerValue(data));
-      props.lastchange = data.data.lastchange
+      lastchange = data.data.questionUpdate.id;
       console.log(data);
     } catch (error) {
       console.error('Error fetching group names:', error);

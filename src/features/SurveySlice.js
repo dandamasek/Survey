@@ -38,8 +38,8 @@ export const surveySlice = createSlice({
         }, 
 
       updateSurveyName: (state, action) => {
-        const { id, lastchange, newName } = action.payload;
-      
+        const [ id, lastchange, newName ] = action.payload;
+        console.log("slice",lastchange)
         const updatedSurveys = state.map(survey => {
           if (survey.id === id) {
             return { ...survey, name: newName, lastchange };
@@ -50,9 +50,18 @@ export const surveySlice = createSlice({
         return updatedSurveys;
       },
 
-      updateNewQuestion: (state, action) => {
-        
-      },
+      // updateNewQuestion: (state, action) => {
+      //   const { id, lastchange, order, name } = action.payload;
+      
+      //   const updatedSurveys = state.map(survey => {
+      //     if (survey.id === id) {
+      //       return { ...survey, name: newName, lastchange };
+      //     }
+      //     return survey;
+      //   });
+      
+      //   return updatedSurveys;
+      // },
 
       updateAnswerValue: (state, action) => {
         const { id, value } = action.payload;

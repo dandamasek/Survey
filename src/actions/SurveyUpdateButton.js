@@ -1,17 +1,17 @@
-import  {SurveyNameMutation}  from '../queries/SurveyNameMutation';
+import  {SurveyUpdateMutation}  from '../queries/SurveyUpdateMutation';
 import { useDispatch } from 'react-redux';
 import { updateSurveyName } from 'features/SurveySlice';
 
-export const ButtonChangeSurveyName= (props) => {
+export const SurveyUpdateButton= (props) => {
 
   const dispatch = useDispatch()  
     const fetchData = async () => {
       try {
-        const response = await SurveyNameMutation(props);
+        const response = await SurveyUpdateMutation(props);
         const data = await response.json();
-        console.log("ButtonChangeSurveyName",data)
         if (data.data.surveyUpdate.msg === "ok") {
-          dispatch(updateSurveyName(props));
+          const newProps = [props.id, data.data.surveyUpdate.survey.lastchange, data.data.surveyUpdate.survey.name]
+          dispatch(updateSurveyName(newProps));
           console.log("Survey name: "+props.newName+" is updated in store and server")
         }
         

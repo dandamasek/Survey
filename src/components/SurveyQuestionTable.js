@@ -1,13 +1,18 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Question from './Question';
-function SurveyQuestionTable(props) {
- 
+import { QuestionInsertButton } from 'actions/QuestionInsertButton';
+
+  function SurveyQuestionTable(props) {
+  const orderLength = [...props.questions].length;
+
   return (
     <>
         { props.questions.map((question)=>          
-          <Question question={question} surveyId={props.surveyId} orderLength={props.questions.lenght} key={question.id+"Question"}/>
+          <Question question={question} key={question.id+"Question"}/>
         )}
+
+        <tr><td><QuestionInsertButton surveyId={props.surveyId} orderLength={orderLength}/></td></tr>
     </>
     
   )

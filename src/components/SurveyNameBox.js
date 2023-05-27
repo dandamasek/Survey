@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ButtonChangeSurveyName } from '../actions/ButtonChangeSurveyName';
+import { SurveyUpdateButton } from '../actions/SurveyUpdateButton';
 
 function SurveyNameBox(props) {
   const [name, setName] = useState(props.name);
@@ -9,11 +9,10 @@ function SurveyNameBox(props) {
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
-
   return (
     <tr>       
       <td><input key={props.id+"SurveyName"} className="form-control" value={name} onChange={handleNameChange}/></td>
-      <ButtonChangeSurveyName  id={props.id} lastchange={props.lastchange} newName={name}/>
+      <SurveyUpdateButton  id={props.id} lastchange={props.lastchange} newName={name}/>
     </tr>
 
   );

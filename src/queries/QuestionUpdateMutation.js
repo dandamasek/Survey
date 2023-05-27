@@ -10,10 +10,12 @@ const QuestionUpdateMutationJSON = (lastchange,id,name,order) => ({
         name: "${name}",  
         order: ${order}}
     ) {
-      id
       msg
       question{
+      id
       lastchange
+      name
+      order
       }
     }
   }

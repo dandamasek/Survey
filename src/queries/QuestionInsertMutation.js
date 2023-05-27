@@ -1,6 +1,6 @@
 import { authorizedFetch } from './authorizedFetch';
 
-const GroupsSelectQueryJSON = (name,surveyId,typeId,order) => ({
+const questionInsertMutationJSON = (name,surveyId,typeId,order) => ({
   query: `
   mutation {
     questionInsert (question:{
@@ -9,14 +9,14 @@ const GroupsSelectQueryJSON = (name,surveyId,typeId,order) => ({
     typeId:"${typeId}",
     order:${order}
     }) {
+      id
       msg
     }
   }
   `
 });
 
-export const questionInsertMutation = (props) => 
+export const questionInsertMutation = (name, surveyId, typeId, order) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(GroupsSelectQueryJSON(props.name, props.surveyId, props.typeId, props.order)),
+    body: JSON.stringify(questionInsertMutationJSON(name, surveyId, typeId, order)),
   })
-
