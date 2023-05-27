@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { QuestionUpdateButton } from 'actions/QuestionUpdateButton';
+import QuestionValues from './QuestionValues';
 
 function Question(props) {
   const [order, setOrder] = useState(props.question.order);
   const [name, setName] = useState(props.question.name);
   const [type, setType] = useState(props.question.type.id);
-  const [questionValues, setQuestionValues] = useState([""]);
 
+  const [questionValues, setQuestionValues] = useState(props.question.values);
+  
+
+  const questionId = props.question.id;
+  const orderLength = questionValues.length;
+
+  console.log(props.question.values)
   // Handle order input change
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
@@ -34,16 +41,16 @@ function Question(props) {
     setQuestionValues(newQuestionValues);
   };
 
-  // Map the question values
-  const questionValueInputs = questionValues.map((questionValue, index) => (
-    <div key={index}>
-      <input
-        value={questionValue}
-        onChange={(event) => handleQuestionValueChange(event, index)}
-      />
-      <button onClick={() => removeQuestionValue(index)}>Remove</button>
-    </div>
-  ));
+  // Pass questionValues state and relevant functions as props to QuestionValues component
+  const questionValuesProps = {
+    questionValues,
+    setQuestionValues,
+    handleQuestionValueChange,
+    addQuestionValue,
+    removeQuestionValue,
+    questionId,
+    orderLength
+  };
 
   return (
     <>
@@ -51,30 +58,45 @@ function Question(props) {
         <td>
           {/* Order input */}
           <input
-            className="form-control"onChange={handleOrderChange} value={order} key={props.question.id + "Question order"} />
+            className="form-control"
+            onChange={handleOrderChange}
+            value={order}
+            key={props.question.id + "Question order"}
+          />
         </td>
         <td>
           {/* Question input */}
-          <input className="form-control" onChange={handleNameChange} value={name} key={props.question.id + "Question name"} />
+          <input
+            className="form-control"
+            onChange={handleNameChange}
+            value={name}
+            key={props.question.id + "Question name"}
+          />
         </td>
         <td>
           <select
-            className="form-select" value={type} onChange={(e) => setType(e.target.value)}>
+            className="form-select"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
             <option value="949d74a2-63b1-4478-82f1-e025d8bc6c8b">Otevřená</option>
             <option value="ad0f53fb-240b-47de-ab1d-871bbde6f973">Uzavřená</option>
             <option value="2a6a1731-1efa-4644-a1d8-5848e4b29ce5">Škála</option>
           </select>
           {/* decision for Uzavřená and Škála */}
           {type !== "949d74a2-63b1-4478-82f1-e025d8bc6c8b" && (
-            <div>
-              {questionValueInputs}
-              <button onClick={addQuestionValue}>Add Value</button>
-            </div>
+            <QuestionValues {...questionValuesProps} />
           )}
         </td>
         <td>
           {/* Button component */}
-          <QuestionUpdateButton lastchange={props.question.lastchange} id={props.question.id} name={name} order={order}  key={props.question.id + "ChangeValue"}/>
+          <QuestionUpdateButton
+            lastchange={props.question.lastchange}
+            id={props.question.id}
+            name={name}
+            order={order}
+            key={props.question.id + "ChangeValue"}
+          />
         </td>
       </tr>
     </>
