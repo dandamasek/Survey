@@ -11,6 +11,34 @@ const questionInsertMutationJSON = (name,surveyId,typeId,order) => ({
     }) {
       id
       msg
+      question{
+        id
+        lastchange
+        name
+        order
+        type {
+          id
+          name
+        }
+        values {
+          name
+        }
+        survey{
+          id
+        }
+        answers{
+          id
+          lastchange
+          value
+          aswered
+          expired
+          user{
+            id
+            name
+          }
+        }
+        
+      }
     }
   }
   `

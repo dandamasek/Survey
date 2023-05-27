@@ -37,6 +37,24 @@ export const surveySlice = createSlice({
         return state
         }, 
 
+        // add newQuestion to specific survey
+        addQuestion: (state, action) => {
+          const newQuestion = action.payload;
+          console.log("addQuestion action", newQuestion);
+          
+          // cycle to find specific survey by id and then add new question to its questions list
+          const updatedSurveys = state.map((survey) => {
+            if (survey.id === newQuestion.survey.id) {
+              const updatedQuestions = [...survey.questions, newQuestion];
+              return { ...survey, questions: updatedQuestions };
+            }
+            return survey;
+          });
+        
+          return updatedSurveys;
+        },
+        
+
       updateSurveyName: (state, action) => {
         const [ id, lastchange, newName ] = action.payload;
         console.log("slice",lastchange)
@@ -84,7 +102,7 @@ export const surveySlice = createSlice({
 })
 
 // Export the addProject action creator from the projectsSlice
-export const { loadData, addSurvey, updateSurveyName, updateAnswerValue, surveyAssignTo } = surveySlice.actions
+export const { loadData, addSurvey, updateSurveyName, addQuestion, updateAnswerValue, surveyAssignTo } = surveySlice.actions
 
 // Export the projectsSlice reducer
 export default surveySlice.reducer

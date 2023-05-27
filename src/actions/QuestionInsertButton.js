@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
 import { questionInsertMutation } from '../queries/QuestionInsertMutation';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { addQuestion } from 'features/SurveySlice';
 
 export const QuestionInsertButton = (props) => {
+  const dispatch = useDispatch();
+
   // showing modal if button pressed
   const [showModal, setShowModal] = useState(false);
 
   // stored values for questionInsert
-  const [order, setOrder] = useState('');
   const [name, setName] = useState('');
+
+  // default typeID is Otevřená
   const [typeId, setTypeId] = useState("949d74a2-63b1-4478-82f1-e025d8bc6c8b");
-  const [questionsValue, setQuestionsValue] = useState([""]);
 
   const fetchData = async () => {
     try {     
       const response = await questionInsertMutation(name,props.surveyId,typeId,props.orderLength+1);
-      const data = await response.json();
-
-      if (data.data.questionInsert.msg === "ok") {
-        // const newProps = [props.id, data.data.surveyUpdate.survey.lastchange, data.data.surveyUpdate.survey.name]
-        // dispatch(updateSurveyName(newProps));
-        // console.log("Survey name: "+props.newName+" is updated in store and server")
-      }
+      const data = await response.json(name,typeId,props.surveyId,props.orderLength+1);
       
-      // Save each variable to a constant
-      // Perform your desired actions with the constants
-      console.log('Order:', order);
-      console.log('Name:', name);
-      console.log('Type:', typeId);
+      // const data.data.questionInsert.msg === "ok";
+
+      if (true) {
+        dispatch(addQuestion(data.data.questionInsert.question))
+        console.log("Question "+{name}+ " was created in server");
+
+        // dispatch(updateSurveyName(newProps));
+      }
 
       setShowModal(false);
     } catch (error) {
@@ -39,10 +40,6 @@ export const QuestionInsertButton = (props) => {
     setShowModal(false);
   };
 
-  const handleOrderChange = (event) => {
-    setOrder(event.target.value);
-  };
-
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -50,11 +47,6 @@ export const QuestionInsertButton = (props) => {
   const handleTypeChange = (event) => {
     setTypeId(event.target.value);
   };
-
-  const addQuestionValue = (event) => {
-    const newQuestionValue = [...questionsValue,event];
-    setQuestionsValue(newQuestionValue);
-  }
 
   return (
     <>
@@ -80,33 +72,6 @@ export const QuestionInsertButton = (props) => {
               <option value="ad0f53fb-240b-47de-ab1d-871bbde6f973">Uzavřená</option>
             </Form.Control>
           </Form.Group>
-            {/* decision for škála question */}
-            {typeId === '2a6a1731-1efa-4644-a1d8-5848e4b29ce5'&& (
-
-              questionsValue.map(questionValue => 
-                <Form.Group>
-                  <Form.Label>Question Value:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={questionValue}
-                    onChange={addQuestionValue(questionValue)}
-                  />
-                </Form.Group>
-              )
-            )}
-
-            {/* decision for uzavřená question */}
-            {typeId === 'ad0f53fb-240b-47de-ab1d-871bbde6f973'&& (
-              <Form.Group>
-                <Form.Label>Question Value:</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={questionsValue}
-                  onChange={setQuestionsValue}
-                />
-              </Form.Group>
-            )}
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
