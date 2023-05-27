@@ -15,6 +15,16 @@ export const SurveySelectQueryJSON = () => ({
               id
               name
               order
+              type{
+                id
+                name
+              }
+              values{
+              name
+              id
+              lastchange
+              order
+              }
               lastchange
               answers {
                 id
