@@ -9,7 +9,7 @@ import { QuestionInsertButton } from 'actions/QuestionInsertButton';
   return (
     <>
         { props.questions.map((question)=>          
-          <Question question={question} key={question.id+"Question"}/>
+          <Question question={question} surveyId={props.surveyId} key={question.id+"Question"}/>
         )}
 
         <tr><td><QuestionInsertButton surveyId={props.surveyId} orderLength={orderLength}/></td></tr>

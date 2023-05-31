@@ -68,6 +68,25 @@ export const surveySlice = createSlice({
         return updatedSurveys;
       },
 
+
+      updateQuestion: (state, action) => {
+        // console.log("Payload",action.payload.question);
+        // const [ id, lastchange, name, order, type] = action.payload.question;
+
+        console.log("slice",action.payload)
+        // const updatedSurveys = state.map(survey => {
+        //   if (survey.id === id) {
+        //     survey.questions.map(question => {
+        //       if (question.id === id)
+        //     })
+        //     return { ...survey, name: newName, lastchange };
+        //   }
+        //   return survey;
+        // });
+      
+        // return updatedSurveys;
+      },
+
       // updateNewQuestion: (state, action) => {
       //   const { id, lastchange, order, name } = action.payload;
       
@@ -102,7 +121,7 @@ export const surveySlice = createSlice({
 })
 
 // Export the addProject action creator from the projectsSlice
-export const { loadData, addSurvey, updateSurveyName, addQuestion, updateAnswerValue, surveyAssignTo } = surveySlice.actions
+export const { loadData, addSurvey, updateSurveyName, updateQuestion,addQuestion, updateAnswerValue, surveyAssignTo } = surveySlice.actions
 
 // Export the projectsSlice reducer
 export default surveySlice.reducer

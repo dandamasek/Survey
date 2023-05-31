@@ -1,6 +1,6 @@
 import { authorizedFetch } from './authorizedFetch';
 
-const QuestionUpdateMutationJSON = (lastchange,id,name,order) => ({
+const QuestionUpdateMutationJSON = (lastchange,id,name,order,type) => ({
   query: `
   mutation {
     questionUpdate(
@@ -8,7 +8,9 @@ const QuestionUpdateMutationJSON = (lastchange,id,name,order) => ({
         lastchange: "${lastchange}", 
         id: "${id}", 
         name: "${name}",  
-        order: ${order}}
+        order: ${order},
+        typeId: "${type}"
+      }
     ) {
       msg
       question{
@@ -24,5 +26,5 @@ const QuestionUpdateMutationJSON = (lastchange,id,name,order) => ({
 
 export const QuestionUpdateMutation = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(QuestionUpdateMutationJSON(props.lastchange,props.id,props.name,props.order))
+    body: JSON.stringify(QuestionUpdateMutationJSON(props.lastchange,props.id,props.name,props.order,props.type))
   })

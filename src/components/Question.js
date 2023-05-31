@@ -7,6 +7,9 @@ function Question(props) {
   const [order, setOrder] = useState(props.question.order);
   const [name, setName] = useState(props.question.name);
   const [type, setType] = useState(props.question.type.id);
+  
+  // surveyId is Id of survey of this question
+  const surveyId = props.surveyId
 
   const [questionValues, setQuestionValues] = useState(props.question.values);
   
@@ -14,7 +17,6 @@ function Question(props) {
   const questionId = props.question.id;
   const orderLength = questionValues.length;
 
-  console.log(props.question.values)
   // Handle order input change
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
@@ -95,6 +97,8 @@ function Question(props) {
             id={props.question.id}
             name={name}
             order={order}
+            type={type}
+            surveyId={surveyId}
             key={props.question.id + "ChangeValue"}
           />
         </td>
