@@ -2,8 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { QuestionValueUpdateMutation } from 'queries/QuestionValueUpdateMutation';
 
+
 export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
