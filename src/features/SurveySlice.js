@@ -71,20 +71,23 @@ export const surveySlice = createSlice({
 
       updateQuestion: (state, action) => {
         // console.log("Payload",action.payload.question);
-        // const [ id, lastchange, name, order, type] = action.payload.question;
+        const [ newQuestion, surveyId] = action.payload;
+        console.log("updateQuestion Slice",surveyId);
 
-        console.log("slice s",action.payload)
-        // const updatedSurveys = state.map(survey => {
-        //   if (survey.id === id) {
-        //     survey.questions.map(question => {
-        //       if (question.id === id)
-        //     })
-        //     return { ...survey, name: newName, lastchange };
-        //   }
-        //   return survey;
-        // });
-      
-        // return updatedSurveys;
+        state.forEach((survey) => {
+          survey.questions.forEach((question) => {
+
+            if (question.id === newQuestion.id) {
+              question.name = newQuestion.name;
+              question.lastchange = newQuestion.lastchange;
+              question.order = newQuestion.order;
+              question.type = newQuestion.type;
+            }
+           
+          });
+        });
+        return state;
+        
       },
 
       // updateNewQuestion: (state, action) => {
@@ -113,6 +116,7 @@ export const surveySlice = createSlice({
         });
           return state;
       },
+
       surveyAssignTo:(state,action) =>{
           
           return state;

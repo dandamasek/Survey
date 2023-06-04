@@ -3,20 +3,20 @@ import { useDispatch } from 'react-redux';
 import { updateQuestion } from 'features/SurveySlice';
 import {QuestionUpdateMutation} from '../queries/QuestionUpdateMutation';
 
-export const QuestionUpdateButton = (lastchange,id,name,order,type,surveyId) => {
+export const QuestionUpdateButton = (props) => {
   const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
-      const response = await QuestionUpdateMutation(lastchange,id,name,order,type);
+      const response = await QuestionUpdateMutation(props.lastchange,props.id,props.name,props.order,props.type);
       const data = await response.json();
 
       if (data.data.questionUpdate.msg == "ok" ) {
-        const newProps = [data.data.questionUpdate,surveyId];
+        const newProps = [data.data.questionUpdate.question,props.surveyId];
 
         dispatch(updateQuestion(newProps));
-        lastchange = data.data.questionUpdate.id;
-        console.log("Question updated ",data.data);
+        
+        console.log("Question updated on server",data.data);
       }
      
     } catch (error) {

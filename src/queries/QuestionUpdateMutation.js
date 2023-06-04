@@ -18,13 +18,21 @@ const QuestionUpdateMutationJSON = (lastchange,id,name,order,type) => ({
       lastchange
       name
       order
+      type {
+        id
+        name
+      }
+      values {
+        id
+        name
+      }
       }
     }
   }
   `
 });
 
-export const QuestionUpdateMutation = (props) => 
+export const QuestionUpdateMutation = (lastchange,id,name,order,type) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(QuestionUpdateMutationJSON(props.lastchange,props.id,props.name,props.order,props.type))
+    body: JSON.stringify(QuestionUpdateMutationJSON(lastchange,id,name,order,type))
   })

@@ -69,7 +69,7 @@ function QuestionTable(props) {
           <QuestionUpdateButton
             lastchange={props.question.lastchange}
             id={props.question.id}
-            name={name}
+            name={name} 
             order={order}
             type={type}
             surveyId={surveyId}
