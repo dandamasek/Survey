@@ -16,9 +16,10 @@ export function AnswerFromUser(props) {
       setAnswer(matchingAnswer.value);
       setId(matchingAnswer.id);
       setLastchange(matchingAnswer.lastchange);
-
     } else {
-      setAnswer(null);
+      setAnswer("");
+      setId(null);
+      setLastchange(null);
     }
   }, [props.question.answers, props.currentUser]);
 
@@ -26,11 +27,64 @@ export function AnswerFromUser(props) {
     setAnswer(event.target.value);
   };
 
+  const handleRadioChange = (event) => {
+    setAnswer(event.target.value);
+  };
+
+  const renderQuestionByType = () => {
+    const { question } = props;
+    switch (question.type.name) {
+      case 'Škála':
+        return (
+          <div>
+           Škála
+           
+            {question.values.map((value) => (
+              <div key={value.id}>
+                <input  type="checkbox" value={value.id} />
+                <label>{value.name}</label>
+              </div>
+            ))}
+          </div>
+        );
+      case 'Otevřené':
+        return (
+          <div>
+           Otevřené
+           <div>
+            <input type="text" value={Answer} onChange={handleInputChange} />
+            </div>
+          </div>
+        );
+      case 'Uzavřené':
+        return (
+          <div> 
+            Uzavřené
+           
+            {question.values.map((value) => (
+              <div key={value.id}>
+                <input
+                  type="radio"
+                  name={question.id}
+                  value={value.id}
+                  checked={Answer === value.id}
+                  onChange={handleRadioChange}
+                />
+                <label>{value.name}</label>
+              </div>
+            ))}
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      <td><input className="form-control" value={Answer} onChange={handleInputChange}/></td>
-      <td><ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} /></td>
+    {renderQuestionByType()}
+     <ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} />
+    
     </>
-
   );
 }
