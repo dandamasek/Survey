@@ -1,6 +1,5 @@
 import React from 'react';
 import { QuestionValueInsertButton } from '../actions/QuestionValueInsertButton';
-import { QuestionValueUpdateButton } from 'actions/QuestionValueUpdateButton';
 import QuestionValue from './QuestionValue';
 
 // function for insert and update questionValues 

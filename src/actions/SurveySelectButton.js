@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { loadData } from 'features/SurveySlice';
 import { useState } from 'react';
 
-export const ButtonSurveySelect= () => {
+export const SurveySelectButton= () => {
 
   const dispatch = useDispatch()  
   const [dataLoaded, setDataLoaded] = useState(false)

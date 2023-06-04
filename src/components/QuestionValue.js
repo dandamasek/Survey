@@ -6,7 +6,7 @@ import { useState } from 'react';
 function QuestionValue(props) {
 
   const [name, setName] = useState(props.questionValue.name);
-  const [order, setOrder] = useState(props.questionValue.order);
+  const [order] = useState(props.questionValue.order);
 
   const updateQuestionValue = (event) => {
     setName(event.target.value);

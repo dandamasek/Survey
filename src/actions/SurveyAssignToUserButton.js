@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {surveyAssignTo} from 'features/SurveySlice';
 import { surveyAssignToMutation } from 'queries/SurveyAssignToMutation';
 
-export const ButtonSurveyAssignToUser= (props) => {
+export const SurveyAssignToUserButton= (props) => {
 
   const dispatch = useDispatch()  
   const [dataLoaded, setDataLoaded] = useState(false)

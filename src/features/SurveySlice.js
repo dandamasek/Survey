@@ -72,7 +72,8 @@ export const surveySlice = createSlice({
       updateQuestion: (state, action) => {
         // console.log("Payload",action.payload.question);
         const [ newQuestion, surveyId] = action.payload;
-        console.log("updateQuestion Slice",surveyId);
+        
+        console.log('Question "'+newQuestion.name+'" updated in store');
 
         state.forEach((survey) => {
           survey.questions.forEach((question) => {
@@ -87,21 +88,15 @@ export const surveySlice = createSlice({
           });
         });
         return state;
-        
       },
 
-      // updateNewQuestion: (state, action) => {
-      //   const { id, lastchange, order, name } = action.payload;
+      updateQuestionValues: (state, action) => {
       
-      //   const updatedSurveys = state.map(survey => {
-      //     if (survey.id === id) {
-      //       return { ...survey, name: newName, lastchange };
-      //     }
-      //     return survey;
-      //   });
-      
-      //   return updatedSurveys;
-      // },
+        const [ newQuestion, surveyId] = action.payload;
+        console.log("updateQuestionValues SLICE",action.payload);
+
+      },
+
 
       updateAnswerValue: (state, action) => {
         const [id, lastchange, value ]= action.payload;
