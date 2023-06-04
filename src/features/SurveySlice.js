@@ -54,7 +54,6 @@ export const surveySlice = createSlice({
           return updatedSurveys;
         },
         
-
       updateSurveyName: (state, action) => {
         const [ id, lastchange, newName ] = action.payload;
         console.log("slice",lastchange)
@@ -67,7 +66,6 @@ export const surveySlice = createSlice({
       
         return updatedSurveys;
       },
-
 
       updateQuestion: (state, action) => {
         // console.log("Payload",action.payload.question);
@@ -90,19 +88,48 @@ export const surveySlice = createSlice({
         return state;
       },
 
-      updateQuestionValues: (state, action) => {
-      
-        const [ newQuestion, surveyId] = action.payload;
-        console.log("updateQuestionValues SLICE",action.payload);
+      updateQuestionValues: (state, action) => {      
+        const { id, lastchange, name, order } = action.payload;
 
+        console.log('QuestioValue "'+name+'" updated in store');
+        
+         state.forEach((survey) => {
+          survey.questions.forEach((question) => {
+
+            question.values.forEach((value) => {
+              if (value.id === id) {
+                value.lastchange = lastchange
+                value.name = name
+                value.order = order
+              }
+          });
+        })});
+        return state;
       },
 
+      insertQuestionValues: (state, action) => {
+      
+        const { id, lastchange, name, order } = action.payload;
+
+        console.log('QuestioValue "'+name+'" updated in store');
+        
+         state.forEach((survey) => {
+          survey.questions.forEach((question) => {
+
+            question.values.forEach((value) => {
+              if (value.id === id) {
+                value.lastchange = lastchange
+                value.name = name
+                value.order = order
+              }
+          });
+        })});
+        return state;
+      },
 
       updateAnswerValue: (state, action) => {
         const [id, lastchange, value ]= action.payload;
-       
-        
-        
+
           state.forEach((survey) => {
           survey.questions.forEach((question) => {
             question.answers.forEach((answer) => {
@@ -127,7 +154,18 @@ export const surveySlice = createSlice({
 })
 
 // Export the addProject action creator from the projectsSlice
-export const { loadData, addSurvey, updateSurveyName, updateQuestion,addQuestion, updateAnswerValue, surveyAssignTo } = surveySlice.actions
+export const { 
+  loadData, 
+  addSurvey, 
+  updateSurveyName, 
+  updateQuestion, 
+  updateQuestionValues, 
+  insertQuestionValues,
+  addQuestion, 
+  updateAnswerValue, 
+  surveyAssignTo 
+
+} = surveySlice.actions
 
 // Export the projectsSlice reducer
 export default surveySlice.reducer
