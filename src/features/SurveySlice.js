@@ -73,7 +73,7 @@ export const surveySlice = createSlice({
         // console.log("Payload",action.payload.question);
         // const [ id, lastchange, name, order, type] = action.payload.question;
 
-        console.log("slice",action.payload)
+        console.log("slice s",action.payload)
         // const updatedSurveys = state.map(survey => {
         //   if (survey.id === id) {
         //     survey.questions.map(question => {

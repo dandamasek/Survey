@@ -1,11 +1,11 @@
 import { authorizedFetch } from './authorizedFetch';
 
-const QuestionValueInsertJSON = (questionId,name,order) => ({
+const QuestionValueInsertJSON = (questionId,order) => ({
   query: `
   mutation {
     questionValueInsert(questionValue:{
       questionId:"${questionId}",
-      name:"${name}",
+      name:" ",
       order: ${order}
     }){
       id
@@ -22,5 +22,5 @@ const QuestionValueInsertJSON = (questionId,name,order) => ({
 
 export const QuestionValueInsertMutation = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(QuestionValueInsertJSON(props.questionId,props.name,props.order))
+    body: JSON.stringify(QuestionValueInsertJSON(props.questionId,props.order))
   })

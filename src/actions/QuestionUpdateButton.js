@@ -8,14 +8,17 @@ export const QuestionUpdateButton = (lastchange,id,name,order,type,surveyId) => 
 
   const fetchData = async () => {
     try {
-      console.log("Lastchange ",lastchange);
       const response = await QuestionUpdateMutation(lastchange,id,name,order,type);
       const data = await response.json();
-      const help = [data.data.questionUpdate,surveyId];
 
-      dispatch(updateQuestion(help));
-      lastchange = data.data.questionUpdate.id;
-      console.log(data);
+      if (data.data.questionUpdate.msg == "ok" ) {
+        const help = [data.data.questionUpdate,surveyId];
+
+        dispatch(updateQuestion(help));
+        lastchange = data.data.questionUpdate.id;
+        console.log("Question updated ",data.data);
+      }
+     
     } catch (error) {
       console.error('Error fetching group names:', error);
     }

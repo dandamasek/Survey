@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Question from './Question';
+import QuestionTable from './QuestionTable';
 import { QuestionInsertButton } from 'actions/QuestionInsertButton';
 
   function SurveyQuestionTable(props) {
@@ -9,7 +9,7 @@ import { QuestionInsertButton } from 'actions/QuestionInsertButton';
   return (
     <>
         { props.questions.map((question)=>          
-          <Question question={question} surveyId={props.surveyId} key={question.id+"Question"}/>
+          <QuestionTable question={question} surveyId={props.surveyId} key={question.id+"Question"}/>
         )}
 
         <tr><td><QuestionInsertButton surveyId={props.surveyId} orderLength={orderLength}/></td></tr>

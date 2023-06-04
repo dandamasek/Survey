@@ -1,18 +1,17 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
+import { QuestionValueUpdateMutation } from 'queries/QuestionValueUpdateMutation';
 
-export const QuestionValueInsertButton = (questionId, order) => {
+export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
   // const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
       
-      const response = await QuestionValueInsertMutation(questionId, order);
+      const response = await QuestionValueUpdateMutation(lastchange, id, name, order);
       const data = await response.json();
-      if (data.data.questionValueInsert === "ok") {
-        console.log("New QuestionValue Insert", data)
-
+      if (data.data.questionValueUpdate.msg === "ok") {
+        console.log("New QuestionValue updated", data)
       }
 
       // dispatch(updateAnswerValue(data));
@@ -27,7 +26,7 @@ export const QuestionValueInsertButton = (questionId, order) => {
   return (
     <div>
       <button className="btn btn-primary" onClick={fetchData}>
-        Create new value
+        Change value
       </button>
     </div>
   );
