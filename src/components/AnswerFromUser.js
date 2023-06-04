@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
 
 export function AnswerFromUser(props) {
-  const [Answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState([]);
   const [id, setId] = useState(null);
-  const [lastchange, setLastchange] = useState(null);
+  const [lastChange, setLastChange] = useState(null);
 
   useEffect(() => {
     const matchingAnswer = props.question.answers.find(
@@ -13,22 +13,35 @@ export function AnswerFromUser(props) {
     );
 
     if (matchingAnswer) {
-      setAnswer(matchingAnswer.value);
+      setAnswer(matchingAnswer.value.split(','));
       setId(matchingAnswer.id);
-      setLastchange(matchingAnswer.lastchange);
+      setLastChange(matchingAnswer.lastchange);
     } else {
-      setAnswer("");
+      setAnswer([]);
       setId(null);
-      setLastchange(null);
+      setLastChange(null);
     }
   }, [props.question.answers, props.currentUser]);
 
   const handleInputChange = (event) => {
-    setAnswer(event.target.value);
+    setAnswer(event.target.value.split(','));
+  };
+
+  const handleCheckboxChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+
+    setAnswer((prevAnswer) => {
+      if (isChecked) {
+        return [...prevAnswer, value];
+      } else {
+        return prevAnswer.filter((item) => item !== value);
+      }
+    });
   };
 
   const handleRadioChange = (event) => {
-    setAnswer(event.target.value);
+    setAnswer([event.target.value]);
   };
 
   const renderQuestionByType = () => {
@@ -37,11 +50,15 @@ export function AnswerFromUser(props) {
       case 'Škála':
         return (
           <div>
-           Škála
-           
+            Škála
             {question.values.map((value) => (
               <div key={value.id}>
-                <input  type="checkbox" value={value.id} />
+                <input
+                  type="checkbox"
+                  value={value.name}
+                  checked={answer.includes(value.name)}
+                  onChange={handleCheckboxChange}
+                />
                 <label>{value.name}</label>
               </div>
             ))}
@@ -50,24 +67,27 @@ export function AnswerFromUser(props) {
       case 'Otevřené':
         return (
           <div>
-           Otevřené
-           <div>
-            <input type="text" value={Answer} onChange={handleInputChange} />
+            Otevřené
+            <div>
+              <input
+                type="text"
+                value={answer.join(',')}
+                onChange={handleInputChange}
+              />
             </div>
           </div>
         );
       case 'Uzavřené':
         return (
-          <div> 
+          <div>
             Uzavřené
-           
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
                   type="radio"
                   name={question.id}
-                  value={value.name} 
-                  checked={Answer === value.name}
+                  value={value.name}
+                  checked={answer[0] === value.name}
                   onChange={handleRadioChange}
                 />
                 <label>{value.name}</label>
@@ -82,9 +102,8 @@ export function AnswerFromUser(props) {
 
   return (
     <>
-    {renderQuestionByType()}
-     <AnswerValueUpdateButton id={id} lastchange={lastchange} value={Answer} />
-    
+      {renderQuestionByType()}
+      <AnswerValueUpdateButton id={id} lastchange={lastChange} value={answer.join(',')} />
     </>
   );
 }
