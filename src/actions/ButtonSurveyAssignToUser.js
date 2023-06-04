@@ -1,6 +1,5 @@
 
 import { useDispatch } from 'react-redux';
-import { setMsg } from 'features/MsgSlice';
 import { useState } from 'react';
 import {surveyAssignTo} from 'features/SurveySlice';
 import { surveyAssignToMutation } from 'queries/SurveyAssignToMutation';
@@ -14,7 +13,6 @@ export const ButtonSurveyAssignToUser= (props) => {
         const response = await surveyAssignToMutation(props);
         const data = await response.json();
         console.log("ButtonSurveyAssignToUser",data)
-        dispatch(setMsg(data.data.surveyAssignToUser.msg));
         dispatch(surveyAssignTo(props));
         
         setDataLoaded(true);

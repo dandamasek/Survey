@@ -12,9 +12,9 @@ export const QuestionUpdateButton = (lastchange,id,name,order,type,surveyId) => 
       const data = await response.json();
 
       if (data.data.questionUpdate.msg == "ok" ) {
-        const help = [data.data.questionUpdate,surveyId];
+        const newProps = [data.data.questionUpdate,surveyId];
 
-        dispatch(updateQuestion(help));
+        dispatch(updateQuestion(newProps));
         lastchange = data.data.questionUpdate.id;
         console.log("Question updated ",data.data);
       }
