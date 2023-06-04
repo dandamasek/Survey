@@ -10,8 +10,13 @@ function App() {
   return (
     <div className="App">
       {/* <SurveyResult /> */}
+<<<<<<< Updated upstream
       <SurveyEditor />
       {/* <SurveyAnswer /> */}
+=======
+        {/* <SurveyEditor /> */}
+      <SurveyAnswer />
+>>>>>>> Stashed changes
       
     </div>
     

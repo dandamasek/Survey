@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ButtonChangeAnswerValue } from '../actions/ButtonChangeAnswerValue';
+import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
 
 export function AnswerFromUser(props) {
   const [Answer, setAnswer] = useState("");
@@ -66,8 +66,8 @@ export function AnswerFromUser(props) {
                 <input
                   type="radio"
                   name={question.id}
-                  value={value.id}
-                  checked={Answer === value.id}
+                  value={value.name} 
+                  checked={Answer === value.name}
                   onChange={handleRadioChange}
                 />
                 <label>{value.name}</label>
@@ -83,7 +83,7 @@ export function AnswerFromUser(props) {
   return (
     <>
     {renderQuestionByType()}
-     <ButtonChangeAnswerValue id={id} lastchange={lastchange} value={Answer} />
+     <AnswerValueUpdateButton id={id} lastchange={lastchange} value={Answer} />
     
     </>
   );

@@ -104,12 +104,14 @@ export const surveySlice = createSlice({
       // },
 
       updateAnswerValue: (state, action) => {
-        const { id, value } = action.payload;
+        const { id, lastchange, value } = action.payload;
+        console.log("SSSSSS",lastchange);
           state.forEach((survey) => {
           survey.questions.forEach((question) => {
             question.answers.forEach((answer) => {
               if (answer.id === id) {
                 answer.value = value;
+                answer.lastchange = lastchange;
               }
             });
           });
