@@ -1,23 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
+import {insertQuestionValues} from 'features/SurveySlice';
 
-export const QuestionValueInsertButton = (questionId, order) => {
-  // const dispatch = useDispatch();
-
+export const QuestionValueInsertButton = (props) => {
+  const dispatch = useDispatch();
   const fetchData = async () => {
     try {
-      
-      const response = await QuestionValueInsertMutation(questionId, order);
+      const response = await QuestionValueInsertMutation(props);
       const data = await response.json();
-      if (data.data.questionValueInsert === "ok") {
-        console.log("New QuestionValue Insert", data)
+      if (data.data.questionValueInsert.msg === "ok") {
+        const newProps = [data.data.questionValueInsert.question,props.surveyId];
 
+        dispatch(insertQuestionValues(newProps));
+        console.log('New questionValue"'+data.data.questionValueInsert.question.name+'" insert on server')
       }
-
-      // dispatch(updateAnswerValue(data));
-    
-
     
     } catch (error) {
       console.error('Error fetching group names:', error);
