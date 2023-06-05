@@ -108,24 +108,24 @@ export const surveySlice = createSlice({
       },
 
       insertQuestionValues: (state, action) => {
+        const value = action.payload;
       
-        const { id, lastchange, name, order } = action.payload;
-
-        console.log('QuestioValue "'+name+'" updated in store');
-        
-         state.forEach((survey) => {
+        console.log('QuestionValue "' + value + '" updated in store');
+      
+        state.forEach((survey) => {
           survey.questions.forEach((question) => {
+            if (question.id === value.question.id) {
 
-            question.values.forEach((value) => {
-              if (value.id === id) {
-                value.lastchange = lastchange
-                value.name = name
-                value.order = order
-              }
+              const { values, ...rest } = question.values; // Copy object type without values
+              question.values.push(value) // Assign new properties
+            }
           });
-        })});
+        });
+      
         return state;
       },
+      
+      
 
       updateAnswerValue: (state, action) => {
         const [id, lastchange, value ]= action.payload;

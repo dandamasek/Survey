@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { QuestionValueUpdateMutation } from 'queries/QuestionValueUpdateMutation';
-
+import { updateQuestionValues } from 'features/SurveySlice';
 
 export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
   const dispatch = useDispatch();
@@ -12,12 +12,11 @@ export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
       const response = await QuestionValueUpdateMutation(lastchange, id, name, order);
       const data = await response.json();
       if (data.data.questionValueUpdate.msg === "ok") {
-        console.log("New QuestionValue updated", data)
+        const newProps = data.data.questionValueUpdate.question;
+        
+        console.log('QuestionValue "'+data.data.questionValueUpdate.question.name+'" updated on server');
+        dispatch(updateQuestionValues(newProps));
       }
-
-      // dispatch(updateAnswerValue(data));
-    
-
     
     } catch (error) {
       console.error('Error fetching group names:', error);
