@@ -14,6 +14,7 @@ export const SurveyFetchAsync = () => (dispatch, getState) => {
     .then(json => {
       // Extract the projects data from the JSON response
       const surveys = json.data?.surveyPage
+      const users = json.data?.use
       if (surveys) {
         // Dispatch the 'loadProjects' action with the fetched projects
         dispatch(loadData(surveys))
