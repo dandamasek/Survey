@@ -5,12 +5,17 @@ import SurveyQuestionTable from 'components/SurveyQuestionTable';
 import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 import { SurveyAssignToUserButton } from 'actions/SurveyAssignToUserButton';
+import { fetchUsers } from 'actions/LoadUserDataAsync';
+import {AssignUserr} from "components/AssignUser";
+
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
+  const users =  useSelector(state => state.users);
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(SurveyFetchAsync())
+    dispatch(fetchUsers())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
@@ -26,7 +31,7 @@ export default function SurveyEditor() {
           {/* Showing questions of survey and change question button*/}
           <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
             {/* Button which assigns user to survey */}
-          {/* <SurveyAssignToUserButton surveyId={survey.id} userId={"2d9dc868-a4a2-11ed-b9df-0242ac120003 "}  /> */}
+         
           </tbody>
         )}
       </table>

@@ -9,6 +9,7 @@ export default function SurveyResult() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(SurveyFetchAsync())
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

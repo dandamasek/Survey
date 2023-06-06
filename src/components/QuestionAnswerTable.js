@@ -3,7 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
 
 function QuestionAnswerTable(props) {
-  
+  if (!props.questions) {
+    return null; // or render a loading indicator, error message, or fallback component
+  }
+
   return (
     <>
       {props.questions.map((question) => (

@@ -12,10 +12,10 @@ function App() {
     
     <SurveyEditor /> 
     <SurveyAnswer />
-    <SurveyResult />      
+        <SurveyResult />      
       
     </div>
-    
+        
   );
 
 }
