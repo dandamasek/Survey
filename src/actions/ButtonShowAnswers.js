@@ -28,7 +28,7 @@ const ShowAnswersButton = () => {
   return (
     <div>
       <label >Choose a survey:</label>
-      <select  class="form-select" value={selectedOption} onChange={handleSelectChange}>
+      <select  className="form-select" value={selectedOption} onChange={handleSelectChange}>
         <option value="">Select an option</option>
         {surveys.map((survey) => (
           <option key={survey.id} value={survey.name}>

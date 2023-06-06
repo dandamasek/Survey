@@ -26,7 +26,7 @@ export default function SurveyEditor() {
           {/* Showing questions of survey and change question button*/}
           <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
             {/* Button which assigns user to survey */}
-          <SurveyAssignToUserButton surveyId={survey.id} userId={"2d9dc868-a4a2-11ed-b9df-0242ac120003 "}  />
+          {/* <SurveyAssignToUserButton surveyId={survey.id} userId={"2d9dc868-a4a2-11ed-b9df-0242ac120003 "}  /> */}
           </tbody>
         )}
       </table>

@@ -13,18 +13,10 @@ export default function SurveyResult() {
   }, []);
 
   return (
-    <div class="container ">
+    <div className="container ">
      
-      <ShowAnswersButton></ShowAnswersButton>
-      <table className='table table-bordered '> 
-        { surveys.map((survey)=> 
-          <tbody>
-            
-            
-          </tbody>
+      <ShowAnswersButton />
 
-        )}
-      </table>
     </div>
   );
 }
