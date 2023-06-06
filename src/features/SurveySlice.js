@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 // A Redux slice for managing the state of the projects
 export const surveySlice = createSlice({
     name: "surveys",
@@ -146,9 +147,21 @@ export const surveySlice = createSlice({
           return state;
       },
 
-      surveyAssignTo:(state,action) =>{
-          
-          return state;
+      surveyAssignTo: (state, action) => {
+        const { surveyId, userId } = action.payload;
+        console.log('surveyAssignTo:', surveyId, userId);
+      
+        state.forEach((survey) => {
+          survey.questions.forEach((question) => {
+            question.answers.forEach((answer) => {
+              if (answer.user.id === userId) {
+                console.log(answer.value);
+              }
+            });
+          });
+        });
+      
+        return state;
       }
   },
 })

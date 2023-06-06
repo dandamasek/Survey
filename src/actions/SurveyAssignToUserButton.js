@@ -13,7 +13,9 @@ export const SurveyAssignToUserButton= (props) => {
         const response = await surveyAssignToMutation(props);
         const data = await response.json();
         console.log("ButtonSurveyAssignToUser",data)
-        dispatch(surveyAssignTo(props));
+         
+    
+              dispatch(surveyAssignTo(props));
         
         setDataLoaded(true);
       } catch (error) {
