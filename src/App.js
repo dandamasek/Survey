@@ -11,8 +11,8 @@ function App() {
     <div className="App">
     
     <SurveyEditor /> 
-    <SurveyAnswer />
-        <SurveyResult />      
+    {/* <SurveyAnswer /> */}
+        {/* <SurveyResult />       */}
       
     </div>
         

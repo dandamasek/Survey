@@ -1,54 +1,62 @@
 import React, { useState } from 'react';
-import { useSelector} from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ShowAnswerTable from '../components/ShowAnswersTable';
+import { useSelector } from 'react-redux';
+import {SurveyAssignToUserButton} from 'actions/SurveyAssignToUserButton';
 
-const ShowAnswersButton = () => {
+const UserDropdown = () => {
+  const users = useSelector(state => state.users);
   const surveys = useSelector(state => state.surveys);
-  
+  const [selectedUser, setSelectedUser] = useState('');
+  const [selectedSurvey, setSelectedSurvey] = useState('');
 
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-    const selectedSurvey = surveys.find((survey) => survey.name === selectedValue);
-    if (selectedSurvey && selectedSurvey.name === selectedValue) {
-      setSelectedOption(selectedSurvey.name);
-    } else {
-      setSelectedOption('');
-    }
-  
+  const handleUserChange = event => {
+    const selectedUserId = event.target.value;
+    setSelectedUser(selectedUserId);
   };
 
-  const handleItemClick = (survey) => {
-    setSelectedOption(survey); 
-    
+  const handleSurveyChange = event => {
+    const selectedSurveyId = event.target.value;
+    setSelectedSurvey(selectedSurveyId);
+  };
+
+  const handleUserClick = event => {
+    const selectedUserId = event.target.value;
+    console.log(`Clicked user ID: ${selectedUserId}`);
   };
 
   return (
     <div>
-      <label >Choose a survey:</label>
-      <select  className="form-select" value={selectedOption} onChange={handleSelectChange}>
+      <label>Choose a user:</label>
+      <select value={selectedUser} onChange={handleUserChange}>
         <option value="">Select an option</option>
-        {surveys.map((survey) => (
-          <option key={survey.id} value={survey.name}>
+        {users.map(user => (
+          <option
+            key={user.id}
+            value={user.id}
+            onClick={handleUserClick}
+          >
+            {user.name} (ID: {user.id})
+          </option>
+        ))}
+      </select>
+
+      <label>Choose a survey:</label>
+      <select value={selectedSurvey} onChange={handleSurveyChange}>
+        <option value="">Select an option</option>
+        {surveys.map(survey => (
+          <option key={survey.id} value={survey.id}>
             {survey.name}
           </option>
         ))}
       </select>
-      {selectedOption && (
-        <div>
-          <p>Selected survey: {selectedOption}</p>
-          {surveys.map((survey) => (
-            selectedOption === survey.name && <ShowAnswerTable key={survey.id} questions={survey.questions} />
-          ))}
-           <button type="button" className="btn btn-primary" onClick={() => handleItemClick('')}>
-            Clear Selection
-          </button>
-        </div>
+
+      {selectedUser && selectedSurvey && (
+        <SurveyAssignToUserButton
+          userId={selectedUser}
+          surveyId={selectedSurvey}
+        />
       )}
     </div>
   );
 };
 
-export default ShowAnswersButton;
+export default UserDropdown;
