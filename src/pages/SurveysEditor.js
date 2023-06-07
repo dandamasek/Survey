@@ -40,7 +40,7 @@ export default function SurveyEditor() {
             
               {/* Card header = name survey and change name button*/}
               <div className='card-header bg-primary text-white'>
-                <SurveyNameBox name={survey.name} id={survey.id+"Survey NameBox"} lastchange={survey.lastchange} />  
+                <SurveyNameBox name={survey.name} id={survey.id} lastchange={survey.lastchange}/>  
               </div>
 
             {/* Showing questions of survey and change question button*/}

@@ -6,7 +6,7 @@ function ShowAnswerTable(props) {
     <table className="table">
       <tbody>
         {props.questions.map((question) => (
-          <tr key={question.order}>
+          <tr key={question.id}>
             <td className="col-2">
               <div className="col-2">
                 <input

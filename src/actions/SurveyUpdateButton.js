@@ -14,6 +14,8 @@ export const SurveyUpdateButton= (props) => {
           dispatch(updateSurveyName(newProps));
           console.log("Survey name: "+props.newName+" is updated in store and server")
         }
+        else{ 
+          console.log("Survey name: "+props.newName+" is not updated in store and server");}
         
       } catch (error) {
         console.error('Error fetching group names:', error);

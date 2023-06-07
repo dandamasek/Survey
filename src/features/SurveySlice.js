@@ -48,7 +48,6 @@ export const surveySlice = createSlice({
 
     updateSurveyName: (state, action) => {
       const [id, lastchange, newName] = action.payload;
-      console.log("slice", lastchange);
 
       state.forEach((survey) => {
         if (survey.id === id) {
