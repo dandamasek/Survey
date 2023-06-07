@@ -4,11 +4,9 @@ import  SurveyNameBox from '../components/SurveyNameBox';
 import SurveyQuestionTable from 'components/SurveyQuestionTable';
 import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
 import { useEffect } from 'react';
-import { SurveyAssignToUserButton } from 'actions/SurveyAssignToUserButton';
 import { fetchUsers } from 'actions/LoadUserDataAsync';
-import {AssignUserr} from "components/AssignUser";
 import UserDropdown from "components/AssignUser";
-import { Container, Table } from 'react-bootstrap';
+
 
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
@@ -26,7 +24,7 @@ export default function SurveyEditor() {
       <div className='container fluid'> 
 
       <div><h1 className="p-4 mb-2 bg-primary text-white">Survey editor</h1></div>
-
+      <UserDropdown />
         { surveys.map((survey)=> 
 
           <div className="card m-5 border-secondary" key={survey.id+"Survey"}> 
@@ -39,7 +37,7 @@ export default function SurveyEditor() {
           {/* Showing questions of survey and change question button*/}
           <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
             {/* Button which assigns user to survey */}
-         
+        
           </div>
         )}
       </div>
