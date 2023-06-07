@@ -6,7 +6,7 @@ import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 import { SurveyAssignToUserButton } from 'actions/SurveyAssignToUserButton';
 import { fetchUsers } from 'actions/LoadUserDataAsync';
-import {AssignUserr} from "components/AssignUser";
+import UserDropdown from "components/AssignUser";
 
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
@@ -31,7 +31,7 @@ export default function SurveyEditor() {
           {/* Showing questions of survey and change question button*/}
           <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
             {/* Button which assigns user to survey */}
-         
+          <UserDropdown  ></UserDropdown>
           </tbody>
         )}
       </table>
