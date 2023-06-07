@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { SurveyAssignToUserButton } from 'actions/SurveyAssignToUserButton';
 import { fetchUsers } from 'actions/LoadUserDataAsync';
 import {AssignUserr} from "components/AssignUser";
+import UserDropdown from "components/AssignUser";
 import { Container, Table } from 'react-bootstrap';
 
 export default function SurveyEditor() {
@@ -35,12 +36,11 @@ export default function SurveyEditor() {
             <SurveyNameBox key={survey.id+"Survey name"} name={survey.name} id={survey.id} lastchange={survey.lastchange} />  
             </div>
 
-            {/* Showing questions of survey and change question button*/}
-            <div className='card-body' key={survey.id+"Survey tbody"}>
-            <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
-              {/* Button which assigns user to survey */}
-            </div>
-          </div>
+          {/* Showing questions of survey and change question button*/}
+          <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
+            {/* Button which assigns user to survey */}
+         
+          </tbody>
         )}
       </div>
   );

@@ -129,7 +129,7 @@ export const surveySlice = createSlice({
 // Export the action creators from the surveySlice
 export const {
   loadData,
-  loadUsers,
+  
   addSurvey,
   updateSurveyName,
   updateQuestion,
