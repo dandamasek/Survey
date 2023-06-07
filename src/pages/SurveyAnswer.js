@@ -22,11 +22,11 @@ export default function SurveyEditor() {
       <div><h1 className="p-4 mb-2 bg-primary text-white">Survey answer</h1></div>
       
       <div className='container-fluid' >  
-          <UserTable currentUser={currentUser} key={"User table"}/>
+          <UserTable currentUser={currentUser} />
                
           { 
             surveys.map((survey)=>  
-            <div className='card m-5 border-secondary'>
+            <div className='card m-5 border-secondary' key={survey.id+"Survey answer table"}>
               <div className='card-header bg-primary text-white'>
                 <h1>{survey.name}</h1>
               </div>

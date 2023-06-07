@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import {SurveyAssignToUserButton} from 'actions/SurveyAssignToUserButton';
 
-const UserDropdown = () => {
-  const users = useSelector(state => state.users);
-  const surveys = useSelector(state => state.surveys);
+const AssignUsers = (props) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
 
@@ -28,7 +25,7 @@ const UserDropdown = () => {
       <label>Choose a user:</label>
       <select value={selectedUser} onChange={handleUserChange}>
         <option value="">Select an option</option>
-        {users.map(user => (
+        {props.users.map(user => (
           <option
             key={user.id}
             value={user.id}
@@ -42,7 +39,7 @@ const UserDropdown = () => {
       <label>Choose a survey:</label>
       <select value={selectedSurvey} onChange={handleSurveyChange}>
         <option value="">Select an option</option>
-        {surveys.map(survey => (
+        {props.surveys.map(survey => (
           <option key={survey.id} value={survey.id}>
             {survey.name}
           </option>
@@ -59,4 +56,4 @@ const UserDropdown = () => {
   );
 };
 
-export default UserDropdown;
+export default AssignUsers;

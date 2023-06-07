@@ -10,9 +10,10 @@ function App() {
   return (
     <div className="App">
     
+    {/* Pages for different tasks, Editing survey, answering to assigned survey, results from answers */}
     <SurveyEditor /> 
     <SurveyAnswer />
-        <SurveyResult />      
+    <SurveyResult />      
       
     </div>
         

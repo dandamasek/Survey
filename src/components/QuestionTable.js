@@ -28,7 +28,7 @@ function QuestionTable(props) {
   };
 
   return (
-    <div className='row'>
+    <div className='row' >
         <div className='col-2'>
           {/* Order input */}
           <input 
@@ -36,7 +36,7 @@ function QuestionTable(props) {
             type="text"
             onChange={handleOrderChange}
             value={order}
-            key={props.question.id + "Question order"}/>
+            />
         </div>
 
         <div className='col-5'>
@@ -46,7 +46,7 @@ function QuestionTable(props) {
             type="text"
             onChange={handleNameChange}
             value={name}
-            key={props.question.id + "Question name"}/>
+          />
         </div>
        
         {/* Select of question type */}
@@ -64,7 +64,7 @@ function QuestionTable(props) {
           {/* decision for Uzavřená and Škála */}
           {type !== "949d74a2-63b1-4478-82f1-e025d8bc6c8b" && (
             // Component for all question values
-            <QuestionValues questionValues={props.question.values} orderLength={orderLength} questionId={props.question.id} />
+            <QuestionValues questionValues={props.question.values} orderLength={orderLength} questionId={props.question.id} key={props.question.id + "Question question values"} />
           )}
         </div>
 
@@ -77,7 +77,7 @@ function QuestionTable(props) {
             order={order}
             type={type}
             surveyId={surveyId}
-            key={props.question.id + "ChangeValue"}/>
+          />
         </div>
  
     </div>

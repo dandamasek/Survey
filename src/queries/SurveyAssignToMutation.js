@@ -1,6 +1,6 @@
 import { authorizedFetch } from './authorizedFetch';
 //Assigns user to survey 
-const GroupsSelectQueryJSON = (surveyId,userId) => ({
+const surveyAssignToMutationJSON = (surveyId,userId) => ({
   query: `
     mutation {
       surveyAssingTo( 
@@ -16,6 +16,6 @@ const GroupsSelectQueryJSON = (surveyId,userId) => ({
 
 export const surveyAssignToMutation = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(GroupsSelectQueryJSON(props.surveyId, props.userId))
+    body: JSON.stringify(surveyAssignToMutationJSON(props.surveyId, props.userId))
   })
 

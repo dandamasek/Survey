@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector,useDispatch } from 'react-redux';
-import ShowAnswersButton from 'actions/ButtonShowAnswers';
+import AnswerShowButton from 'actions/AnswerShowButton';
 import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 
 export default function SurveyResult() {
   const surveys = useSelector(state => state.surveys);
+  
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(SurveyFetchAsync())
@@ -16,7 +17,7 @@ export default function SurveyResult() {
   return (
     <div className="container ">
      
-      <ShowAnswersButton />
+      <AnswerShowButton surveys={surveys}/>
 
     </div>
   );
