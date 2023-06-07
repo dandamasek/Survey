@@ -40,7 +40,7 @@ export default function SurveyEditor() {
           <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
             {/* Button which assigns user to survey */}
          
-          </tbody>
+          </div>
         )}
       </div>
   );
