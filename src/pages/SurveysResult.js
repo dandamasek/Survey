@@ -9,22 +9,15 @@ export default function SurveyResult() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(SurveyFetchAsync())
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div class="container ">
+    <div className="container ">
      
-      <ShowAnswersButton></ShowAnswersButton>
-      <table className='table table-bordered '> 
-        { surveys.map((survey)=> 
-          <tbody>
-            
-            
-          </tbody>
+      <ShowAnswersButton />
 
-        )}
-      </table>
     </div>
   );
 }

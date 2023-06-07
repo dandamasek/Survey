@@ -1,171 +1,145 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// A Redux slice for managing the state of the projects
+// A Redux slice for managing the state of the surveys
 export const surveySlice = createSlice({
-    name: "surveys",
-    initialState: [],
-    reducers: {
-        // A reducer that adds a new project to the projects state array
-      loadData: (state, action) => {
-        const surveys = action.payload
-        let newSurveys = []
-        let isAlreadyinStore = false
+  name: "surveys",
+  initialState: [],
+  reducers: {
+    loadData: (state, action) => {
+      const surveys = action.payload;
+      let newSurveys = [];
+      let isAlreadyinStore = false;
 
-            // Iterate through the projects to be loaded
-            for (let survey of surveys) {
-                // Check if the project is already present in the state
-                for (let surv of state) {
-                    if (survey.id === surv.id) {
-                        isAlreadyinStore = true
-                        console.log(`Survey "${survey.name}" is already loaded`)
-                    }
-                }
-                
-                if (!isAlreadyinStore) {
-                    newSurveys = [...newSurveys, survey]
-                }
-            }
-            
-        state = [...state, ...newSurveys]
-        return state
-        }, 
-
-      addSurvey: (state, action) => {
-        const newSurvey = action.payload
-
-        state.push(newSurvey)
-        return state
-        }, 
-
-        // add newQuestion to specific survey
-        addQuestion: (state, action) => {
-          const newQuestion = action.payload;
-          console.log("addQuestion action", newQuestion);
-          
-          // cycle to find specific survey by id and then add new question to its questions list
-          const updatedSurveys = state.map((survey) => {
-            if (survey.id === newQuestion.survey.id) {
-              const updatedQuestions = [...survey.questions, newQuestion];
-              return { ...survey, questions: updatedQuestions };
-            }
-            return survey;
-          });
-        
-          return updatedSurveys;
-        },
-        
-      updateSurveyName: (state, action) => {
-        const [ id, lastchange, newName ] = action.payload;
-        console.log("slice",lastchange)
-        const updatedSurveys = state.map(survey => {
-          if (survey.id === id) {
-            return { ...survey, name: newName, lastchange };
+      // Iterate through the surveys to be loaded
+      for (let survey of surveys) {
+        // Check if the survey is already present in the state
+        for (let surv of state) {
+          if (survey.id === surv.id) {
+            isAlreadyinStore = true;
+            console.log(`Survey "${survey.name}" is already loaded`);
           }
-          return survey;
-        });
-      
-        return updatedSurveys;
-      },
+        }
 
-      updateQuestion: (state, action) => {
-        // console.log("Payload",action.payload.question);
-        const [ newQuestion, surveyId] = action.payload;
-        
-        console.log('Question "'+newQuestion.name+'" updated in store');
+        if (!isAlreadyinStore) {
+          newSurveys = [...newSurveys, survey];
+        }
+      }
 
-        state.forEach((survey) => {
+      state.push(...newSurveys);
+    },
+
+
+    addSurvey: (state, action) => {
+      const newSurvey = action.payload;
+      state.push(newSurvey);
+    },
+
+    addQuestion: (state, action) => {
+      const newQuestion = action.payload;
+      console.log("addQuestion action", newQuestion);
+
+      // Find specific survey by id and then add a new question to its questions list
+      state.forEach((survey) => {
+        if (survey.id === newQuestion.survey.id) {
+          survey.questions.push(newQuestion);
+        }
+      });
+    },
+
+    updateSurveyName: (state, action) => {
+      const [id, lastchange, newName] = action.payload;
+      console.log("slice", lastchange);
+
+      state.forEach((survey) => {
+        if (survey.id === id) {
+          survey.name = newName;
+          survey.lastchange = lastchange;
+        }
+      });
+    },
+
+    updateQuestion: (state, action) => {
+      const [newQuestion, surveyId] = action.payload;
+      console.log('Question "' + newQuestion.name + '" updated in store');
+
+      state.forEach((survey) => {
+        if (survey.id === surveyId) {
           survey.questions.forEach((question) => {
-
             if (question.id === newQuestion.id) {
               question.name = newQuestion.name;
               question.lastchange = newQuestion.lastchange;
               question.order = newQuestion.order;
               question.type = newQuestion.type;
             }
-           
           });
-        });
-        return state;
-      },
+        }
+      });
+    },
 
-      updateQuestionValues: (state, action) => {      
-        const { id, lastchange, name, order } = action.payload;
+    updateQuestionValues: (state, action) => {
+      const { id, lastchange, name, order } = action.payload;
+      console.log('QuestionValue "' + name + '" updated in store');
 
-        console.log('QuestioValue "'+name+'" updated in store');
-        
-         state.forEach((survey) => {
-          survey.questions.forEach((question) => {
-
-            question.values.forEach((value) => {
-              if (value.id === id) {
-                value.lastchange = lastchange
-                value.name = name
-                value.order = order
-              }
-          });
-        })});
-        return state;
-      },
-
-      insertQuestionValues: (state, action) => {
-        const value = action.payload;
-      
-        console.log('QuestionValue "' + value + '" updated in store');
-      
-        state.forEach((survey) => {
-          survey.questions.forEach((question) => {
-            if (question.id === value.question.id) {
-
-              const { values, ...rest } = question.values; // Copy object type without values
-              question.values.push(value) // Assign new properties
+      state.forEach((survey) => {
+        survey.questions.forEach((question) => {
+          question.values.forEach((value) => {
+            if (value.id === id) {
+              value.lastchange = lastchange;
+              value.name = name;
+              value.order = order;
             }
           });
         });
-      
-        return state;
-      },
-      
-      
+      });
+    },
 
-      updateAnswerValue: (state, action) => {
-        const [id, lastchange, value ]= action.payload;
+    insertQuestionValues: (state, action) => {
+      const value = action.payload;
+      console.log('QuestionValue "' + value + '" updated in store');
 
-          state.forEach((survey) => {
-          survey.questions.forEach((question) => {
-            question.answers.forEach((answer) => {
-            
-              if (answer.id === id) {
-                answer.value = value;
-                answer.lastchange = lastchange;
-                console.log(answer.value);
-                
-              }
-            });
+      state.forEach((survey) => {
+        survey.questions.forEach((question) => {
+          if (question.id === value.question.id) {
+            question.values.push(value);
+          }
+        });
+      });
+    },
+
+    updateAnswerValue: (state, action) => {
+      const [id, lastchange, value] = action.payload;
+
+      state.forEach((survey) => {
+        survey.questions.forEach((question) => {
+          question.answers.forEach((answer) => {
+            if (answer.id === id) {
+              answer.value = value;
+              answer.lastchange = lastchange;
+              console.log(answer.value);
+            }
           });
         });
-          return state;
-      },
+      });
+    },
 
-      surveyAssignTo:(state,action) =>{
-          
-          return state;
-      }
+   
   },
-})
+});
 
-// Export the addProject action creator from the projectsSlice
-export const { 
-  loadData, 
-  addSurvey, 
-  updateSurveyName, 
-  updateQuestion, 
-  updateQuestionValues, 
+// Export the action creators from the surveySlice
+export const {
+  loadData,
+  loadUsers,
+  addSurvey,
+  updateSurveyName,
+  updateQuestion,
+  updateQuestionValues,
   insertQuestionValues,
-  addQuestion, 
-  updateAnswerValue, 
-  surveyAssignTo 
+  addQuestion,
+  updateAnswerValue,
+  surveyAssignTo,
 
-} = surveySlice.actions
+} = surveySlice.actions;
 
-// Export the projectsSlice reducer
-export default surveySlice.reducer
+// Export the surveySlice reducer
+export default surveySlice.reducer;
