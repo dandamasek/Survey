@@ -10,7 +10,7 @@ export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
   const users =  useSelector(state => state.users);
   
-    const currentUser = {id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003",email: "julia.newbie@world.com"} //2d9dc868-a4a2-11ed-b9df-0242ac120003   2d9dc5ca-a4a2-11ed-b9df-0242ac120003
+  const currentUser = {id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003",email: "julia.newbie@world.com"} //2d9dc868-a4a2-11ed-b9df-0242ac120003   2d9dc5ca-a4a2-11ed-b9df-0242ac120003
   const dispatch = useDispatch()
   useEffect(() => {
    dispatch(SurveyFetchAsync())
@@ -18,27 +18,26 @@ export default function SurveyEditor() {
     
   }, []);
   return (
-    <div className = "form-group">
-     
-      <table className='table' > 
+    <div>
+      <div><h1 className="p-4 mb-2 bg-primary text-white">Survey answer</h1></div>
+      
+      <div className='container-fluid' >  
+          <UserTable currentUser={currentUser} key={"User table"}/>
+               
+          { 
+            surveys.map((survey)=>  
+            <div className='card m-5 border-secondary'>
+              <div className='card-header bg-primary text-white'>
+                <h1>{survey.name}</h1>
+              </div>
+              
+              <QuestionAnswerTable questions={survey.questions} currentUser={currentUser}/> 
 
-      <thead>  
-     
+            </div>
+          )}
 
-         <UserTable currentUser={currentUser} key={"User table"}/>
-         
-      </thead>
-
-      <tbody>
-        <td>
-     
-            </td>
-            { surveys.map((survey)=>  
-                <QuestionAnswerTable questions={survey.questions} currentUser={currentUser}/> 
-            )}
-
-      </tbody>
-      </table>
-    </div>
+        </div>
+        </div>
+   
   );
 }

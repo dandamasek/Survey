@@ -12,9 +12,15 @@ function QuestionValues(props) {
 
   return (
     <div>
-      {questionValueInputs}
+      <div className='row m-2'>
+        {questionValueInputs}
+      </div>
+      
       {/* Button fro creating new empty questionValue */}
+      <div className='row'>
       <QuestionValueInsertButton questionId={props.questionId} order={props.orderLength+1}/>
+      </div>
+
     </div>
   );
 }

@@ -16,14 +16,19 @@ function QuestionValue(props) {
 
   // Map the question values with changing options
   return (
-    <div>
-        <input
-            value={name}
-            onChange={updateQuestionValue}
-            // onChange={(event) => handleQuestionValueChange(event, index)}
-        />
+    <div className='row m-1'>
+        <div className='col-6'>
+          <input
+              value={name}
+              onChange={updateQuestionValue}
+              // onChange={(event) => handleQuestionValueChange(event, index)}
+          />
+        </div>
+
         {/* Button comp for updating questionValue */}
-        <QuestionValueUpdateButton lastchange={props.questionValue.lastchange} id={props.questionValue.id} name={name} order={order+1} />
+        <div className='col-6'>
+          <QuestionValueUpdateButton lastchange={props.questionValue.lastchange} id={props.questionValue.id} name={name} order={order+1} />
+        </div>
     </div>  
   );
 }

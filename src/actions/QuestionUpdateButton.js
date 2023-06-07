@@ -25,10 +25,8 @@ export const QuestionUpdateButton = (props) => {
   };
 
   return (
-    <div>
-      <button className="btn btn-primary" onClick={fetchData}>
+      <button className="btn btn-secondary" onClick={fetchData}>
         Change
       </button>
-    </div>
   );
 };

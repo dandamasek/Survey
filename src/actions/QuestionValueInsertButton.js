@@ -25,7 +25,7 @@ export const QuestionValueInsertButton = (questionId, order) => {
 
   return (
     <div>
-      <button className="btn btn-primary" onClick={fetchData}>
+      <button className="btn btn-success btn-sm m-2" onClick={fetchData}>
         Create new value
       </button>
     </div>
