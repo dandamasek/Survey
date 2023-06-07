@@ -10,10 +10,15 @@ function SurveyNameBox(props) {
     setName(event.target.value);
   };
   return (
-    <tr>       
-      <td><input key={props.id+"SurveyName"} className="form-control" value={name} onChange={handleNameChange}/></td>
-      <SurveyUpdateButton  id={props.id} lastchange={props.lastchange} newName={name}/>
-    </tr>
+    <div className='row'>       
+      <div className="col-10">
+        <input className="form-control text-center" type="text" key={props.id+"SurveyName"}  value={name} onChange={handleNameChange}/>
+      </div>
+      
+      <div className='col-2'>
+        <SurveyUpdateButton  id={props.id} lastchange={props.lastchange} newName={name}/>
+      </div>
+    </div>
 
   );
 }

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { SurveyAssignToUserButton } from 'actions/SurveyAssignToUserButton';
 import { fetchUsers } from 'actions/LoadUserDataAsync';
 import {AssignUserr} from "components/AssignUser";
+import { Container, Table } from 'react-bootstrap';
 
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
@@ -21,19 +22,26 @@ export default function SurveyEditor() {
   
   return (
       // table for editing surveys
-      <table className='table table-bordered' key={"Survey table"}> 
+      <div className='container fluid'> 
+
+      <div><h1 className="p-4 mb-2 bg-primary text-white">Survey editor</h1></div>
+
         { surveys.map((survey)=> 
-          <tbody key={survey.id+"Survey tbody"}>
 
-          {/* Showing name of survey and change name button*/}
-          <SurveyNameBox key={survey.id+"Survey name"} name={survey.name} id={survey.id} lastchange={survey.lastchange} />  
+          <div className="card m-5 border-secondary" key={survey.id+"Survey"}> 
+           
+            {/* Showing name of survey and change name button*/}
+            <div className='card-header bg-primary text-white'>
+            <SurveyNameBox key={survey.id+"Survey name"} name={survey.name} id={survey.id} lastchange={survey.lastchange} />  
+            </div>
 
-          {/* Showing questions of survey and change question button*/}
-          <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
-            {/* Button which assigns user to survey */}
-         
-          </tbody>
+            {/* Showing questions of survey and change question button*/}
+            <div className='card-body' key={survey.id+"Survey tbody"}>
+            <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
+              {/* Button which assigns user to survey */}
+            </div>
+          </div>
         )}
-      </table>
+      </div>
   );
 }

@@ -49,8 +49,8 @@ export const QuestionInsertButton = (props) => {
   };
 
   return (
-    <>
-      <button className="btn btn-primary" onClick={() => setShowModal(true)}>
+    <div >
+      <button className="btn btn-success " onClick={() => setShowModal(true)}>
         Insert question
       </button>
 
@@ -82,6 +82,6 @@ export const QuestionInsertButton = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };

@@ -28,28 +28,32 @@ function QuestionTable(props) {
   };
 
   return (
-    <>
-      <tr key={props.question.id + "tr"}>
-        <td>
+    <div className='row'>
+        <div className='col-2'>
           {/* Order input */}
-          <input
+          <input 
             className="form-control"
+            type="text"
             onChange={handleOrderChange}
             value={order}
             key={props.question.id + "Question order"}/>
-        </td>
-        <td>
+        </div>
+
+        <div className='col-5'>
           {/* Question name input */}
           <input
             className="form-control"
+            type="text"
             onChange={handleNameChange}
             value={name}
             key={props.question.id + "Question name"}/>
-        </td>
-        <td>
-          {/* Select for changing type of question */}
+        </div>
+       
+        {/* Select of question type */}
+        <div className='col-4'>
           <select
             className="form-select"
+            type="text"
             value={type}
             onChange={(e) => setType(e.target.value)}>
             <option value="949d74a2-63b1-4478-82f1-e025d8bc6c8b">Otevřená</option>
@@ -62,9 +66,9 @@ function QuestionTable(props) {
             // Component for all question values
             <QuestionValues questionValues={props.question.values} orderLength={orderLength} questionId={props.question.id} />
           )}
+        </div>
 
-        </td>
-        <td>
+        <div className='col-1'>
           {/* Button component for update question*/}
           <QuestionUpdateButton
             lastchange={props.question.lastchange}
@@ -74,9 +78,9 @@ function QuestionTable(props) {
             type={type}
             surveyId={surveyId}
             key={props.question.id + "ChangeValue"}/>
-        </td>
-      </tr>
-    </>
+        </div>
+ 
+    </div>
   );
 }
 

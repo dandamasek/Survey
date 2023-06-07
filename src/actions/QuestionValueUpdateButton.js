@@ -25,7 +25,7 @@ export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
 
   return (
     <div>
-      <button className="btn btn-primary" onClick={fetchData}>
+      <button className="btn btn-secondary btn-sm" onClick={fetchData}>
         Change value
       </button>
     </div>

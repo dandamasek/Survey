@@ -10,32 +10,33 @@ function QuestionAnswerTable(props) {
   return (
     <>
       {props.questions.map((question) => (
-        <tr key={question.id}>
-          <td>
+        <div className='row' key={question.id}>
+          <div className='col'>
             <input
               className="form-control"
               defaultValue={question.order}
               disabled={true}
               key={question.id + 'Question order'}
             />
-          </td>
-          <td>
+          </div>
+          <div className='col'>
             <input
               className="form-control"
               defaultValue={question.name}
               disabled={true}
               key={question.id + 'Question name'}
             />
-          </td>
+          </div>
           
-          <td>
+          <div className='col'>
             <AnswerFromUser
               question={question}
               currentUser={props.currentUser}
               key={question.id + 'Question change'}
             />
-          </td>
-        </tr> 
+          </div>
+          
+        </div> 
       ))}
     </>
   );

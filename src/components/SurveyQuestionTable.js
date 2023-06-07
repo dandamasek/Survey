@@ -9,21 +9,25 @@ import { QuestionInsertButton } from 'actions/QuestionInsertButton';
   const sortedQuestions = [...props.questions].sort((a, b) => a.order - b.order);
 
   return (
-    <>
+    <div>
+      
         { 
-
         sortedQuestions.map((question) => (
+          <div className='row mb-2'>
           <QuestionTable
             question={question}
             surveyId={props.surveyId}
             key={question.id + "Question Table"}
           />
+          </div>
         ))
-      
         }
 
-        <tr><td><QuestionInsertButton surveyId={props.surveyId} orderLength={orderLength} key={props.surveyId.id+"Question insert"}/></td></tr>
-    </>
+
+       <div className='row'>
+          <QuestionInsertButton surveyId={props.surveyId} orderLength={orderLength} key={props.surveyId.id+"Question insert"}/>
+        </div>
+    </div>
     
   )
 }
