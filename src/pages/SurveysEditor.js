@@ -43,8 +43,8 @@ export default function SurveyEditor() {
                 <SurveyNameBox name={survey.name} id={survey.id} lastchange={survey.lastchange}/>  
               </div>
 
-            {/* Showing questions of survey and change question button*/}
-            <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
+              {/* Showing questions of survey and change question button*/}
+                <SurveyQuestionTable questions={survey.questions} surveyId={survey.id} key={survey.id+"Survey questions"}/>  
               {/* Button which assigns user to survey */}
           
             </div>

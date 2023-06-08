@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { QuestionUpdateButton } from 'actions/QuestionUpdateButton';
 import QuestionValues from './QuestionValuesTable';
- 
+import { useDispatch } from 'react-redux';
+import { loadData } from 'features/CopySlice';
 // this function is for one specific question from survey
 
 function QuestionTable(props) {
+  const dispatch = useDispatch();
   // question atributes
   const [order, setOrder] = useState(props.question.order);
   const [name, setName] = useState(props.question.name);
   const [type, setType] = useState(props.question.type.id);
+  const [preOrder, setPreOrder] = useState(order);
   
   // surveyId is Id of survey of this question
   const surveyId = props.surveyId
@@ -19,18 +22,45 @@ function QuestionTable(props) {
 
   // Handle order input change
   const handleOrderChange = (event) => {
+    console.log("aktualni",event.target.value);
+    console.log("pred",preOrder);
+    setPreOrder(order);
     setOrder(event.target.value);
   };
 
+  const copyQuestion = () => {
+    const lastchange = props.question.lastchange
+    const id = props.question.id
+    const values = props.question.values  
+    dispatch(loadData({
+      lastchange,
+      id,
+      name,
+      order,
+      type,
+      surveyId,
+      values
+    }
+    ));
+
+  };  
+  
   // Handle name input change
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
+
   return (
     <div className='row' >
-        <div className='col-2'>
+
+        <div className='col-1'>
+            <button className="btn btn-outline-dark" onClick={copyQuestion}>Copy</button>
+
+        </div>
+
           {/* Order input */}
+        <div className='col-2'>
           <input 
             className="form-control"
             type="text"
@@ -39,8 +69,8 @@ function QuestionTable(props) {
             />
         </div>
 
-        <div className='col-5'>
-          {/* Question name input */}
+        {/* Question name input */}
+        <div className='col-4'>
           <input
             className="form-control"
             type="text"
@@ -79,7 +109,6 @@ function QuestionTable(props) {
             surveyId={surveyId}
           />
         </div>
- 
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { UserSelectQuery } from '../queries/UserPageQuery';
  *
  * @returns {Function} A function that accepts the 'dispatch' and 'getState' functions from Redux.
  */
+
 export const fetchUsers = () => (dispatch, getState) => {
   // Call the UserSelectQuery function to fetch users
   UserSelectQuery()

@@ -3,18 +3,22 @@ import { questionInsertMutation } from '../queries/QuestionInsertMutation';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
+import { useSelector } from'react-redux';
 
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
+  const copy = useSelector(state => state.copy);
 
   // showing modal if button pressed
   const [showModal, setShowModal] = useState(false);
 
   // stored values for questionInsert
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   // default typeID is Otevřená
   const [typeId, setTypeId] = useState("949d74a2-63b1-4478-82f1-e025d8bc6c8b");
+
+  const [values, setValues] = useState([])
 
   const fetchData = async () => {
     try {     
@@ -48,6 +52,18 @@ export const QuestionInsertButton = (props) => {
     setTypeId(event.target.value);
   };
 
+  const addCopyQuestion = async () => {
+    try {
+      const response = await questionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
+      const data = await response.json();
+  
+      setShowModal(false);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
   return (
     <div >
       <button className="btn btn-success " onClick={() => setShowModal(true)}>
@@ -74,6 +90,9 @@ export const QuestionInsertButton = (props) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="primary" onClick={addCopyQuestion}>
+            Add copy question
+          </Button>
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>

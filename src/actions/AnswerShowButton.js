@@ -16,9 +16,7 @@ const AnswerShowButton = (props) => {
     } else {
       setSelectedOption('');
     }
-  
   };
-
   const handleItemClick = (survey) => {
     setSelectedOption(survey); 
     
