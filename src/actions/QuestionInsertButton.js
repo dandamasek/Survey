@@ -5,6 +5,10 @@ import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
 import { useSelector } from'react-redux';
 
+import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
+import {insertQuestionValues} from 'features/SurveySlice';
+
+
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
   const copy = useSelector(state => state.copy);
@@ -18,20 +22,15 @@ export const QuestionInsertButton = (props) => {
   // default typeID is Otevřená
   const [typeId, setTypeId] = useState("949d74a2-63b1-4478-82f1-e025d8bc6c8b");
 
-  const [values, setValues] = useState([])
 
   const fetchData = async () => {
     try {     
       const response = await questionInsertMutation(name,props.surveyId,typeId,props.orderLength+1);
       const data = await response.json(name,typeId,props.surveyId,props.orderLength+1);
       
-      // const data.data.questionInsert.msg === "ok";
-
-      if (true) {
+      if (data.data.questionInsert.msg === "ok") {
         dispatch(addQuestion(data.data.questionInsert.question))
-        console.log("Question "+{name}+ " was created in server");
-
-        // dispatch(updateSurveyName(newProps));
+        console.log("Question "+{name: name}+ " was created in server");
       }
 
       setShowModal(false);
@@ -56,13 +55,38 @@ export const QuestionInsertButton = (props) => {
     try {
       const response = await questionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
       const data = await response.json();
+      const questionId = data.data.questionInsert.question.id;
   
+      if (data.data.questionInsert.msg === "ok") {
+        dispatch(addQuestion(data.data.questionInsert.question))
+        console.log("Question "+{name: name}+ " was created in server");
+      }
       setShowModal(false);
+      let nameValue = "";
+
+      for (const value of copy.values) {
+        try {
+          const response = await QuestionValueInsertMutation({questionId,nameValue: value.name ,order: props.orderLength + 1});
+          const data = await response.json();
+          if (data.data.questionValueInsert.msg === "ok") {
+            const newProps = data.data.questionValueInsert.question;
+  
+            dispatch(insertQuestionValues(newProps));
+            console.log('New questionValue"'+data.data.questionValueInsert.question.name+'" insert on server')
+          }
+        
+        } catch (error) {
+          console.error('Error fetching group names:', error);
+        }
+      };
+
     } catch (error) {
       console.error('Error:', error);
     }
+
+   
+
   };
-  
 
   return (
     <div >

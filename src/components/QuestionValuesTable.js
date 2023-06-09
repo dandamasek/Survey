@@ -18,7 +18,7 @@ function QuestionValues(props) {
       
       {/* Button fro creating new empty questionValue */}
       <div className='row'>
-      <QuestionValueInsertButton questionId={props.questionId} order={props.orderLength+1}/>
+      <QuestionValueInsertButton questionId={props.questionId} order={props.orderLength+1} nameValue={" "}/>
       </div>
 
     </div>

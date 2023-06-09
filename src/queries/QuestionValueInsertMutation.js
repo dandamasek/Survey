@@ -1,12 +1,12 @@
 import { authorizedFetch } from './authorizedFetch';
 
 // create new questionValue on server without name
-const QuestionValueInsertJSON = (questionId,order) => ({
+const QuestionValueInsertJSON = (questionId,nameValue,order) => ({
   query: `
   mutation {
     questionValueInsert(questionValue:{
       questionId:"${questionId}",
-      name:" ",
+      name:"${nameValue}",
       order: ${order}
     }){
       msg
@@ -31,7 +31,7 @@ const QuestionValueInsertJSON = (questionId,order) => ({
   `
 });
 
-export const QuestionValueInsertMutation = (props) =>
+export const QuestionValueInsertMutation = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(QuestionValueInsertJSON(props.questionId,props.order))
+    body: JSON.stringify(QuestionValueInsertJSON(props.questionId, props.nameValue, props.order))
   })
