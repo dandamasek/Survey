@@ -31,7 +31,7 @@ export default function SurveyEditor() {
                 <h1>{survey.name}</h1>
               </div>
               
-              <QuestionAnswerTable questions={survey.questions} currentUser={currentUser}/> 
+              <QuestionAnswerTable questions={survey.questions}  currentUser={currentUser}/> 
 
             </div>
           )}
