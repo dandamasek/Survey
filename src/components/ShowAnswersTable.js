@@ -1,46 +1,51 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ShowAnswerTable(props) {
+function ShowAnswersTable(props) {
+  const countAnswerValues = (question) => {
+    const answerCounts = {};
+
+    question.answers.forEach((answer) => {
+      const answerValue = answer.value;
+
+      if (answerValue in answerCounts) {
+        answerCounts[answerValue] += 1;
+      } else {
+        answerCounts[answerValue] = 1;
+      }
+    });
+
+    return answerCounts;
+  };
+
   return (
     <table className="table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Count</th>
+        </tr>
+      </thead>
       <tbody>
-        {props.questions.map((question) => (
-          <tr key={question.id}>
-            <td className="col-2">
-              <div className="col-2">
-                <input
-                  className="form-control"
-                  defaultValue={question.order}
-                  disabled={true}
-                />
-              </div>
-            </td>
-            <td>
-              <input
-                className="form-control"
-                defaultValue={question.name}
-                disabled={true}
-              />
-            </td>
-            <td>
-              {
-                question.answers.map((answer) => (
-                  <div>
-                    <input
-                      className="form-control"
-                      defaultValue={answer.value}
-                      disabled={true}
-                    />
-                  </div>
-                ))}
-             
-            </td>
-          </tr>
-        ))}
+        {props.questions.map((question) => {
+          if (question.type.name === "Uzavřené" || question.type.name === 'Škála') {
+            const answerCounts = countAnswerValues(question);
+
+            return Object.entries(answerCounts).map(([answerValue, count]) => (
+              <tr key={`${question.id}-${answerValue}`}>
+                <td>{question.name}</td>
+                <td>{answerValue}</td>
+                <td>{count}</td>
+              </tr>
+            ));
+          }
+
+          return null;
+        })}
       </tbody>
     </table>
   );
 }
 
-export default ShowAnswerTable;
+export default ShowAnswersTable;
