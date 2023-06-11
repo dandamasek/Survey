@@ -2,11 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
 import {insertQuestionValues} from 'features/SurveySlice';
-import { useState } from'react';
 
 export const QuestionValueInsertButton = (props) => {
   const dispatch = useDispatch();
-  const [name] = useState(" ");
+
 
   const fetchData = async () => {
     try {
@@ -28,8 +27,8 @@ export const QuestionValueInsertButton = (props) => {
 
   return (
     <div>
-      <button className="btn btn-success btn-sm m-2" onClick={fetchData}>
-        Create new value
+      <button className="btn btn-success btn-sm m-1" onClick={fetchData}>
+        New value
       </button>
     </div>
   );

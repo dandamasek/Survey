@@ -32,6 +32,7 @@ export const surveySlice = createSlice({
     addSurvey: (state, action) => {
       const newSurvey = action.payload;
       state.push(newSurvey);
+      console.log('Survey "' + newSurvey.name + '" added to store');  
     },
 
     addQuestion: (state, action) => {

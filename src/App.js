@@ -12,8 +12,8 @@ function App() {
     
     {/* Pages for different tasks, Editing survey, answering to assigned survey, results from answers */}
     <SurveyEditor /> 
-    <SurveyAnswer />
-    <SurveyResult />      
+    {/* <SurveyAnswer /> */}
+    {/* <SurveyResult />       */}
       
     </div>
         

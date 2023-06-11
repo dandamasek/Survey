@@ -4,18 +4,17 @@ import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 import QuestionAnswerTable from '../components/QuestionAnswerTable';
 import {UserTable} from 'components/UserTable';
-import { fetchUsers } from 'actions/LoadUserDataAsync';
+
 
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
-  const users =  useSelector(state => state.users);
+  // const users =  useSelector(state => state.users);
   
   const currentUser = {id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003",email: "julia.newbie@world.com"} //2d9dc868-a4a2-11ed-b9df-0242ac120003   2d9dc5ca-a4a2-11ed-b9df-0242ac120003
   const dispatch = useDispatch()
+
   useEffect(() => {
-   dispatch(SurveyFetchAsync())
-   
-    
+   dispatch(SurveyFetchAsync())  
   }, []);
   return (
     <div>
