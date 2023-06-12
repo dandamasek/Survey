@@ -26,6 +26,7 @@ function QuestionTable(props) {
     console.log("pred",preOrder);
     setPreOrder(order);
     setOrder(event.target.value);
+    
   };
 
   const copyQuestion = () => {
