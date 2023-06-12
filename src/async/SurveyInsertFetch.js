@@ -21,9 +21,6 @@ import { addSurvey } from 'features/SurveySlice';
     
 //   };
 
-
-
-
   /**
  * An asynchronous action creator that fetches projects and dispatches the 'loadProjects' action.
  *

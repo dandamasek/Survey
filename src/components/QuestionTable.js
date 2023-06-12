@@ -4,6 +4,7 @@ import { QuestionUpdateButton } from 'actions/QuestionUpdateButton';
 import QuestionValues from './QuestionValuesTable';
 import { useDispatch } from 'react-redux';
 import { loadData } from 'features/CopySlice';
+import  OccupedQuestionOrderChange from 'actions/OccupedQuestionOrderChange';
 // this function is for one specific question from survey
 
 function QuestionTable(props) {
@@ -22,11 +23,13 @@ function QuestionTable(props) {
 
   // Handle order input change
   const handleOrderChange = (event) => {
-    console.log("aktualni",event.target.value);
-    console.log("pred",preOrder);
-    setPreOrder(order);
-    setOrder(event.target.value);
     
+    
+    console.log("-------------------------");
+    setOrder(event.target.value);
+    setPreOrder(order);
+    OccupedQuestionOrderChange({preOrder,order: event.target.value, questions: props.questions});
+
   };
 
   const copyQuestion = () => {

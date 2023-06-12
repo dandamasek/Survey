@@ -16,6 +16,7 @@ import { QuestionInsertButton } from 'actions/QuestionInsertButton';
           <QuestionTable
             question={question}
             surveyId={props.surveyId} 
+            questions={props.questions}
           />
           </div>
         ))
