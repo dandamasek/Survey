@@ -4,8 +4,6 @@ import { QuestionUpdateButton } from 'actions/QuestionUpdateButton';
 import QuestionValues from './QuestionValuesTable';
 import { useDispatch } from 'react-redux';
 import { loadData } from 'features/CopySlice';
-import  OccupedQuestionOrderChange from 'actions/OccupedQuestionOrderChange';
-// this function is for one specific question from survey
 
 function QuestionTable(props) {
   const dispatch = useDispatch();
@@ -14,6 +12,7 @@ function QuestionTable(props) {
   const [name, setName] = useState(props.question.name);
   const [type, setType] = useState(props.question.type.id);
   const [preOrder, setPreOrder] = useState(order);
+  const [occupiedQuestion, setOccupiedQuestion] = useState({});
   
   // surveyId is Id of survey of this question
   const surveyId = props.surveyId
@@ -22,20 +21,25 @@ function QuestionTable(props) {
   const orderLength = props.question.values.length;
 
   // Handle order input change
+
   const handleOrderChange = (event) => {
-    
-    
     console.log("-------------------------");
     setOrder(event.target.value);
-    setPreOrder(order);
-    OccupedQuestionOrderChange({preOrder,order: event.target.value, questions: props.questions});
 
+    props.questions.forEach(question => {
+      if(question.order == event.target.value){
+          setOccupiedQuestion(question);
+          console.log("TADY",occupiedQuestion);
+      };
+    })
   };
+
 
   const copyQuestion = () => {
     const lastchange = props.question.lastchange
     const id = props.question.id
     const values = props.question.values  
+
     dispatch(loadData({
       lastchange,
       id,
@@ -53,7 +57,6 @@ function QuestionTable(props) {
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
-
 
   return (
     <div className='row' >
@@ -111,6 +114,9 @@ function QuestionTable(props) {
             order={order}
             type={type}
             surveyId={surveyId}
+            questions={props.questions}
+            preOrder={preOrder}
+            occupiedQuestion={occupiedQuestion}
           />
         </div>
     </div>

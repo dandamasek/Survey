@@ -63,7 +63,7 @@ export const surveySlice = createSlice({
       const newQuestion = action.payload.question;
       const surveyId = action.payload.surveyId;
 
-      console.log('Question "' + newQuestion.order + '" updated in store');
+      console.log('Question "' + newQuestion.name + '" updated in store');
 
       state.forEach((survey) => {
         if (survey.id === surveyId) {

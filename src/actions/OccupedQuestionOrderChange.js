@@ -1,17 +1,23 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// this function is for one specific question from survey
+// import React from 'react';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import { useDispatch } from'react-redux';
+// import { FetchData } from 'async/QuestionUpdateFetch';
 
-export default function OccupedQuestionOrderChange(props) {
-    console.log("order",props.order);
-    console.log("preorder",props.preOrder);
+// // this function is for one specific question from survey
 
-    // props.questions.forEach(question => {
-    //     if(question.order === props.order){
-    //         question.order = props.preOrder;
+// export default function OccupedQuestionOrderChange(props) {
+//     const dispatch = useDispatch();
+
+//     console.log("order",props.order);
+//     console.log("preorder",props.preOrder);
+
+//     props.questions.forEach(question => {
+//         if(question.order === props.order){
+//             {() => dispatch(FetchData(props))}
+        
+//         };
             
-    //     }
-    // });
-}
+//         });
+// }
 
 
