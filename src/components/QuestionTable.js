@@ -28,6 +28,7 @@ function QuestionTable(props) {
     setOrder(event.target.value);
 
     props.questions.forEach(question => {
+      // need to be just == i dont know why 
       if(question.order == event.target.value){
           setOccupiedQuestion(question);
           console.log("TADY",occupiedQuestion);
@@ -58,10 +59,20 @@ function QuestionTable(props) {
     setName(event.target.value);
   };
 
+
+// change from store and also changing in box
   useEffect(() => {
     setOrder(props.question.order);
   }, [props.question.order]);
-  
+
+
+  // to store previous order
+    useEffect(() => {
+    if (props.question.order !== order) {
+      setPreOrder(props.question.order);
+    }
+  }, [props.question.order, order]);
+
 
   return (
     <div className='row' >

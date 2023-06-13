@@ -11,7 +11,6 @@ import { SurveyFetchAsync } from '../actions/LoadSurveyDataAsync';
 import { fetchGroups } from '../actions/LoadGroupDataAsync';
 
 export default function SurveyEditor() {
-  const groups = useSelector(state => state.groups);
   const surveys = useSelector(state => state.surveys);
   const users =  useSelector(state => state.users);
   
