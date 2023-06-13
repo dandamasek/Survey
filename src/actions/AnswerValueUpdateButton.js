@@ -11,7 +11,7 @@ export const AnswerValueUpdateButton= (props) => {
       const data = await response.json();
   
       
-  
+     console.log(data);
       if(data.data.answerUpdate.msg === "ok") {
         
         const newProps = [props.id, data.data.answerUpdate.answer.lastchange, data.data.answerUpdate.answer.value]
