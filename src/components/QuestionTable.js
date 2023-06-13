@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { QuestionUpdateButton } from 'actions/QuestionUpdateButton';
 import QuestionValues from './QuestionValuesTable';
 import { useDispatch } from 'react-redux';
 import { loadData } from 'features/CopySlice';
+
 
 function QuestionTable(props) {
   const dispatch = useDispatch();
@@ -34,7 +35,6 @@ function QuestionTable(props) {
     })
   };
 
-
   const copyQuestion = () => {
     const lastchange = props.question.lastchange
     const id = props.question.id
@@ -58,12 +58,16 @@ function QuestionTable(props) {
     setName(event.target.value);
   };
 
+  useEffect(() => {
+    setOrder(props.question.order);
+  }, [props.question.order]);
+  
+
   return (
     <div className='row' >
 
         <div className='col-1'>
             <button className="btn btn-outline-dark" onClick={copyQuestion}>Copy</button>
-
         </div>
 
           {/* Order input */}
