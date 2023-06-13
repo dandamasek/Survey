@@ -32,7 +32,7 @@ const QuestionUpdateMutationJSON = (lastchange,id,name,order,type) => ({
   `
 });
 
-export const QuestionUpdateMutation = (lastchange,id,name,order,type) => 
+export const QuestionUpdateMutation = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(QuestionUpdateMutationJSON(lastchange,id,name,order,type))
+    body: JSON.stringify(QuestionUpdateMutationJSON(props.lastchange,props.id,props.name,props.order,props.type))
   })

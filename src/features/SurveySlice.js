@@ -59,7 +59,9 @@ export const surveySlice = createSlice({
     },
 
     updateQuestion: (state, action) => {
-      const [newQuestion, surveyId] = action.payload;
+      const newQuestion = action.payload.newQuestion;
+      const surveyId = action.payload.survey;
+      console.log('sss',action.payload);
       console.log('Question "' + newQuestion.name + '" updated in store');
 
       state.forEach((survey) => {

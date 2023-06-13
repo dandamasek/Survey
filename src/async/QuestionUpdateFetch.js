@@ -10,10 +10,9 @@ export const FetchData = (props) => (dispatch, getState) => {
       .then(json => {
         // Extract the projects data from the JSON response
         const question = json.data?.questionUpdate.question;
-        const msg = json.data?.questionUpdate.msg;
-  
-        if (msg) {
-          dispatch(updateQuestion({question,surveyId: props.surveyId}))
+
+        if (question) {
+          dispatch(updateQuestion({question,surveyId: props.surveyId}));
           console.log('Question "'+question.name+'" updated on server')
         }
   
