@@ -22,7 +22,7 @@ export function AnswerFromUser(props) {
       setLastChange(null);
     }
   } catch (error) {}
-  
+
   }, [props.question.answers, props.currentUser]);
 
   const handleInputChange = (event) => {
