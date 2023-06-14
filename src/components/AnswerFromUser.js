@@ -6,7 +6,8 @@ export function AnswerFromUser(props) {
   const [answer, setAnswer] = useState([]);
   const [id, setId] = useState();
   const [lastChange, setLastChange] = useState();
-
+  
+  
   useEffect(() => {
     try{
       const matchingAnswer = props.question.answers.find(
@@ -105,7 +106,7 @@ export function AnswerFromUser(props) {
   return (
     <>
       {renderQuestionByType()}
-      <AnswerValueUpdateButton id={id} lastchange={lastChange} value={answer.join(',')} />
+      <AnswerValueUpdateButton id={id} lastchange={lastChange} value={answer} />
     </>
   );
 }
