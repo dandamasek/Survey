@@ -5,7 +5,7 @@ export const SurveyAssignToUserButton= (props) => {
   
     const fetchData = async () => {
       try {
-        const response = await surveyAssignToMutation(props);
+        const response = await    (props);
         const data = await response.json();
         console.log("ButtonSurveyAssignToUser",data)
         
