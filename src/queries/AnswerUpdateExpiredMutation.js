@@ -14,8 +14,12 @@ const AnswerUpdateExpiredMutationJSON = (id, lastchange, expired) => ({
         id
         lastchange
         value
-        expired
         aswered
+        expired
+        user {
+          id
+          name
+        }
       }
     }
   }`
