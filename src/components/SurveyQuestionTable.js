@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuestionTable from './QuestionTable';
 import { QuestionInsertButton } from 'actions/QuestionInsertButton';
+import { AnswerExpiredButton } from 'actions/AnswerExpiredButton';
 
   function SurveyQuestionTable(props) {
   const orderLength = [...props.questions].length;
@@ -25,7 +26,14 @@ import { QuestionInsertButton } from 'actions/QuestionInsertButton';
        <div className='row'>
           <QuestionInsertButton surveyId={props.surveyId} orderLength={orderLength}/>
         </div>
+
+      <div>   
+        <AnswerExpiredButton questions={props.questions}/>
+      </div>
+
     </div>
+
+
     
   )
 }
