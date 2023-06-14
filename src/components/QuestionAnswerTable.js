@@ -43,6 +43,7 @@ function QuestionAnswerTable(props) {
             return null;
           }
         });
+        
       })}
       <div>
         <button className='m-2'>Submit Udelat!</button>

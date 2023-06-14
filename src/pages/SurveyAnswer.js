@@ -39,7 +39,7 @@ export default function SurveyAnswer() {
             <div className='card-header bg-primary text-white'>
               <h1>{survey.name}</h1>
             </div>
-            <QuestionAnswerTable questions={survey.questions} currentUser={id} />
+            <QuestionAnswerTable questions={survey.questions} currentUser={{id: id}} />
           </div>
         )}
 
