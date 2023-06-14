@@ -4,14 +4,14 @@ import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
 
 export function AnswerFromUser(props) {
   const [answer, setAnswer] = useState([]);
-  const [id, setId] = useState(null);
-  const [lastChange, setLastChange] = useState(null);
+  const [id, setId] = useState();
+  const [lastChange, setLastChange] = useState();
 
   useEffect(() => {
-    const matchingAnswer = props.question.answers.find(
-      (answer) => answer.user.id === props.currentUser.id
-    );
-
+    try{
+      const matchingAnswer = props.question.answers.find(
+        (answer) => answer.user.id === props.currentUser.id
+      );
     if (matchingAnswer) {
       setAnswer(matchingAnswer.value.split(','));
       setId(matchingAnswer.id);
@@ -21,6 +21,8 @@ export function AnswerFromUser(props) {
       setId(null);
       setLastChange(null);
     }
+  } catch (error) {}
+
   }, [props.question.answers, props.currentUser]);
 
   const handleInputChange = (event) => {

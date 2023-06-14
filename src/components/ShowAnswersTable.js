@@ -2,21 +2,27 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ShowAnswersTable(props) {
-  const countAnswerValues = (question) => {
+  const countAnswerValues = (questions) => {
     const answerCounts = {};
 
-    question.answers.forEach((answer) => {
-      const answerValue = answer.value;
+    questions.forEach((question) => {
+      if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+        question.answers.forEach((answer) => {
+          const answerValue = answer.value;
 
-      if (answerValue in answerCounts) {
-        answerCounts[answerValue] += 1;
-      } else {
-        answerCounts[answerValue] = 1;
+          if (answerValue in answerCounts) {
+            answerCounts[answerValue] += 1;
+          } else {
+            answerCounts[answerValue] = 1;
+          }
+        });
       }
     });
 
     return answerCounts;
   };
+
+  const answerCounts = countAnswerValues(props.questions);
 
   return (
     <table className="table">
@@ -29,16 +35,30 @@ function ShowAnswersTable(props) {
       </thead>
       <tbody>
         {props.questions.map((question) => {
-          if (question.type.name === "Uzavřené" || question.type.name === 'Škála') {
-            const answerCounts = countAnswerValues(question);
+          if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+            const uniqueAnswers = Array.from(
+              new Set(question.answers.map((answer) => answer.value))
+            );
 
-            return Object.entries(answerCounts).map(([answerValue, count]) => (
-              <tr key={`${question.id}-${answerValue}`}>
+            return (
+              <tr key={question.id}>
                 <td>{question.name}</td>
-                <td>{answerValue}</td>
-                <td>{count}</td>
+                <td>
+                  {uniqueAnswers.map((answerValue) => (
+                    <div key={`${question.id}-${answerValue}`}>
+                      {answerValue}
+                    </div>
+                  ))}
+                </td>
+                <td>
+                  {uniqueAnswers.map((answerValue) => (
+                    <div key={`${question.id}-${answerValue}`}>
+                      {answerCounts[answerValue] || 0}
+                    </div>
+                  ))}
+                </td>
               </tr>
-            ));
+            );
           }
 
           return null;

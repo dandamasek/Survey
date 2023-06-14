@@ -59,9 +59,10 @@ export const surveySlice = createSlice({
     },
 
     updateQuestion: (state, action) => {
-      const newQuestion = action.payload.newQuestion;
-      const surveyId = action.payload.survey;
-      console.log('sss',action.payload);
+      
+      const newQuestion = action.payload.question;
+      const surveyId = action.payload.surveyId;
+
       console.log('Question "' + newQuestion.name + '" updated in store');
 
       state.forEach((survey) => {
@@ -118,6 +119,27 @@ export const surveySlice = createSlice({
               answer.value = value;
               answer.lastchange = lastchange;
               console.log(answer.value);
+              console.log('Answer "' + value + '" updated in store');
+
+            }
+          });
+        });
+      });
+    },
+
+    updateAnswerExpired: (state, action) => {
+      const id = action.payload.answer.id;
+      const lastchange = action.payload.answer.lastchange;
+      const expired = action.payload.answer.expired;
+
+      state.forEach((survey) => {
+        survey.questions.forEach((question) => {
+          question.answers.forEach((answer) => {
+            if (answer.id === id) {
+              answer.expired = expired;
+              answer.lastchange = lastchange;
+              console.log('Answer" closed in store')
+              console.log(expired);
             }
           });
         });
@@ -140,6 +162,7 @@ export const {
   addQuestion,
   updateAnswerValue,
   surveyAssignTo,
+  updateAnswerExpired,
 
 } = surveySlice.actions;
 
