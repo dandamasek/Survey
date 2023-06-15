@@ -1,26 +1,21 @@
 import React from 'react';
+import { SurveyAssignToGroupFetch } from '../async/SurveyAssignToGroupFetch';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { surveyAssignToMutation } from 'queries/SurveyAssignToMutation';
 
 export const SurveyAssignToGroupButton = (props) => {
   const groups = useSelector((state) => state.groups);
-
-
-  const fetchData = async () => {
-    const group = groups.find((group) => group.id === props.group.id);
-
-    if (group) {
-      for (const user of group.memberships) {
-        const response = await surveyAssignToMutation({userId: user.user.id, surveyId: props.surveyId});
-        const data = await response.json();
-        console.log('User: "'+user.user.name+'" is assign to survey');
-      }
-    }
-  };
+  
+  const dispatch = useDispatch();
 
   return (
     <div>
-      <button className="btn btn-outline-dark" onClick={fetchData}>
+      <button className="btn btn-outline-dark" onClick={() =>dispatch(SurveyAssignToGroupFetch({
+        groups: groups,
+        surveyId: props.surveyId,
+        group: props.group,
+      }))}>
+
         Assign to Group
       </button>
     </div>

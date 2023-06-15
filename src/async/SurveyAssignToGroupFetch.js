@@ -1,28 +1,34 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
-import { surveyAssignToMutation } from 'queries/SurveyAssignToMutation';
+import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
+import { addSurvey } from 'features/SurveySlice';
 
-export const SurveyAssignToGroupButton = (props) => {
-  const groups = useSelector((state) => state.groups);
+  /**
+ * An asynchronous action creator that fetches projects and dispatches the 'loadProjects' action.
+ *
+ * @returns {Function} A function that accepts the 'dispatch' and 'getState' functions from Redux.
+ */
 
 
-  const fetchData = async () => {
-    const group = groups.find((group) => group.id === props.group.id);
+export const SurveyAssignToGroupFetch = (props) => (dispatch, getState) => {
 
-    if (group) {
-      for (const user of group.memberships) {
-        const response = await surveyAssignToMutation({userId: user.user.id, surveyId: props.surveyId});
-        const data = await response.json();
-        console.log('User: "'+user.user.name+'" is assign to survey');
+  const group = props.groups.find((group) => group.id === props.group.id);
+  if (group) {
+    for (const user of group.memberships) {
+  // Call the ProjectsQuery function to fetch projects
+
+      
+  SurveyAssignToMutation({userId: user.user.id, surveyId: props.surveyId})
+    .then(response => response.json())
+    .then(json => {
+      // Extract the projects data from the JSON response
+      const survey = json.data?.surveyAssingTo.msg;
+      if (survey) {
+        // Dispatch the 'loadProjects' action with the fetched projects
+        // dispatch(addSurvey(survey))
+        console.log('new async',survey)
       }
+      return json
+      })
     }
-  };
-
-  return (
-    <div>
-      <button className="btn btn-outline-dark" onClick={fetchData}>
-        Assign to Group
-      </button>
-    </div>
-  );
+  }
 };

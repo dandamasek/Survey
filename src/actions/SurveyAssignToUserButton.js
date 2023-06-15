@@ -1,11 +1,11 @@
 
-import { surveyAssignToMutation } from 'queries/SurveyAssignToMutation';
+import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
 
 export const SurveyAssignToUserButton= (props) => {
   
     const fetchData = async () => {
       try {
-        const response = await surveyAssignToMutation(props);
+        const response = await SurveyAssignToMutation(props);
         const data = await response.json();
         console.log("ButtonSurveyAssignToUser",data)
         
