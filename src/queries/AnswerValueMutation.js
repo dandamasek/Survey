@@ -24,9 +24,11 @@ const GroupsSelectQueryJSON = (id, lastchange, value) => ({
     }
   }`
 });
-
+/*
+Perform a mutation to update the answer's value
+*/
 export const AnswerValueMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(GroupsSelectQueryJSON(props.id, props.lastchange, props.value))
-  })
+  });
 

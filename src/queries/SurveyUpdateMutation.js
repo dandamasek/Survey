@@ -17,7 +17,9 @@ const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
     }
   `
 });
-
+/*
+  Sends a mutation request to update a survey
+ */
 export const SurveyUpdateMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(SurveyUpdateMutationJSON(props.id, props.lastchange, props.newName))

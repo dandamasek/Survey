@@ -14,8 +14,8 @@ export const UserSelectQueryJSON = () => ({
   `
 });
 
-/**
- * Sends the UserSelectQuery to the server using authorizedFetch.
+/*
+  Sends the UserSelectQuery to the server using authorizedFetch.
  */
 
 export const UserSelectQuery = () =>
