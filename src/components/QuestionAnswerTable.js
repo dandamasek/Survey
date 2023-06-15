@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
+import { AnswerUpdateAsweredGroupButton } from '../actions/AnswerUpdateAswereGroupButton';
 
 
 /*
@@ -50,7 +51,7 @@ function QuestionAnswerTable(props) {
         
       })}
       <div>
-        <button className='m-2'>Submit Udelat!</button>
+      <AnswerUpdateAsweredGroupButton questions={sortedQuestions} aswered={true} currentUser={props.currentUser} />
       </div>
     </>
   );

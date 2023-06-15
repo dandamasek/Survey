@@ -11,7 +11,7 @@ export const SurveyAssignToUserButton = (props) => {
       const response = await SurveyAssignToMutation(props);
       const data = await response.json();
       console.log("ButtonSurveyAssignToUser", data);
-      dispatch(surveyAssignTo(data.data.surveyAssignTo.survey));
+      dispatch(surveyAssignTo(data.data.surveyAssingTo.survey));
     } catch (error) {
       console.error('Error fetching group names:', error);
     }

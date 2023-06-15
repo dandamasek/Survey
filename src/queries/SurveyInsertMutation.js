@@ -29,6 +29,7 @@ const SurveyInsertMutationJSON = (name, typeId) => ({
             user {
               id
               name
+              email
             }
           }
         }

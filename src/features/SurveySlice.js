@@ -146,22 +146,36 @@ export const surveySlice = createSlice({
             if (answer.id === id) {
               answer.expired = expired;
               answer.lastchange = lastchange;
-              console.log('Answer" closed in store')
+              console.log('Answer" is expired in store')
               console.log(expired);
             }
           });
         });
       });
     },
-
     
+    updateAnswerAswered: (state, action) => {
+      const newAnswer = action.payload;
+      
+      state.forEach((survey) => {
+        survey.questions.forEach((question) => {
+          question.answers.forEach((answer, index) => {
+            if (answer.id === newAnswer.id) {
+              question.answers[index] = newAnswer;
+            }
+          });
+        });
+      });
+    },
+
+
+
     surveyAssignTo: (state, action) => {
       const newSurvey = action.payload;
-    
       state.forEach((survey, index) => {
         if (survey.id === newSurvey.id) {
           state[index] = newSurvey;
-          console.log('Users are assigned to "' + newSurvey.name + '" in store');
+          console.log('User is assigned to "' + newSurvey.name + '" in store');
         }
       });
     },
@@ -185,6 +199,7 @@ export const {
   updateAnswerValue,
   surveyAssignTo,
   updateAnswerExpired,
+  updateAnswerAswered,
 
 } = surveySlice.actions;
 
