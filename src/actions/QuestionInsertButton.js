@@ -3,34 +3,32 @@ import { questionInsertMutation } from '../queries/QuestionInsertMutation';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
-import { useSelector } from'react-redux';
-
+import { useSelector } from 'react-redux';
 import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
-import {insertQuestionValues} from 'features/SurveySlice';
-
+import { insertQuestionValues } from 'features/SurveySlice';
 
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
-  const copy = useSelector(state => state.copy);
+  const copy = useSelector((state) => state.copy);
 
-  // showing modal if button pressed
+  // State for controlling the visibility of the modal
   const [showModal, setShowModal] = useState(false);
 
-  // stored values for questionInsert
-  const [name, setName] = useState("");
+  // State for storing the values for questionInsert
+  const [name, setName] = useState('');
+  const [typeId, setTypeId] = useState('949d74a2-63b1-4478-82f1-e025d8bc6c8b'); // Default typeID is Otevřená
 
-  // default typeID is Otevřená
-  const [typeId, setTypeId] = useState("949d74a2-63b1-4478-82f1-e025d8bc6c8b");
-
-
+  // Function to fetch data and create a new question
   const fetchData = async () => {
-    try {     
-      const response = await questionInsertMutation(name,props.surveyId,typeId,props.orderLength+1);
-      const data = await response.json(name,typeId,props.surveyId,props.orderLength+1);
-      
-      if (data.data.questionInsert.msg === "ok") {
-        dispatch(addQuestion(data.data.questionInsert.question))
-        console.log('Question "'+{name: name}+ '" was created in server');
+    try {
+      // Perform the question insert mutation request
+      const response = await questionInsertMutation(name, props.surveyId, typeId, props.orderLength + 1);
+      const data = await response.json();
+
+      if (data.data.questionInsert.msg === 'ok') {
+        // Dispatch an action to add the new question to the Redux store
+        dispatch(addQuestion(data.data.questionInsert.question));
+        console.log('Question "' + { name: name } + '" was created on the server');
       }
 
       setShowModal(false);
@@ -39,59 +37,63 @@ export const QuestionInsertButton = (props) => {
     }
   };
 
+  // Function to handle closing the modal
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
+  // Event handler for name input change
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
+  // Event handler for question type selection change
   const handleTypeChange = (event) => {
     setTypeId(event.target.value);
   };
 
+  // Function to add a copy question with question values
   const addCopyQuestion = async () => {
     try {
       const response = await questionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
       const data = await response.json();
       const questionId = data.data.questionInsert.question.id;
-  
-      if (data.data.questionInsert.msg === "ok") {
-        console.log("Question "+ data.data.questionInsert.question.name + " was created on server");
-        dispatch(addQuestion(data.data.questionInsert.question))
+
+      if (data.data.questionInsert.msg === 'ok') {
+        console.log('Question ' + data.data.questionInsert.question.name + ' was created on the server');
+        dispatch(addQuestion(data.data.questionInsert.question));
       }
+
       setShowModal(false);
-      let nameValue = "";
+      let nameValue = '';
 
       for (const value of copy.values) {
         try {
-          const response = await QuestionValueInsertMutation({questionId,nameValue: value.name ,order: props.orderLength + 1});
+          const response = await QuestionValueInsertMutation({ questionId, nameValue: value.name, order: props.orderLength + 1 });
           const data = await response.json();
-          if (data.data.questionValueInsert.msg === "ok") {
+
+          if (data.data.questionValueInsert.msg === 'ok') {
             const newProps = data.data.questionValueInsert.question;
-  
+
             dispatch(insertQuestionValues(newProps));
-            console.log('New questionValue "'+data.data.questionValueInsert.question.name+'" insert on server')
+            console.log('New questionValue "' + data.data.questionValueInsert.question.name + '" was inserted on the server');
           }
-        
         } catch (error) {
           console.error('Error fetching group names:', error);
         }
-      };
-
+      }
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
   return (
-    <div >
-      <button className="btn btn-success " onClick={() => setShowModal(true)}>
+    <div>
+      <button className="btn btn-success" onClick={() => setShowModal(true)}>
         Insert question
       </button>
 
-      {/* modal bottstrap setting */}
+      {/* Bootstrap modal settings */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Hello</Modal.Title>
