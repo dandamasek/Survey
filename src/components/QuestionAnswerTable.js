@@ -6,10 +6,11 @@ function QuestionAnswerTable(props) {
 
   return (
     <>
+    
       {props.questions.map((question) => {
         return question.answers.map((answer) => {
           if (answer.user.id === props.currentUser.id && answer.expired !== true) {
-
+           
             return (
               <div className='row' key={question.id + "RowQuestionAnswer"}>
                 <div className='col'>
@@ -35,7 +36,6 @@ function QuestionAnswerTable(props) {
                     currentUser={props.currentUser}
                   />
                 </div>
-
                
               </div>
             );

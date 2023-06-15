@@ -5,7 +5,7 @@ export const SurveyAssignToUserButton= (props) => {
   
     const fetchData = async () => {
       try {
-        const response = await    (props);
+        const response = await surveyAssignToMutation(props);
         const data = await response.json();
         console.log("ButtonSurveyAssignToUser",data)
         
@@ -15,8 +15,6 @@ export const SurveyAssignToUserButton= (props) => {
     };
  
   return (
-   
    <td> <button className="btn btn-outline-dark" onClick={fetchData}>Assign survey to currentUser</button></td>
-  
   )
 }

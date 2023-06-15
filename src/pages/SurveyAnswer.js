@@ -33,15 +33,26 @@ export default function SurveyAnswer() {
         <UserTable currentUser={currentUser} />
         <input type="text" value={id} onChange={handleIdChange} />
        
+        {surveys.map((survey) => {
+        const found = survey.questions.some(question => {
+          return question.answers.some(answer => {
+            return answer.user.id === id;
+          });
+        });
 
-        {surveys.map((survey) =>
-          <div className='card m-5 border-secondary' key={survey.id + "Survey answer table"}>
-            <div className='card-header bg-primary text-white'>
-              <h1>{survey.name}</h1>
+        if (found) {
+          return (
+            <div className='card m-5 border-secondary' key={survey.id + "Survey answer table"}>
+              <div className='card-header bg-primary text-white'>
+                <h1>{survey.name}</h1>
+              </div>
+              <QuestionAnswerTable questions={survey.questions} currentUser={{ id: id }} />
             </div>
-            <QuestionAnswerTable questions={survey.questions} currentUser={{id: id}} />
-          </div>
-        )}
+          );
+        }
+
+        return null;
+      })}
 
       </div>
     </div>

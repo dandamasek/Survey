@@ -5,6 +5,7 @@ const AssignGroups = (props) => {
   const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
 
+  console.log("ssss",props);
   const handleGroupChange = (event) => {
     const selectedGroupId = event.target.value;
     setSelectedGroup(selectedGroupId);
