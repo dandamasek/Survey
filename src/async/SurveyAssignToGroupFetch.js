@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
 import { addSurvey } from 'features/SurveySlice';
 
@@ -16,16 +15,15 @@ export const SurveyAssignToGroupFetch = (props) => (dispatch, getState) => {
     for (const user of group.memberships) {
   // Call the ProjectsQuery function to fetch projects
 
-      
   SurveyAssignToMutation({userId: user.user.id, surveyId: props.surveyId})
     .then(response => response.json())
     .then(json => {
       // Extract the projects data from the JSON response
-      const survey = json.data?.surveyAssingTo.msg;
+      const survey = json.data?.surveyAssingTo.survey;
       if (survey) {
         // Dispatch the 'loadProjects' action with the fetched projects
         // dispatch(addSurvey(survey))
-        console.log('new async',survey)
+        console.log('User: "'+user.user.name+'" assigned to survey: "'+survey.name+'"');
       }
       return json
       })
