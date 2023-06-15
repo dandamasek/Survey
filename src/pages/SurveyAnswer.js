@@ -1,24 +1,26 @@
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import { useSelector, useDispatch } from 'react-redux'; // Import necessary Redux hooks
-import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync'; // Import the async action for fetching survey data
-import { useEffect, useState } from 'react'; // Import React hooks for side effects and state management
-import QuestionAnswerTable from '../components/QuestionAnswerTable'; // Import the QuestionAnswerTable component
-import { UserTable } from 'components/UserTable'; // Import the UserTable component
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
+import { useEffect, useState } from 'react';
+import QuestionAnswerTable from '../components/QuestionAnswerTable';
+import { UserTable } from 'components/UserTable';
 
 export default function SurveyAnswer() {
-  const surveys = useSelector(state => state.surveys); // Select surveys from the Redux store
+  const surveys = useSelector(state => state.surveys);
 
-  const currentUser = { id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003" }; // Define the current user object
-  const dispatch = useDispatch(); // Create a dispatch function from the useDispatch hook
+  const currentUser = { id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003" };
+  const dispatch = useDispatch();
 
+  // Fetch survey data when the component mounts
   useEffect(() => {
-    dispatch(SurveyFetchAsync()); // Fetch survey data when the component mounts
+    dispatch(SurveyFetchAsync());
   }, [dispatch]);
 
-  const [id, setId] = useState(currentUser.id); // Set up state for the user ID
+  const [id, setId] = useState(currentUser.id);
 
+  // Handle ID change event
   const handleIdChange = (event) => {
-    setId(event.target.value); // Update the user ID when the input value changes
+    setId(event.target.value);
   };
 
   return (
@@ -33,7 +35,7 @@ export default function SurveyAnswer() {
         {surveys.map((survey) => {
           const found = survey.questions.some(question => {
             return question.answers.some(answer => {
-              return answer.user.id === id; // Check if the answer user ID matches the selected ID
+              return answer.user.id === id; 
             });
           });
 
@@ -43,7 +45,7 @@ export default function SurveyAnswer() {
                 <div className='card-header bg-primary text-white'>
                   <h1>{survey.name}</h1>
                 </div>
-                <QuestionAnswerTable questions={survey.questions} currentUser={{ id: id }} /> {/* Render the QuestionAnswerTable component */}
+                <QuestionAnswerTable questions={survey.questions} currentUser={{ id: id }} />
               </div>
             );
           }
@@ -54,3 +56,5 @@ export default function SurveyAnswer() {
     </div>
   );
 }
+
+

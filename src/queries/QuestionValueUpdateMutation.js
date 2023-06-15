@@ -22,7 +22,9 @@ const QuestionValueUpdateJSON = (lastchange,id,name,order) => ({
   }
   `
 });
-
+/*
+Sends a mutation request to update a question value.
+*/
 export const QuestionValueUpdateMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(QuestionValueUpdateJSON(props.lastchange, props.id, props.name ,props.order))

@@ -43,10 +43,9 @@ export const SurveySelectQueryJSON = () => ({
         }`
 })
 
-/**
- * Realizace dotazu na server. Vyuziva autorizedFetch (zapouzdreni)
- */
-
+/*
+ Realizace dotazu na server. Vyuziva autorizedFetch (zapouzdreni)
+*/
 export const SurveySelectQuery = () =>
     authorizedFetch('/gql', {
         body: JSON.stringify(SurveySelectQueryJSON()),

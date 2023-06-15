@@ -26,9 +26,9 @@ export const groupPageQueryJSON = () => ({
   `,
 });
 
-/**
- * Sends the GroupPageQuery to the server using authorizedFetch.
- */
+/*
+Sends the GroupPageQuery to the server using authorizedFetch.
+*/
 export const groupPageQuery = () =>
   authorizedFetch('/gql', {
     body: JSON.stringify(groupPageQueryJSON()),

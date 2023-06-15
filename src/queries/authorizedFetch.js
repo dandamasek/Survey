@@ -3,7 +3,8 @@ const globalFetchParams = {
     headers: {
         'Content-Type': 'application/json',
     },
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // *default, no-cache, reload, force-cache, only-if-cached
+    cache: 'no-cache', 
     redirect: 'follow', // manual, *follow, error
 }
 
@@ -14,9 +15,11 @@ const globalFetchParams = {
  * @returns 
  */
 export const authorizedFetch = (path, params) => {
-    const newParams = {...globalFetchParams, ...params} // allow owerwrite default parameters (globalFetchParams)
+    // allow owerwrite default parameters (globalFetchParams)
+    const newParams = {...globalFetchParams, ...params} 
     const overridenPath = '/api/gql'
     return (
-        fetch(overridenPath, newParams) //params.header should be extended with Authorization TOKEN
+        //params.header should be extended with Authorization TOKEN
+        fetch(overridenPath, newParams) 
     )
 }

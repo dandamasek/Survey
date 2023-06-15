@@ -1,6 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+/*
+Counts the occurrences of answer values in the given questions.
+*/
 function ShowAnswersTable(props) {
   const countAnswerValues = (questions) => {
     const answerCounts = {};
@@ -24,6 +27,9 @@ function ShowAnswersTable(props) {
 
   const answerCounts = countAnswerValues(props.questions);
 
+/*
+Renders a table to display question answers and their counts.
+*/
   return (
     <table className="table">
       <thead>
@@ -40,6 +46,9 @@ function ShowAnswersTable(props) {
               new Set(question.answers.map((answer) => answer.value))
             );
 
+            /*
+            Renders a table row for a question with its unique answers and counts
+            */
             return (
               <tr key={question.id}>
                 <td>{question.name}</td>

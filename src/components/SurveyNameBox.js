@@ -9,6 +9,10 @@ function SurveyNameBox(props) {
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
+
+  /*
+  Renders a row with survey name input field and update button 
+  */
   return (
     <div className='row'>       
       <div className="col-10">

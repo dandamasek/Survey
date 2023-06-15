@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+/*
+Renders a table to display answer results.
+*/
 function AnswerResultsTable(props) {
 
   return (

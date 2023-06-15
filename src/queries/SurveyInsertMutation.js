@@ -38,8 +38,11 @@ const SurveyInsertMutationJSON = (name, typeId) => ({
   `
 });
 
-export const SurveyInsertMutation = (props) => 
-  authorizedFetch('/gql', {
-    body: JSON.stringify(SurveyInsertMutationJSON(props.name, props.typeId))
-  })
+/*
+Sends a mutation request to insert a new survey.
+*/
+export const SurveyInsertMutation = (props) =>
+authorizedFetch('/gql', {
+body: JSON.stringify(SurveyInsertMutationJSON(props.name, props.typeId))
+});
 

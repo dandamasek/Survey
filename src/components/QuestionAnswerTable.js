@@ -2,6 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
 
+
+/*
+Renders a table of questions and answers for a specific user.
+*/
 function QuestionAnswerTable(props) {
   const sortedQuestions = [...props.questions].sort((a, b) => a.order - b.order);
   return (

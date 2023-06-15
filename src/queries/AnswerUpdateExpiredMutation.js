@@ -24,9 +24,11 @@ const AnswerUpdateExpiredMutationJSON = (id, lastchange, expired) => ({
     }
   }`
 });
-
+/*
+Perform a mutation to update the answer's expiration status
+*/
 export const AnswerUpdateExpiredMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(AnswerUpdateExpiredMutationJSON(props.id, props.lastchange, props.expired))
-  })
+  });
 

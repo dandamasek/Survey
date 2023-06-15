@@ -6,25 +6,27 @@ import { useEffect } from 'react';
 
 
 export default function SurveyResult() {
-  const surveys = useSelector(state => state.surveys); // Select surveys from the Redux store
+  const surveys = useSelector(state => state.surveys); 
   
-  const dispatch = useDispatch(); // Create a dispatch function from the useDispatch hook
+  // Create a dispatch function from the useDispatch hook
+  const dispatch = useDispatch(); 
 
+  // Fetch survey data when the component mounts
   useEffect(() => {
-    dispatch(SurveyFetchAsync()); // Fetch survey data when the component mounts
+    dispatch(SurveyFetchAsync()); 
     
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
-      {/* Page header */}
       <div>
         <h1 className="p-4 mb-2 bg-primary text-white">Surveys results</h1>
       </div>
       
       <div className="container">
-        <AnswerShowButton surveys={surveys} /> {/* Render the AnswerShowButton component */}
+        {/* Render the AnswerShowButton component */}
+        <AnswerShowButton surveys={surveys} /> 
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import {SurveyAssignToUserButton} from 'actions/SurveyAssignToUserButton';
 
+/*
+Handles the click event on a user.
+*/
 const AssignUsers = (props) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
@@ -19,7 +22,9 @@ const AssignUsers = (props) => {
     const selectedUserId = event.target.value;
     console.log(`Clicked user ID: ${selectedUserId}`);
   };
-
+/*
+Renders a dropdown menu to choose a user and a survey, and a button to assign the selected survey to the selected user.
+*/
   return (
     <div>
       <label>Choose a user:</label>

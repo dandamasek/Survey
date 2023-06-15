@@ -30,7 +30,9 @@ const QuestionValueInsertJSON = (questionId,nameValue,order) => ({
   }
   `
 });
-
+/*
+Sends a mutation request to insert a new question value.
+*/
 export const QuestionValueInsertMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(QuestionValueInsertJSON(props.questionId, props.nameValue, props.order))

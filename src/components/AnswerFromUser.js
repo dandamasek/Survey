@@ -90,7 +90,9 @@ export function AnswerFromUser(props) {
         return null;
     }
   };
-
+/*
+Renders the question based on its type.
+*/
   return (
     <>
       {renderQuestionByType()}

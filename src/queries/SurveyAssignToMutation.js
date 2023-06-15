@@ -46,8 +46,12 @@ const SurveyAssignToMutationJSON = (surveyId,userId) => ({
   
 });
 
+
+/*
+Sends a mutation request to assign a survey to a user.
+*/
 export const SurveyAssignToMutation = (props) =>
-  authorizedFetch('/gql', {
-    body: JSON.stringify(SurveyAssignToMutationJSON(props.surveyId, props.userId))
-  })
+authorizedFetch('/gql', {
+body: JSON.stringify(SurveyAssignToMutationJSON(props.surveyId, props.userId))
+});
 
