@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
 
 function QuestionAnswerTable(props) {
-
+  const sortedQuestions = [...props.questions].sort((a, b) => a.order - b.order);
   return (
     <>
     
-      {props.questions.map((question) => {
+      {sortedQuestions.map((question) => {
         return question.answers.map((answer) => {
           if (answer.user.id === props.currentUser.id && answer.expired !== true) {
            
