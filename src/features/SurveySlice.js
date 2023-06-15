@@ -156,7 +156,22 @@ export const surveySlice = createSlice({
 
     
     surveyAssignTo: (state, action) => {
-      console.log("slice", action.payload);
+      const id = action.payload.answer.id;
+      const lastchange = action.payload.answer.lastchange;
+      const expired = action.payload.answer.expired;
+
+      state.forEach((survey) => {
+        survey.questions.forEach((question) => {
+          question.answers.forEach((answer) => {
+            if (answer.id === id) {
+              answer.expired = expired;
+              answer.lastchange = lastchange;
+              console.log('Answer" closed in store')
+              console.log(expired);
+            }
+          });
+        });
+      });
     },
 
 
