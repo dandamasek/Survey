@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {SurveyAssignToUserButton} from 'actions/SurveyAssignToUserButton';
+import {SurveyAssignToUserButton} from 'actions/SurveyAssignToButton';
 
 /*
 Handles the click event on a user.

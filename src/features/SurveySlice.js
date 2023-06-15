@@ -37,12 +37,12 @@ export const surveySlice = createSlice({
 
     addQuestion: (state, action) => {
       const newQuestion = action.payload;
-      console.log("addQuestion action", newQuestion);
 
       // Find specific survey by id and then add a new question to its questions list
       state.forEach((survey) => {
         if (survey.id === newQuestion.survey.id) {
           survey.questions.push(newQuestion);
+          console.log('Question "' + newQuestion.name + '" added to store');  
         }
       });
     },
@@ -63,8 +63,7 @@ export const surveySlice = createSlice({
       const newQuestion = action.payload.question;
       const surveyId = action.payload.surveyId;
 
-      console.log('Question "' + newQuestion.name + '" updated in store');
-
+ 
       state.forEach((survey) => {
         if (survey.id === surveyId) {
           survey.questions.forEach((question) => {
@@ -73,6 +72,7 @@ export const surveySlice = createSlice({
               question.lastchange = newQuestion.lastchange;
               question.order = newQuestion.order;
               question.type = newQuestion.type;
+              console.log('Question "' + newQuestion.name + '" updated in store');
             }
           });
         }
@@ -81,7 +81,6 @@ export const surveySlice = createSlice({
 
     updateQuestionValues: (state, action) => {
       const { id, lastchange, name, order } = action.payload;
-      console.log('QuestionValue "' + name + '" updated in store');
 
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
@@ -90,6 +89,7 @@ export const surveySlice = createSlice({
               value.lastchange = lastchange;
               value.name = name;
               value.order = order;
+              console.log('QuestionValue "' + name + '" updated in store');
             }
           });
         });
@@ -98,12 +98,13 @@ export const surveySlice = createSlice({
 
     insertQuestionValues: (state, action) => {
       const value = action.payload;
-      console.log('QuestionValue "' + value.name + '" updated in store');
 
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           if (question.id === value.question.id) {
             question.values.push(value);
+            console.log('QuestionValue "' + value.name + '" updated in store');
+
           }
         });
       });
@@ -115,9 +116,7 @@ export const surveySlice = createSlice({
       const value = action.payload.value;
       const expired = action.payload.expired;
       const aswered = action.payload.aswered;
-
-      console.log("STORE", action.payload);
-      
+    
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           question.answers.forEach((answer) => {
@@ -128,7 +127,6 @@ export const surveySlice = createSlice({
               answer.aswered = aswered; 
               console.log(answer.value);
               console.log('Answer "' + value + '" updated in store');
-
             }
           });
         });
