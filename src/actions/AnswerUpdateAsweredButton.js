@@ -8,8 +8,8 @@ export const AnswerUpdateAsweredButton = (props) => {
 
 
   return (
-    <button className="btn btn-secondary" onClick={() => dispatch(AnswerUpdateAsweredFetch(props))}>
-      Change
+    <button className="btn btn-primary" onClick={() => dispatch(AnswerUpdateAsweredFetch(props))}>
+      Close Answer
     </button>
   );
 };

@@ -5,8 +5,8 @@ const AnswerUpdateAsweredMutationJSON = (id, lastchange, aswered) => ({
   mutation {
     answerUpdate(
       answer: {
-        id: "${id}",
         lastchange: "${lastchange}",
+        id: "${id}",
         aswered: ${aswered}}) {
       id
       msg
