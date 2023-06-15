@@ -6,7 +6,16 @@ import { useSelector } from 'react-redux';
 export const SurveyAssignToGroupButton = (props) => {
   
   
-  
+  const fetchData = async () => {
+    try {
+      const response = await surveyAssignToMutation(props);
+      const data = await response.json();
+      console.log("ButtonSurveyAssignToUser",data)
+      
+    } catch (error) {
+      console.error('Error fetching group names:', error);
+    }
+  };
 
   return (
     <div>
