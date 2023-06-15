@@ -111,22 +111,17 @@ export const surveySlice = createSlice({
     },
 
     updateAnswerValue: (state, action) => {
-      const id = action.payload.lastchange;
-      const lastchange = action.payload.lastchange;
-      const value = action.payload.value;
-      const expired = action.payload.expired;
-      const aswered = action.payload.aswered;
+      const newAnswer = action.payload.answer;  
     
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           question.answers.forEach((answer) => {
-            if (answer.id === id) {
-              answer.value = value;
-              answer.lastchange = lastchange;
-              answer.expired = expired; 
-              answer.aswered = aswered; 
-              console.log(answer.value);
-              console.log('Answer "' + value + '" updated in store');
+            if (answer.id === newAnswer.id) {
+              answer.value = newAnswer.value;
+              answer.lastchange = newAnswer.lastchange;
+              answer.expired = newAnswer.expired; 
+              answer.aswered = newAnswer.aswered; 
+              console.log('Answer "' + newAnswer.value + '" updated in store');
             }
           });
         });
