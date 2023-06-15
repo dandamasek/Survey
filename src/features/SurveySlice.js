@@ -156,6 +156,7 @@ export const surveySlice = createSlice({
 
     
     surveyAssignTo: (state, action) => {
+<<<<<<< HEAD
    
       console.log("data", action.payload);
       const newSurvey = action.payload;
@@ -166,6 +167,9 @@ export const surveySlice = createSlice({
         }
       });
 
+=======
+      console.log("slice", action.payload);
+>>>>>>> 36be0cf41e4550d72e5a18ee8c9a441a63bb54a7
     },
 
 
