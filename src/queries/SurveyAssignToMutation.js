@@ -10,13 +10,20 @@ const SurveyAssignToMutationJSON = (surveyId,userId) => ({
         msg
         survey {
           id
+          lastchange
           name
-          questions{
+          questions {
             id
+            lastchange
             name
-            answers{
+            order
+            answers {
               id
-              user{
+              lastchange
+              value
+              aswered
+              expired
+              user {
                 id
                 name
               }

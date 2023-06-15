@@ -15,6 +15,6 @@ export const SurveyAssignToUserButton= (props) => {
     };
  
   return (
-   <td> <button className="btn btn-outline-dark" onClick={fetchData}>Assign survey to currentUser</button></td>
+   <div> <button className="btn btn-outline-dark" onClick={fetchData}>Assign survey to currentUser</button></div>
   )
 }
