@@ -29,10 +29,9 @@ function QuestionTable(props) {
 
     props.questions.forEach(question => {
       // need to be just == i dont know why 
-      if(question.order == event.target.value){
-          setOccupiedQuestion(question);
-          console.log("TADY",occupiedQuestion);
-      };
+      if (parseInt(question.order) === parseInt(event.target.value)) {
+        setOccupiedQuestion(question);
+      }
     })
   };
 

@@ -13,7 +13,7 @@ export default function SurveyAnswer() {
 
   useEffect(() => {
     dispatch(SurveyFetchAsync()); // Fetch survey data when the component mounts
-  }, []);
+  }, [dispatch]);
 
   const [id, setId] = useState(currentUser.id); // Set up state for the user ID
 

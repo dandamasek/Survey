@@ -65,7 +65,6 @@ export const QuestionInsertButton = (props) => {
       }
 
       setShowModal(false);
-      let nameValue = '';
 
       for (const value of copy.values) {
         try {

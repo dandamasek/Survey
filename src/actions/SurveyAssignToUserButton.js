@@ -1,6 +1,9 @@
 import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
+import { surveyAssignTo } from 'features/SurveySlice';
+import { useDispatch } from 'react-redux';
 
 export const SurveyAssignToUserButton = (props) => {
+  const dispatch = useDispatch();
   // Define the fetchData function to handle the API request
   const fetchData = async () => {
     try {
@@ -8,6 +11,7 @@ export const SurveyAssignToUserButton = (props) => {
       const response = await SurveyAssignToMutation(props);
       const data = await response.json();
       console.log("ButtonSurveyAssignToUser", data);
+      dispatch(surveyAssignTo(data.data.surveyAssignTo.survey));
     } catch (error) {
       console.error('Error fetching group names:', error);
     }
