@@ -17,6 +17,16 @@ const SurveyAssignToMutationJSON = (surveyId,userId) => ({
             lastchange
             name
             order
+            type {
+              id
+              name
+            }
+            values {
+              id
+              lastchange
+              name
+              order
+            }
             answers {
               id
               lastchange

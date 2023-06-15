@@ -156,12 +156,12 @@ export const surveySlice = createSlice({
 
     
     surveyAssignTo: (state, action) => {
-      console.log("data", action.payload);
       const newSurvey = action.payload;
-      state.forEach((survey) => {
-        if(survey.id === newSurvey.id) {
-          survey = {newSurvey};
-          console.log('Users are assigned to "'+newSurvey.name+'" in store');
+    
+      state.forEach((survey, index) => {
+        if (survey.id === newSurvey.id) {
+          state[index] = newSurvey;
+          console.log('Users are assigned to "' + newSurvey.name + '" in store');
         }
       });
     },
