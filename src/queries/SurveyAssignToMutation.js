@@ -8,6 +8,21 @@ const SurveyAssignToMutationJSON = (surveyId,userId) => ({
         userId:"${userId}"){
         id
         msg
+        survey {
+          id
+          name
+          questions{
+            id
+            name
+            answers{
+              id
+              user{
+                id
+                name
+              }
+            }
+          }
+        }
       }
     }
   `

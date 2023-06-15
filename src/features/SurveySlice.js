@@ -154,6 +154,13 @@ export const surveySlice = createSlice({
       });
     },
 
+    
+    surveyAssignTo: (state, action) => {
+      console.log("slice", action.payload);
+    },
+
+
+
    
   },
 });
