@@ -7,7 +7,6 @@ export const OccupedQuestionUpdateFetchData = (props) => (dispatch, getState) =>
 
      // Call the ProjectsQuery function to fetch projects
     //  console.log('OccupedQuestionUpdateFetchData',props.occupiedQuestion);
-
     try {
     console.log('OccupedQuestionUpdateFetchData',props.occupiedQuestion);
     QuestionUpdateMutation({lastchange: props.occupiedQuestion.lastchange, id: props.occupiedQuestion.id, name : props.occupiedQuestion.name, order: props.preOrder , type: props.occupiedQuestion.type.id})

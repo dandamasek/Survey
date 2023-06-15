@@ -23,8 +23,6 @@ export default function SurveyAnswer() {
     setId(event.target.value);
   };
 
-
-
   return (
     <div>
       <div><h1 className="p-4 mb-2 bg-primary text-white">Survey answer</h1></div>

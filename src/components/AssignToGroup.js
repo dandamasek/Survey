@@ -5,7 +5,6 @@ const AssignGroups = (props) => {
   const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
 
-  console.log("ssss",props);
   const handleGroupChange = (event) => {
     const selectedGroupId = event.target.value;
     setSelectedGroup(selectedGroupId);
@@ -57,6 +56,7 @@ const AssignGroups = (props) => {
         <SurveyAssignToGroupButton
           group={{ id: selectedGroup }} // Pass the selected group ID to the SurveyAssignToGroupButton
           onClick={handleAssignToGroup} // Pass the onClick handler to the SurveyAssignToGroupButton
+          surveyId={selectedSurvey } // Pass the selected survey ID to the SurveyAssignToGroupButton
         />
       )}
     </div>

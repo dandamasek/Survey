@@ -3,30 +3,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
 
 export function AnswerFromUser(props) {
-  const [AnswerValue, setAnswerValue] = useState(props.answer.value);
+  const [AnswerValue, setAnswerValue] = useState(props.answer.value !== null ? props.answer.value : "PRAZDNY");
 
   const question = props.question;
 
   const handleInputChange = (event) => {
     const value = event.target.value;
-    if (event.target.checked) {
-      // Add the selected value to AnswerValue
-      setAnswerValue((prevValue) => {
-        if (prevValue.includes(value)) {
-          // If the value already exists, return the previous value
-          return prevValue;
-        } else {
-          // Add the new value to the existing values
-          return prevValue ? prevValue + ';' + value : value;
-        }
-      });
+    if (event.target.type === 'checkbox') {
+      if (event.target.checked) {
+        // Add the selected value to AnswerValue
+        setAnswerValue((prevValue) => {
+          if (prevValue.includes(value)) {
+            // If the value already exists, return the previous value
+            return prevValue;
+          } else {
+            // Add the new value to the existing values
+            return prevValue ? prevValue + ';' + value : value;
+          }
+        });
+      } else {
+        // Remove the unselected value from AnswerValue
+        setAnswerValue((prevValue) =>
+          prevValue.replace(new RegExp(`${value};?`), '')
+        );
+      }
     } else {
-      // Remove the unselected value from AnswerValue
-      setAnswerValue((prevValue) =>
-        prevValue.replace(new RegExp(`${value};?`), '')
-      );
+      // Handle text input changes
+      setAnswerValue(value);
     }
   };
+
 
   const renderQuestionByType = () => {
     switch (props.question.type.id) {

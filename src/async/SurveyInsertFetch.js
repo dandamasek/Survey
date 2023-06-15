@@ -1,26 +1,6 @@
 import { SurveyInsertMutation } from 'queries/SurveyInsertMutation';
 import { addSurvey } from 'features/SurveySlice';
 
-// export const FetchData = async (props) => {
-  
-//   try {
-  
-//     const response = await SurveyInsertMutation({name: props.name , typeId: props.type});
-//     const data = await response.json();
-
-//     // if (data.data.surveyInsert.msg === "ok") {
-//     //   const newProps = data.data.surveyInsert.survey;
-
-//     //   dispatch(addSurvey(newProps));
-//     //   
-//     // }
-  
-//   } catch (error) {
-//     console.error('Error fetching group names:', error);
-//   }
-    
-//   };
-
   /**
  * An asynchronous action creator that fetches projects and dispatches the 'loadProjects' action.
  *
