@@ -156,7 +156,7 @@ export const surveySlice = createSlice({
 
     
     surveyAssignTo: (state, action) => {
-
+   
       console.log("data", action.payload);
       const newSurvey = action.payload;
       state.forEach((survey) => {
@@ -165,7 +165,6 @@ export const surveySlice = createSlice({
           console.log('Users are assigned to "'+newSurvey.name+'" in store');
         }
       });
-
 
     },
 

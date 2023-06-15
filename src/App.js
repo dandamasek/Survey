@@ -13,7 +13,11 @@ function App() {
     {/* Pages for different tasks, Editing survey, answering to assigned survey, results from answers */}
     <SurveyEditor /> 
     <SurveyAnswer />
+<<<<<<< HEAD
+    {/* <SurveyResult />       */}
+=======
     <SurveyResult />      
+>>>>>>> 3e3cc1238ac7bd05444c8f1cd123e141aed81811
       
     </div>
         
