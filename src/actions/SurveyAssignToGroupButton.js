@@ -21,7 +21,7 @@ export const SurveyAssignToGroupButton = (props) => {
         const groupUserIds = group.memberships.map((membership) => membership.user.id);
 
         // Assign the survey to users in the group
-        groupUserIds.forEach((userId) => {
+          groupUserIds.forEach((userId) => {
           const user = users.find((user) => user.id === userId);
 
           if (user) {
