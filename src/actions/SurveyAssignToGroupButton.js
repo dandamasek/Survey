@@ -4,18 +4,9 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 export const SurveyAssignToGroupButton = (props) => {
+  const groups = useSelector((state) => state.groups);
   
-  
-  const fetchData = async () => {
-    try {
-      const response = await surveyAssignToMutation(props);
-      const data = await response.json();
-      console.log("ButtonSurveyAssignToUser",data)
-      
-    } catch (error) {
-      console.error('Error fetching group names:', error);
-    }
-  };
+  const dispatch = useDispatch();
 
   return (
     <div>
