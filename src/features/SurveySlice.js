@@ -48,12 +48,12 @@ export const surveySlice = createSlice({
     },
 
     updateSurveyName: (state, action) => {
-      const [id, lastchange, newName] = action.payload;
-
-      state.forEach((survey) => {
-        if (survey.id === id) {
-          survey.name = newName;
-          survey.lastchange = lastchange;
+      const newSurvey = action.payload;
+      state.forEach((survey ,index) => {
+        if (survey.id === newSurvey.id) {
+          survey.name = newSurvey.name;
+          survey.lastchange = newSurvey.lastchange;
+          console.log('Survey "' + newSurvey.name + '" updated in store');  
         }
       });
     },
@@ -179,10 +179,6 @@ export const surveySlice = createSlice({
         }
       });
     },
-
-
-
-   
   },
 });
 
