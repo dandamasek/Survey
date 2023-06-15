@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
+import { AnswerUpdateAsweredButton } from '../actions/AnswerUpdateAsweredButton';
 
 function QuestionAnswerTable(props) {
   const sortedQuestions = [...props.questions].sort((a, b) => a.order - b.order);
@@ -46,7 +47,7 @@ function QuestionAnswerTable(props) {
         
       })}
       <div>
-        <button className='m-2'>Submit Udelat!</button>
+        <AnswerUpdateAsweredButton id={props.id}  lastchange= {props.lastchanged} answered={props.answered} />
       </div>
     </>
   );

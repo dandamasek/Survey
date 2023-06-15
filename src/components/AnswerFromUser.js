@@ -67,7 +67,8 @@ export function AnswerFromUser(props) {
             </div>
           </div>
         );
-      // Uzavřené
+
+     // Uzavřené
       case 'ad0f53fb-240b-47de-ab1d-871bbde6f973':
         return (
           <div>
@@ -75,17 +76,18 @@ export function AnswerFromUser(props) {
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
-                  type="checkbox"
-                  name={question.id}
+                  type="radio" // Change the input type to 'radio'
+                  name={question.id} // Set the same name for all radio buttons in the group
                   value={value.name}
                   onChange={handleInputChange}
-                  checked={AnswerValue.includes(value.name)}
+                  checked={AnswerValue === value.name} // Use strict equality comparison
                 />
                 <label>{value.name}</label>
               </div>
             ))}
           </div>
         );
+
       default:
         return null;
     }
