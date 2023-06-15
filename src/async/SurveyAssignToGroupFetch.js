@@ -1,5 +1,5 @@
 import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
-import { surveyAssignTo } from 'features/SurveySlice';
+import { addSurvey } from 'features/SurveySlice';
 
   /**
  * An asynchronous action creator that fetches projects and dispatches the 'loadProjects' action.
@@ -21,8 +21,8 @@ export const SurveyAssignToGroupFetch = (props) => (dispatch, getState) => {
       // Extract the projects data from the JSON response
       const survey = json.data?.surveyAssingTo.survey;
       if (survey) {
-        
-        dispatch(surveyAssignTo(survey));
+        // Dispatch the 'loadProjects' action with the fetched projects
+        // dispatch(addSurvey(survey))
         console.log('User: "'+user.user.name+'" assigned to survey: "'+survey.name+'"');
       }
       return json
