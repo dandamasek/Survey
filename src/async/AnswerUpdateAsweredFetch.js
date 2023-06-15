@@ -1,5 +1,5 @@
 import { AnswerUpdateAsweredMutation } from '../queries/AnswerUpdateAsweredMutation';
-import { addSurvey } from 'features/SurveySlice';
+import { updateAnswerAswered } from 'features/SurveySlice';
 
   /**
  * 
@@ -9,7 +9,6 @@ import { addSurvey } from 'features/SurveySlice';
 
 
 export const AnswerUpdateAsweredFetch = (props) => (dispatch, getState) => {
-    console.log("hilge",props)
 
     AnswerUpdateAsweredMutation({id: props.id , lastchange: props.lastchange, aswered: props.aswered})
         .then(response => response.json())
@@ -18,8 +17,8 @@ export const AnswerUpdateAsweredFetch = (props) => (dispatch, getState) => {
         const answer = json.data?.answerUpdate.answer;
 
         if (answer) {
-            // dispatch(addSurvey(survey))
-            console.log('Answer: "'+answer+'" is closed')
+            dispatch(updateAnswerAswered(answer))
+            console.log('Answer with value: "'+answer.value+'" is closed')
         }
         return json
         })

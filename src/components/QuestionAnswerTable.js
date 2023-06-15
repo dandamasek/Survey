@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
-import {  } from '../actions/AnswerUpdateAsweredButton';
+import { AnswerUpdateAsweredGroupButton } from '../actions/AnswerUpdateAswereGroupButton';
 
 function QuestionAnswerTable(props) {
   const sortedQuestions = [...props.questions].sort((a, b) => a.order - b.order);
@@ -47,7 +47,7 @@ function QuestionAnswerTable(props) {
         
       })}
       <div>
-      {/* <AnswerUpdateAsweredButton id={props.id}  lastchange= {props.lastchanged} answered={props.answered} /> */}
+      <AnswerUpdateAsweredGroupButton questions={sortedQuestions} aswered={true} currentUser={props.currentUser} />
       </div>
     </>
   );

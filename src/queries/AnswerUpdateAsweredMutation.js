@@ -19,6 +19,7 @@ const AnswerUpdateAsweredMutationJSON = (id, lastchange, aswered) => ({
         user {
           id
           name
+          email
         }
       }
     }

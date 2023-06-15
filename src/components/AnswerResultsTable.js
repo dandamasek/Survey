@@ -14,7 +14,6 @@ function AnswerResultsTable(props) {
             <div class="col-2"><input className="form-control " defaultValue={answer.value} disabled={true} /></div>
           </td>
         
-          
         </tr>
       ))}
     </tbody>
