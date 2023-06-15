@@ -14,6 +14,12 @@ const GroupsSelectQueryJSON = (id, lastchange, value) => ({
         id
         lastchange
         value
+        aswered
+        expired
+        user {
+          id
+          name
+        }
       }
     }
   }`

@@ -6,12 +6,23 @@ import { authorizedFetch } from '../queries/authorizedFetch';
  */
 export const groupPageQueryJSON = () => ({
   query: `
-    {
-      groupPage {
-        id
-        name
+  
+  {
+    groupPage {
+      id
+      name
+      memberships {user
+        {name
+          id
+        }
+      }
+        
+        
+    
       }
     }
+  
+
   `,
 });
 

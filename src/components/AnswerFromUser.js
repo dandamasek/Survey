@@ -1,96 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
 
 export function AnswerFromUser(props) {
-  const [answer, setAnswer] = useState([]);
-  const [id, setId] = useState();
-  const [lastChange, setLastChange] = useState();
+  const [AnswerValue, setAnswerValue] = useState(props.answer.value !== null ? props.answer.value : "PRAZDNY");
 
-  useEffect(() => {
-    try{
-      const matchingAnswer = props.question.answers.find(
-        (answer) => answer.user.id === props.currentUser.id
-      );
-    if (matchingAnswer) {
-      setAnswer(matchingAnswer.value.split(','));
-      setId(matchingAnswer.id);
-      setLastChange(matchingAnswer.lastchange);
-    } else {
-      setAnswer([]);
-      setId(null);
-      setLastChange(null);
-    }
-  } catch (error) {}
-
-  }, [props.question.answers, props.currentUser]);
+  const question = props.question;
 
   const handleInputChange = (event) => {
-    setAnswer(event.target.value.split(','));
-  };
-
-  const handleCheckboxChange = (event) => {
     const value = event.target.value;
-    const isChecked = event.target.checked;
-
-    setAnswer((prevAnswer) => {
-      if (isChecked) {
-        return [...prevAnswer, value];
+    if (event.target.type === 'checkbox') {
+      if (event.target.checked) {
+        // Add the selected value to AnswerValue
+        setAnswerValue((prevValue) => {
+          if (prevValue.includes(value)) {
+            // If the value already exists, return the previous value
+            return prevValue;
+          } else {
+            // Add the new value to the existing values
+            return prevValue ? prevValue + ';' + value : value;
+          }
+        });
       } else {
-        return prevAnswer.filter((item) => item !== value);
+        // Remove the unselected value from AnswerValue
+        setAnswerValue((prevValue) =>
+          prevValue.replace(new RegExp(`${value};?`), '')
+        );
       }
-    });
+    } else {
+      // Handle text input changes
+      setAnswerValue(value);
+    }
   };
 
-  const handleRadioChange = (event) => {
-    setAnswer([event.target.value]);
-  };
 
   const renderQuestionByType = () => {
-    const { question } = props;
-    switch (question.type.name) {
-      case 'Škála':
+    switch (props.question.type.id) {
+      // Škála
+      case '2a6a1731-1efa-4644-a1d8-5848e4b29ce5':
         return (
           <div>
-            Škála
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
                   type="checkbox"
                   value={value.name}
-                  checked={answer.includes(value.name)}
-                  onChange={handleCheckboxChange}
+                  onChange={handleInputChange}
+                  checked={AnswerValue.includes(value.name)}
                 />
                 <label>{value.name}</label>
               </div>
             ))}
           </div>
         );
-      case 'Otevřené':
+      // Otevřené
+      case '949d74a2-63b1-4478-82f1-e025d8bc6c8b':
         return (
           <div>
             Otevřené
             <div>
               <input
                 type="text"
-                value={answer.join(',')}
+                value={AnswerValue}
                 onChange={handleInputChange}
               />
             </div>
           </div>
         );
-      case 'Uzavřené':
+      // Uzavřené
+      case 'ad0f53fb-240b-47de-ab1d-871bbde6f973':
         return (
           <div>
             Uzavřené
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name={question.id}
                   value={value.name}
-                  checked={answer[0] === value.name}
-                  onChange={handleRadioChange}
+                  onChange={handleInputChange}
+                  checked={AnswerValue.includes(value.name)}
                 />
                 <label>{value.name}</label>
               </div>
@@ -105,7 +94,11 @@ export function AnswerFromUser(props) {
   return (
     <>
       {renderQuestionByType()}
-      <AnswerValueUpdateButton id={id} lastchange={lastChange} value={answer.join(',')} />
+      <AnswerValueUpdateButton
+        id={props.answer.id}
+        lastchange={props.answer.lastchange}
+        value={AnswerValue}
+      />
     </>
   );
 }

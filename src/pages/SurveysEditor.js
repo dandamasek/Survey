@@ -1,9 +1,9 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
 import SurveyNameBox from '../components/SurveyNameBox';
 import SurveyQuestionTable from '../components/SurveyQuestionTable';
 import AssignUsers from "../components/AssignUser";
+import AssignGroups from 'components/AssignToGroup';
 import { SurveyInsertButton } from '../actions/SurveyInsertButton';
 import { useEffect } from 'react';
 import { fetchUsers } from '../actions/LoadUserDataAsync';
@@ -13,6 +13,7 @@ import { fetchGroups } from '../actions/LoadGroupDataAsync';
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
   const users =  useSelector(state => state.users);
+  const groups = useSelector(state => state.groups);
   
   const dispatch = useDispatch();
 
@@ -28,6 +29,7 @@ export default function SurveyEditor() {
       
       <div className='container fluid'>
         <AssignUsers surveys={surveys} users={users} />
+        <AssignGroups surveys={surveys} groups={groups} />
 
         {surveys.map((survey) => (
           <div className="card m-5 border-secondary" key={survey.id + "Survey"}>
