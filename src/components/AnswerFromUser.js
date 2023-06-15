@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
+import { AnswerUpdateAsweredButton } from '../actions/AnswerUpdateAsweredButton';
 
 export function AnswerFromUser(props) {
-  const [AnswerValue, setAnswerValue] = useState(props.answer.value !== null ? props.answer.value : "PRAZDNY");
+  const [AnswerValue, setAnswerValue] = useState(props.answer.value !== null ? props.answer.value : "");
 
   const question = props.question;
 
@@ -94,13 +95,15 @@ export function AnswerFromUser(props) {
   };
 
   return (
-    <>
+    <div>
       {renderQuestionByType()}
       <AnswerValueUpdateButton
         id={props.answer.id}
         lastchange={props.answer.lastchange}
         value={AnswerValue}
       />
-    </>
+      <AnswerUpdateAsweredButton id={props.answer.id}  lastchange={props.answer.lastchange} aswered={true} />
+      
+    </div>
   );
 }
