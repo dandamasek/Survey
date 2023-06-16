@@ -6,10 +6,11 @@ import { insertQuestionValues } from 'features/SurveySlice';
 export const QuestionValueInsertButton = (props) => {
   const dispatch = useDispatch();
 
-  // Function to fetch data and insert a new question value
+  /*
+  Function to fetch data and insert a new question value and perform the mutation to insert a new question value
+  */
   const fetchData = async () => {
     try {
-      // Perform the mutation to insert a new question value
       const response = await QuestionValueInsertMutation({
         questionId: props.questionId,
         nameValue: props.nameValue,
@@ -28,7 +29,9 @@ export const QuestionValueInsertButton = (props) => {
       console.error('Error fetching group names:', error);
     }
   };
-
+/*
+Renders a button to trigger fetching new value.
+*/
   return (
     <div>
       <button className="btn btn-success btn-sm m-1" onClick={fetchData}>

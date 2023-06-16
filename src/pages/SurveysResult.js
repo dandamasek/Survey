@@ -8,14 +8,20 @@ import { useEffect } from 'react';
 export default function SurveyResult() {
   const surveys = useSelector(state => state.surveys); 
   
-  // Create a dispatch function from the useDispatch hook
+  /*
+  Create a dispatch function from the useDispatch hoo
+  */
   const dispatch = useDispatch(); 
 
-  // Fetch survey data when the component mounts
+  /*
+  Fetch survey data when the component mounts
+  */
   useEffect(() => {
     dispatch(SurveyFetchAsync()); 
     
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  /*
+  eslint-disable-next-line react-hooks/exhaustive-deps
+  */
   }, []);
 
   return (

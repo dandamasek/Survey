@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-
+/*
+Function that returns the AnswerUpdateAsweredMutationJSON in JSON format.
+*/
 const AnswerUpdateAsweredMutationJSON = (id, lastchange, aswered) => ({
   query: `
   mutation {

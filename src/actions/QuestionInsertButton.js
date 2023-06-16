@@ -11,22 +11,32 @@ export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
   const copy = useSelector((state) => state.copy);
 
-  // State for controlling the visibility of the modal
+  /*
+  State for controlling the visibility of the modal
+  */
   const [showModal, setShowModal] = useState(false);
 
-  // State for storing the values for questionInsert
+  /*
+  State for storing the values for questionInsert
+  */
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('949d74a2-63b1-4478-82f1-e025d8bc6c8b'); // Default typeID is Otevřená
 
-  // Function to fetch data and create a new question
+  /*
+  Function to fetch data and create a new question
+  */
   const fetchData = async () => {
     try {
-      // Perform the question insert mutation request
+      /*
+      Perform the question insert mutation request
+      */
       const response = await questionInsertMutation(name, props.surveyId, typeId, props.orderLength + 1);
       const data = await response.json();
 
       if (data.data.questionInsert.msg === 'ok') {
-        // Dispatch an action to add the new question to the Redux store
+        /*
+        Dispatch an action to add the new question store
+        */
         dispatch(addQuestion(data.data.questionInsert.question));
         console.log('Question "' + { name: name } + '" was created on the server');
       }
@@ -37,22 +47,30 @@ export const QuestionInsertButton = (props) => {
     }
   };
 
-  // Function to handle closing the modal
+  /*
+  Function to handle closing the modal
+  */
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
-  // Event handler for name input change
+  /*
+  Event handler for name input change
+  */
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
-  // Event handler for question type selection change
+  /*
+  Event handler for question type selection change
+  */
   const handleTypeChange = (event) => {
     setTypeId(event.target.value);
   };
 
-  // Function to add a copy question with question values
+  /*
+  Function to add a copy question with question values
+  */
   const addCopyQuestion = async () => {
     try {
       const response = await questionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);

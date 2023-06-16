@@ -8,7 +8,9 @@ import { loadData } from 'features/CopySlice';
 
 function QuestionTable(props) {
   const dispatch = useDispatch();
-  // question atributes
+  /*
+  question atributes
+  */
   const [order, setOrder] = useState(props.question.order);
   const [name, setName] = useState(props.question.name);
   const [type, setType] = useState(props.question.type.id);
@@ -21,14 +23,14 @@ function QuestionTable(props) {
   // orderLength is number of questionValues length to create new questionValue with order bigger by 1 from others
   const orderLength = props.question.values.length;
 
-  // Handle order input change
-
+  /*
+  Handle order input change
+  */
   const handleOrderChange = (event) => {
     console.log("-------------------------");
     setOrder(event.target.value);
 
     props.questions.forEach(question => {
-      // need to be just == i dont know why 
       if (parseInt(question.order) === parseInt(event.target.value)) {
         setOccupiedQuestion(question);
       }
@@ -53,19 +55,25 @@ function QuestionTable(props) {
 
   };  
   
-  // Handle name input change
+  /*
+  name input change
+  */
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
 
-// change from store and also changing in box
+/*
+change from store and also changing in box
+*/
   useEffect(() => {
     setOrder(props.question.order);
   }, [props.question.order]);
 
 
-  // to store previous order
+  /*
+  store previous order
+  */
     useEffect(() => {
     if (props.question.order !== order) {
       setPreOrder(props.question.order);

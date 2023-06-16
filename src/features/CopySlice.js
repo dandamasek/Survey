@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// A Redux slice for managing the state of the surveys
+/*
+A Redux slice for managing the state of the surveys
+*/
 export const CopySlice = createSlice({
   name: "copy",
   initialState: [],
@@ -12,11 +14,15 @@ export const CopySlice = createSlice({
   },
 });
 
-// Export the action creators from the surveySlice
+/*
+Export the action creators from the surveySlice
+*/
 export const {
   loadData,
 
 } = CopySlice.actions;
 
-// Export the surveySlice reducer
+/*
+Export the surveySlice reducer
+*/
 export default CopySlice.reducer;

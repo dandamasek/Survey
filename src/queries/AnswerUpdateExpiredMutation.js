@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-
+/*
+Function that returns the AnswerUpdateExpiredMutationJSON in JSON format.
+*/
 const AnswerUpdateExpiredMutationJSON = (id, lastchange, expired) => ({
   query: `
   mutation {

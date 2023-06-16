@@ -2,10 +2,14 @@ import React from 'react';
 import { QuestionValueInsertButton } from '../actions/QuestionValueInsertButton';
 import QuestionValue from './QuestionValue';
 
-// function for insert and update questionValues 
+/*
+function for insert and update questionValues 
+*/
 function QuestionValues(props) {
 
-  // Map the question values with changing options
+  /*
+  Map the question values with changing options
+  */
   const questionValueInputs = props.questionValues.map((questionValue) => (
     <QuestionValue questionValue={questionValue} key={questionValue.id}/>
   ));

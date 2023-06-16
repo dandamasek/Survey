@@ -2,7 +2,9 @@ import React from 'react';
 import { QuestionValueUpdateButton } from 'actions/QuestionValueUpdateButton';
 import { useState } from 'react';
 
-// function for insert and update questionValues 
+/*
+function for insert and update questionValues
+*/
 function QuestionValue(props) {
 
   const [name, setName] = useState(props.questionValue.name);
@@ -14,7 +16,9 @@ function QuestionValue(props) {
 
 
 
-  // Map the question values with changing options
+  /*
+  Map the question values with changing options
+  */
   return (
     <div className='row m-1'>
         <div className='col-6'>

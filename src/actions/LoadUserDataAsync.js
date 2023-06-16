@@ -8,14 +8,17 @@ import { UserSelectQuery } from '../queries/UserPageQuery';
  */
 
 export const fetchUsers = () => (dispatch, getState) => {
-  // Call the UserSelectQuery function to fetch users
+  /*
+  Call the UserSelectQuery function to fetch users and extract the users data from the JSON response
+  */
   UserSelectQuery()
     .then(response => response.json())
     .then(json => {
-      // Extract the users data from the JSON response
       const users = json.data?.userPage;
       if (users) {
-        // Dispatch the 'loadUsers' action with the fetched users
+        /*
+        Dispatch the 'loadUsers' action with the fetched users
+        */
         dispatch(loadUsers(users));
       }
       return json;

@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
+/*
+Renders a button to insert a new survey.
+*/
 export const SurveyInsertButton = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState(" ");
   const [type, setType] = useState("712029b6-2dbc-4952-9d3e-e897899edf0a");
 
-  // Showing modal if button is pressed
+  
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => {

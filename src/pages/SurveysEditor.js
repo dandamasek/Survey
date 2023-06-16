@@ -15,17 +15,23 @@ export default function SurveyEditor() {
   const users = useSelector(state => state.users);
   const groups = useSelector(state => state.groups);
  
-  // Create a dispatch function from the useDispatch hook
+  /*
+  Create a dispatch function from the useDispatch hook
+  */
   const dispatch = useDispatch();
 
-  // Fetch necessary data when the component mounts
+  /*
+  Fetch necessary data when the component mounts
+  */
   useEffect(() => {
     dispatch(fetchGroups());
     dispatch(SurveyFetchAsync());
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  // Return the JSX elements for rendering the Survey Editor interface
+  /*
+  Return the JSX elements for rendering the Survey Editor interface
+  */
   return (
     <div>
       <div><h1 className="p-4 mb-2 bg-primary text-white">Survey editor</h1></div>

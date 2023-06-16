@@ -5,7 +5,9 @@ import { SurveyUpdateButton } from '../actions/SurveyUpdateButton';
 function SurveyNameBox(props) {
   const [name, setName] = useState(props.name);
     
-  // change const name, direct setName in onChange causing re-rendering
+  /*
+  change const name, direct setName in onChange causing re-rendering
+  */
   const handleNameChange = (event) => {
     setName(event.target.value);
   };

@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-
+/**
+ * Function that returns the SurveyUpdateMutationJSON in JSON format.
+ */
 const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
   query: `
     mutation {

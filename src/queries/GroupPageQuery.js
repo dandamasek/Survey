@@ -1,9 +1,8 @@
 import { authorizedFetch } from '../queries/authorizedFetch';
 
-/**
- * 
- * Function that returns the GroupPageQuery in JSON format.
- */
+/*
+Function that returns the GroupPageQuery in JSON format.
+*/
 export const groupPageQueryJSON = () => ({
   query: `
   
@@ -11,18 +10,14 @@ export const groupPageQueryJSON = () => ({
     groupPage {
       id
       name
-      memberships {user
-        {name
-          id
-        }
-      }
-        
-        
-    
+      memberships 
+        {user
+          {name
+            id
+          }
+        } 
       }
     }
-  
-
   `,
 });
 

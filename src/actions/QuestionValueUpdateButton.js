@@ -6,10 +6,12 @@ import { updateQuestionValues } from 'features/SurveySlice';
 export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
   const dispatch = useDispatch();
 
-  // Function to fetch data and update the question value
+  /*
+  Function to fetch data and update the question value and perform the mutation to update the question value
+  */
   const fetchData = async () => {
     try {
-      // Perform the mutation to update the question value
+      
       const response = await QuestionValueUpdateMutation(lastchange, id, name, order);
       const data = await response.json();
 
@@ -25,7 +27,10 @@ export const QuestionValueUpdateButton = (lastchange, id, name, order) => {
       console.error('Error fetching group names:', error);
     }
   };
-
+/**
+ * Renders a button to trigger changing the value.
+ * @returns {JSX.Element} - The rendered component.
+ */
   return (
     <div>
       <button className="btn btn-secondary btn-sm" onClick={fetchData}>

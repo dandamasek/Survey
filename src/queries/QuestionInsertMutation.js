@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-
+/*
+Function that returns the questionInsertMutationJSON in JSON format.
+*/
 const questionInsertMutationJSON = (name,surveyId,typeId,order) => ({
   query: `
   mutation {

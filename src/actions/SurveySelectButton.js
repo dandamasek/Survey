@@ -7,16 +7,18 @@ export const SurveySelectButton = () => {
   const dispatch = useDispatch();
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  /*
+  Fetch data from the survey select query and dispatch the loaded data to store
+  */
   const fetchData = async () => {
     try {
-      // Fetch data from the survey select query
       const response = await SurveySelectQuery();
       const data = await response.json();
-
-      // Dispatch the loaded data to the Redux store
       dispatch(loadData(data.data.surveyPage));
       
-      // Set the dataLoaded state to true
+      /*
+      Set the dataLoaded to true
+      */
       setDataLoaded(true);
     } catch (error) {
       console.error('Error fetching group names:', error);

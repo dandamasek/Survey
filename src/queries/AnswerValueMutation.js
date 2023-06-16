@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-
+/*
+Function that returns the GroupsSelectQueryJSON in JSON format.
+*/
 const GroupsSelectQueryJSON = (id, lastchange, value) => ({
   query: `
   mutation {

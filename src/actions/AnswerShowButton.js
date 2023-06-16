@@ -21,7 +21,9 @@ const AnswerShowButton = (props) => {
     }
   };
 
-  // Event handler for when an item in the displayed surveys is clicked
+  /*
+  Event handler for when an item in the displayed surveys is clicked
+  */
   const handleItemClick = (survey) => {
     setSelectedOption(survey);
   };
@@ -38,7 +40,9 @@ const AnswerShowButton = (props) => {
         ))}
       </select>
 
-      {/* Display the selected survey's name and show its answers */}
+      {/*
+      Display the selected survey's name and show its answers
+      */}
       {selectedOption && (
         <div>
           <p>Selected survey: {selectedOption}</p>

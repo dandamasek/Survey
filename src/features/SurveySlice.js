@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// A Redux slice for managing the state of the surveys
+/*
+A Redux slice for managing the state of the surveys
+*/
 export const surveySlice = createSlice({
   name: "surveys",
   initialState: [],
@@ -10,9 +12,10 @@ export const surveySlice = createSlice({
       let newSurveys = [];
       let isAlreadyinStore = false;
 
-      // Iterate through the surveys to be loaded
+      /*
+      Iterate through the surveys to be loaded and check if the survey is already present in the state
+      */
       for (let survey of surveys) {
-        // Check if the survey is already present in the state
         for (let surv of state) {
           if (survey.id === surv.id) {
             isAlreadyinStore = true;
@@ -28,35 +31,51 @@ export const surveySlice = createSlice({
       state.push(...newSurveys);
     },
 
-
+/*
+Retrieve the new survey from the action payload and add the new survey to the state's surveys array
+*/
     addSurvey: (state, action) => {
       const newSurvey = action.payload;
       state.push(newSurvey);
       console.log('Survey "' + newSurvey.name + '" added to store');  
     },
-
+/*
+Retrieve the new question from the action payload and log the new question for debugging or informational purposes
+*/
     addQuestion: (state, action) => {
       const newQuestion = action.payload;
       console.log("addQuestion action", newQuestion);
 
-      // Find specific survey by id and then add a new question to its questions list
+      /*
+      Find specific survey by id and then add a new question to its questions list
+      */
       state.forEach((survey) => {
         if (survey.id === newQuestion.survey.id) {
           survey.questions.push(newQuestion);
         }
       });
     },
-
+    /*
+    Retrieve the payload values from the action, 
+    */
     updateSurveyName: (state, action) => {
       const [id, lastchange, newName] = action.payload;
 
       state.forEach((survey) => {
+        /*
+        Check if the current survey's id matches the id provided in the action
+        Update the survey's name with the new name or the survey's last change timestamp
+        */
         if (survey.id === id) {
           survey.name = newName;
           survey.lastchange = lastchange;
         }
       });
     },
+
+    /*
+    Update a specific question in the state with the new question details
+    */
 
     updateQuestion: (state, action) => {
       
@@ -65,6 +84,9 @@ export const surveySlice = createSlice({
 
       console.log('Question "' + newQuestion.name + '" updated in store');
 
+ /*
+Iterate over each survey in the state and find the survey matching the surveyId
+*/
       state.forEach((survey) => {
         if (survey.id === surveyId) {
           survey.questions.forEach((question) => {

@@ -12,24 +12,30 @@ export function AnswerFromUser(props) {
     const value = event.target.value;
     if (event.target.type === 'checkbox') {
       if (event.target.checked) {
-        // Add the selected value to AnswerValue
+        /*Add the selected value to AnswerValue
+        * If the value already exists, return the previous value
+        * Else add the new value to the existing values
+        */
         setAnswerValue((prevValue) => {
           if (prevValue.includes(value)) {
-            // If the value already exists, return the previous value
             return prevValue;
-          } else {
-            // Add the new value to the existing values
+          } 
+          else {
             return prevValue ? prevValue + ';' + value : value;
           }
         });
       } else {
-        // Remove the unselected value from AnswerValue
+        /*
+        Remove the unselected value from AnswerValue
+        */
         setAnswerValue((prevValue) =>
           prevValue.replace(new RegExp(`${value};?`), '')
         );
       }
     } else {
-      // Handle text input changes
+      /*
+      Handle text input changes
+      */
       setAnswerValue(value);
     }
   };
@@ -77,11 +83,14 @@ export function AnswerFromUser(props) {
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
-                  type="radio" // Change the input type to 'radio'
-                  name={question.id} // Set the same name for all radio buttons in the group
+                /*
+                 Change the input type to 'radio' and set the same name for all radio buttons in the group
+                 */
+                  type="radio" 
+                  name={question.id} 
                   value={value.name}
                   onChange={handleInputChange}
-                  checked={AnswerValue === value.name} // Use strict equality comparison
+                  checked={AnswerValue === value.name}
                 />
                 <label>{value.name}</label>
               </div>

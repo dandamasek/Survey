@@ -7,12 +7,16 @@ export const SurveyUpdateButton = (props) => {
 
   const fetchData = async () => {
     try {
-      // Perform the survey update mutation
+      /*
+      Perform the survey update mutation
+      */
       const response = await SurveyUpdateMutation(props);
       const data = await response.json();
 
       if (data.data.surveyUpdate.msg === 'ok') {
-        // Update the survey name in the Redux store
+        /*
+        Update the survey name in store
+        */
         const newProps = [props.id, data.data.surveyUpdate.survey.lastchange, data.data.surveyUpdate.survey.name];
         dispatch(updateSurveyName(newProps));
         console.log('Survey name: ' + props.newName + ' is updated in store and server');

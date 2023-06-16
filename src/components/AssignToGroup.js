@@ -20,13 +20,15 @@ const AssignGroups = (props) => {
     const selectedGroupId = event.target.value;
     console.log(`Clicked group ID: ${selectedGroupId}`);
   };
-
+/*
+Perform the necessary action to assign the selected survey to the selected group and make the necessary API call or dispatch an action to assign the survey to the group
+*/
   const handleAssignToGroup = () => {
-    // Perform the necessary action to assign the selected survey to the selected group
     console.log(`Assigning survey to Group ${selectedGroup}`);
-    // Make the necessary API call or dispatch an action to assign the survey to the group
   };
-// Renders a dropdown menu to choose a group and a survey
+/*
+Renders a dropdown menu to choose a group and a survey
+*/
   return (
     <div>
       <label>Choose a group:</label>
@@ -55,13 +57,19 @@ const AssignGroups = (props) => {
 
       {selectedGroup && selectedSurvey && (
         <SurveyAssignToGroupButton
-        // Pass the selected group ID to the SurveyAssignToGroupButton
+        /*
+        Pass the selected group ID to the SurveyAssignToGroupButton
+        */
           group={{ id: selectedGroup }}
 
-          // Pass the onClick handler to the SurveyAssignToGroupButton
+          /*
+          Pass the onClick handler to the SurveyAssignToGroupButton
+          */
           onClick={handleAssignToGroup} 
           
-          // Pass the selected survey ID to the SurveyAssignToGroupButton
+          /*
+          Pass the selected survey ID to the SurveyAssignToGroupButton
+          */
           surveyId={selectedSurvey } 
         />
       )}
