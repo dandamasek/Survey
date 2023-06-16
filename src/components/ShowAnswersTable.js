@@ -1,11 +1,32 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import {Chart as ChartJS,
+//         LineElement,
+//         PointElement,
+//         Tooltip,
+//         Legend,
+//         RadialLinearScale} from 'chart.js';
+// import { Radar } from 'react-chartjs-2';
+
+// ChartJS.register(
+//   LineElement,
+//   PointElement,
+//   Tooltip,
+//   Legend,
+//   RadialLinearScale
+// )
+
+
+
 
 /*
 Counts the occurrences of answer values in the given question.
 */
 function countAnswerValues(question) {
   const answerCounts = {};
+
+
+
 
   if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
     question.values.forEach((value) => {
@@ -26,7 +47,6 @@ function countAnswerValues(question) {
       }
     });
   }
-
   return answerCounts;
 }
 
@@ -69,6 +89,10 @@ function ShowValuesTable(props) {
           return null;
         })}
       </div>
+      {/* <div>
+        <Radar data = {data} options={options}>
+        </Radar>
+      </div> */}
     </div>
   );
 }
