@@ -3,8 +3,6 @@ import { updateQuestionValues } from 'features/SurveySlice';
 
 
 export const QuestionValueUpdateFetch = (props) => (dispatch, getState) => {
-    // Call the ProjectsQuery function to fetch projects
-    console.log('QuestionValueUpdateFetch called',props);
     QuestionValueUpdateMutation({lastchange: props.lastchange, id: props.id, name: props.name, order: props.order})
       .then(response => response.json())
       .then(json => {
@@ -19,6 +17,3 @@ export const QuestionValueUpdateFetch = (props) => (dispatch, getState) => {
         return json
       })
   };
-
-
- 
