@@ -2,71 +2,60 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 /*
-Counts the occurrences of answer values in the given questions.
+Counts the occurrences of answer values in the given question.
 */
-function ShowAnswersTable(props) {
-  const countAnswerValues = (questions) => {
-    const answerCounts = {};
+function countAnswerValues(question) {
+  const answerCounts = {};
 
-    questions.forEach((question) => {
-      if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
-        question.answers.forEach((answer) => {
-          const answerValue = answer.value;
-
-          if (answerValue in answerCounts) {
-            answerCounts[answerValue] += 1;
-          } else {
-            answerCounts[answerValue] = 1;
-          }
-        });
-      }
+  if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+    question.values.forEach((value) => {
+      answerCounts[value.name] = 0; // Initialize answer count for each value
+      console.log(value.name)
     });
 
-    return answerCounts;
-  };
+    question.answers.forEach((answer) => {
+      const answerValue = answer.value;
 
-  const answerCounts = countAnswerValues(props.questions);
+      if (answerValue in answerCounts) {
+        answerCounts[answerValue] += 1;
+      }
+    });
+  }
+
+  return answerCounts;
+}
+
 
 /*
-Renders a table to display question answers and their counts.
+Renders a table to display question values and their counts.
 */
+function ShowValuesTable(props) {
+  const { questions } = props;
+
   return (
     <table className="table">
       <thead>
         <tr>
           <th>Question</th>
-          <th>Answer</th>
+          <th>Value</th>
           <th>Count</th>
         </tr>
       </thead>
       <tbody>
-        {props.questions.map((question) => {
+        {questions.map((question) => {
           if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
-            const uniqueAnswers = Array.from(
-              new Set(question.answers.map((answer) => answer.value))
-            );
+            const answerCounts = countAnswerValues(question); // Calculate answer counts for the current question
 
-            /*
-            Renders a table row for a question with its unique answers and counts
-            */
             return (
-              <tr key={question.id}>
-                <td>{question.name}</td>
-                <td>
-                  {uniqueAnswers.map((answerValue) => (
-                    <div key={`${question.id}-${answerValue}`}>
-                      {answerValue}
-                    </div>
-                  ))}
-                </td>
-                <td>
-                  {uniqueAnswers.map((answerValue) => (
-                    <div key={`${question.id}-${answerValue}`}>
-                      {answerCounts[answerValue] || 0}
-                    </div>
-                  ))}
-                </td>
-              </tr>
+              <React.Fragment key={question.id}>
+                {question.values.map((value) => (
+                  <tr key={`${question.id}-${value.id}`}>
+                    <td>{question.name}</td>
+                    <td>{value.name}</td>
+                    <td>{answerCounts[value.name] || 0}</td>
+                  </tr>
+                ))}
+              </React.Fragment>
             );
           }
 
@@ -77,4 +66,4 @@ Renders a table to display question answers and their counts.
   );
 }
 
-export default ShowAnswersTable;
+export default ShowValuesTable;
