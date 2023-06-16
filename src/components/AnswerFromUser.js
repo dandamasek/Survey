@@ -41,6 +41,7 @@ export function AnswerFromUser(props) {
       case '2a6a1731-1efa-4644-a1d8-5848e4b29ce5':
         return (
           <div>
+            <h5>Škála</h5>
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
@@ -58,7 +59,7 @@ export function AnswerFromUser(props) {
       case '949d74a2-63b1-4478-82f1-e025d8bc6c8b':
         return (
           <div>
-            Otevřené
+            <h5>Otevřené</h5>
             <div>
               <input
                 type="text"
@@ -73,7 +74,7 @@ export function AnswerFromUser(props) {
       case 'ad0f53fb-240b-47de-ab1d-871bbde6f973':
         return (
           <div>
-            Uzavřené
+              <h5>Uzavřené</h5>
             {question.values.map((value) => (
               <div key={value.id}>
                 <input

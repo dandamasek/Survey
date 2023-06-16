@@ -8,7 +8,7 @@ export const AnswerExpiredButton = (props) => {
 
   // Handle button click event by dispatching an action with the 'AnswerExpiredFetch' function
   return (
-    <button className="btn btn-secondary" onClick={() => dispatch(AnswerExpiredFetch(props))}>
+    <button className="btn btn-danger" onClick={() => dispatch(AnswerExpiredFetch(props))}>
       Close survey
     </button>
   );

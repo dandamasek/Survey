@@ -57,25 +57,47 @@ function ShowValuesTable(props) {
 
             return (
               <div key={question.id}>
-                <h5 className="card-title">{question.name}</h5>
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Value</th>
-                      <th>Count</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {question.values.map((value) => (
-                      <tr key={`${question.id}-${value.id}`}>
-                        <td>{value.name}</td>
-                        <td>{answerCounts[value.name] || 0}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div key={`chart-${question.id}`}>
-                  <Bar data={chartData} />
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">{question.name}</h5>
+                    <div className="card-text">
+                      {question.values.map((value) => (
+                        <div key={`${question.id}-${value.id}`}>
+                          <p>{value.name}: {answerCounts[value.name] || 0}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div key={`chart-${question.id}`} className="col-md-6 mx-auto text-center">
+                  <Bar
+                    data={chartData}
+                    options={{
+                      scales: {
+                        y: {
+                          beginAtZero: true,
+                          max: 10, // Set the maximum value of the y-axis scale
+                        },
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          } else if (question.type.name === 'Otevřené') {
+            return (
+              <div key={question.id}>
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">{question.name}</h5>
+                    <div className="card-text">
+                      {question.answers.map((answer) => (
+                        <div key={`${question.id}-${answer.id}`}>
+                          <p>{answer.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             );
