@@ -1,7 +1,6 @@
 import React from 'react';
 import { SurveyAssignToGroupFetch } from '../async/SurveyAssignToGroupFetch';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const SurveyAssignToGroupButton = (props) => {
   // Get the 'groups' value from the Redux store using useSelector hook
