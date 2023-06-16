@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// A Redux slice for managing the state of the groups
+/*
+A Redux slice for managing the state of the groups
+*/
 export const GroupSlice = createSlice({
   name: "groups",
   initialState: [],
@@ -20,5 +22,7 @@ export const GroupSlice = createSlice({
 
 export const { loadGroups } = GroupSlice.actions;
 
-// Export the GroupSlice reducer
+/*
+Export the GroupSlice reducer
+*/
 export default GroupSlice.reducer;

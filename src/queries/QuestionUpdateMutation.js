@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-
+/*
+Function that returns the QuestionUpdateMutationJSON in JSON format.
+*/
 const QuestionUpdateMutationJSON = (lastchange,id,name,order,type) => ({
   query: `
   mutation {

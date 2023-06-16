@@ -4,6 +4,11 @@ import QuestionTable from './QuestionTable';
 import { QuestionInsertButton } from 'actions/QuestionInsertButton';
 import { AnswerExpiredButton } from 'actions/AnswerExpiredButton';
 
+/**
+ * Displays a table of survey questions with options to insert new questions and manage answer expiration.
+ * @returns {JSX.Element} - The rendered component.
+ */
+
   function SurveyQuestionTable(props) {
   const orderLength = [...props.questions].length;
 

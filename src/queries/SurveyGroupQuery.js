@@ -1,10 +1,8 @@
 import { authorizedFetch } from '../queries/authorizedFetch'
 
 /**
- * Funkce
- *  
+ * Function that returns the SurveySelectQueryJSON in JSON format.
  */
-
 export const SurveySelectQueryJSON = () => ({
     "query":
         `{

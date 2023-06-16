@@ -12,10 +12,14 @@ export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
   const copy = useSelector((state) => state.copy);
 
-  // State for controlling the visibility of the modal
+  /*
+  State for controlling the visibility of the modal
+  */
   const [showModal, setShowModal] = useState(false);
 
-  // State for storing the values for questionInsert
+  /*
+  State for storing the values for questionInsert
+  */
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('949d74a2-63b1-4478-82f1-e025d8bc6c8b'); // Default typeID is Otevřená
 
@@ -24,17 +28,23 @@ export const QuestionInsertButton = (props) => {
     setShowModal(false);
   };
 
-  // Event handler for name input change
+  /*
+  Event handler for name input change
+  */
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
-  // Event handler for question type selection change
+  /*
+  Event handler for question type selection change
+  */
   const handleTypeChange = (event) => {
     setTypeId(event.target.value);
   };
 
-  // Function to add a copy question with question values
+  /*
+  Function to add a copy question with question values
+  */
   const addCopyQuestion = async () => {
     try {
       const response = await QuestionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);

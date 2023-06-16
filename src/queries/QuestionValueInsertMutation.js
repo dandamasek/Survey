@@ -1,6 +1,8 @@
 import { authorizedFetch } from './authorizedFetch';
 
-// create new questionValue on server without name
+/*
+Function that returns the QuestionValueInsertJSON in JSON format.
+*/
 const QuestionValueInsertJSON = (questionId,nameValue,order) => ({
   query: `
   mutation {

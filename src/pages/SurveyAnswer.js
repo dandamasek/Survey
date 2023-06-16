@@ -11,14 +11,18 @@ export default function SurveyAnswer() {
   const currentUser = { id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003" };
   const dispatch = useDispatch();
 
-  // Fetch survey data when the component mounts
+  /*
+  Fetch survey data when the component mounts
+  */
   useEffect(() => {
     dispatch(SurveyFetchAsync());
   }, [dispatch]);
 
   const [id, setId] = useState(currentUser.id);
 
-  // Handle ID change event
+  /*
+  Handle ID change event
+  */
   const handleIdChange = (event) => {
     setId(event.target.value);
   };
@@ -28,8 +32,12 @@ export default function SurveyAnswer() {
       <div><h1 className="p-4 mb-2 bg-primary text-white">Survey answer</h1></div>
 
       <div className='container-fluid'>
-        <UserTable currentUser={currentUser} /> {/* Render the UserTable component */}
-        <input type="text" value={id} onChange={handleIdChange} /> {/* Render an input for user ID selection */}
+
+        {/* Render the UserTable component */}
+        <UserTable currentUser={currentUser} /> 
+        
+         {/* Render an input for user ID selection */}
+        <input type="text" value={id} onChange={handleIdChange} />
 
         {/* Iterate over surveys and render the QuestionAnswerTable for surveys containing user answers */}
         {surveys.map((survey) => {

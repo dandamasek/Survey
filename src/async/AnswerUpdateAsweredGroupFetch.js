@@ -1,10 +1,13 @@
 import { AnswerUpdateAsweredMutation } from '../queries/AnswerUpdateAsweredMutation';
 import { updateAnswerAswered } from 'features/SurveySlice';
 
-  /**
- * 
- *
- * @returns {Function} 
+ /**
+ * Updates the answered status of answers belonging to a specific user and group through API requests.
+ * @param {Object} props - The component props.
+ * @param {Array} props.questions - The list of questions containing the answers.
+ * @param {Object} props.currentUser - The user object.
+ * @param {boolean} props.answered - The new answered status of the answers.
+ * @returns {Function} - The async action function.
  */
 
 

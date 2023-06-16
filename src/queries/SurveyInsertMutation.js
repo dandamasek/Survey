@@ -1,6 +1,10 @@
 import { authorizedFetch } from './authorizedFetch';
 
 // zatím fixní typeId = hodnocení výuky "712029b6-2dbc-4952-9d3e-e897899edf0a"
+
+/**
+ * Function that returns the SurveyInsertMutationJSON in JSON format.
+ */
 const SurveyInsertMutationJSON = (name, typeId) => ({
   query: `
   mutation {

@@ -2,23 +2,25 @@ import { authorizedFetch } from './authorizedFetch';
 
 const QuestionValueUpdateJSON = (lastchange,id,name,order) => ({
   query: `
-  mutation {
-    questionValueUpdate(questionValue:{
+  mutation
+  {
+    questionValueUpdate(questionValue:
+      {
         lastchange:"${lastchange}",
         id:"${id}",
         name:"${name}", 
         order:${order}})
-    {
-      msg
-      id
-      question
-      {
-        id
-        lastchange
-        name
-        order
-      }
-    }
+        {
+          sg
+          id
+          question
+            {
+              id
+              lastchange
+              name
+              order
+            }
+        }
   }
   `
 });

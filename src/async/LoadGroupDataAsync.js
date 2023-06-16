@@ -7,15 +7,21 @@ import { groupPageQuery } from '../queries/GroupPageQuery';
  * @returns {Function} A function that accepts the 'dispatch' and 'getState' functions from Redux.
  */
 export const fetchGroups = () => (dispatch) => {
-     // Call the groupPageQuery function to fetch users
+     /*
+     Call the groupPageQuery function to fetch users
+     */
     groupPageQuery()
       .then((response) => response.json())
       .then((json) => {
         //console.log("GroupPageQuery response:", json); // Log the response for debugging purposes
-  // Extract the groups data from the JSON response
+        /*
+        Extract the groups data from the JSON response
+        */
         const groups = json.data?.groupPage;
         if (groups) {
-            // Dispatch the 'loadGroups' action with the fetched users
+           /*
+           Dispatch the 'loadGroups' action with the fetched users
+           */
           dispatch(loadGroups(groups));
         }
         return json;

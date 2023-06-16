@@ -1,5 +1,7 @@
 import { authorizedFetch } from './authorizedFetch';
-//Assigns user to survey 
+/*
+Function that returns the SurveyAssignToMutationJSON in JSON format.
+*/
 const SurveyAssignToMutationJSON = (surveyId,userId) => ({
   query: `
     mutation {

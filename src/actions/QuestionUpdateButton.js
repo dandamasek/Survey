@@ -6,7 +6,9 @@ import { OccupedQuestionUpdateFetchData } from 'async/OccupedQuestionUpdateFetch
 export const QuestionUpdateButton = (props) => {
   const dispatch = useDispatch();
 
-  // Function to handle question update
+  /*
+  Function to handle question update
+  */
   const handleQuestionUpdate = () => {
     // Dispatch actions to update question data
     dispatch(OccupedQuestionUpdateFetchData(props));
