@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
+import { SurveyFetchAsync } from 'async/LoadSurveyDataAsync';
 import { useEffect, useState } from 'react';
 import QuestionAnswerTable from '../components/QuestionAnswerTable';
 import { UserTable } from 'components/UserTable';

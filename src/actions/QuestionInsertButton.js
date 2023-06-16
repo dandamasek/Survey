@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { questionInsertMutation } from '../queries/QuestionInsertMutation';
+import { QuestionInsertMutation } from '../queries/QuestionInsertMutation';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
 import { useSelector } from 'react-redux';
 import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
 import { insertQuestionValues } from 'features/SurveySlice';
+import { QuestionInsertFetch } from'../async/QuestionInsertFetch';
 
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
@@ -22,34 +23,7 @@ export const QuestionInsertButton = (props) => {
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('949d74a2-63b1-4478-82f1-e025d8bc6c8b'); // Default typeID is Otevřená
 
-  /*
-  Function to fetch data and create a new question
-  */
-  const fetchData = async () => {
-    try {
-      /*
-      Perform the question insert mutation request
-      */
-      const response = await questionInsertMutation(name, props.surveyId, typeId, props.orderLength + 1);
-      const data = await response.json();
-
-      if (data.data.questionInsert.msg === 'ok') {
-        /*
-        Dispatch an action to add the new question store
-        */
-        dispatch(addQuestion(data.data.questionInsert.question));
-        console.log('Question "' + { name: name } + '" was created on the server');
-      }
-
-      setShowModal(false);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  /*
-  Function to handle closing the modal
-  */
+  // Function to handle closing the modal
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -73,7 +47,7 @@ export const QuestionInsertButton = (props) => {
   */
   const addCopyQuestion = async () => {
     try {
-      const response = await questionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
+      const response = await QuestionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
       const data = await response.json();
       const questionId = data.data.questionInsert.question.id;
 
@@ -136,7 +110,7 @@ export const QuestionInsertButton = (props) => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={fetchData}>
+          <Button variant="primary" onClick={() => dispatch(QuestionInsertFetch({name: name, surveyId: props.surveyId, type:typeId, orderLength: props.orderLength+1}))}>
             Save
           </Button>
         </Modal.Footer>

@@ -26,9 +26,6 @@ Perform the necessary action to assign the selected survey to the selected group
   const handleAssignToGroup = () => {
     console.log(`Assigning survey to Group ${selectedGroup}`);
   };
-/*
-Renders a dropdown menu to choose a group and a survey
-*/
   return (
     <div>
       <label>Choose a group:</label>
@@ -57,20 +54,9 @@ Renders a dropdown menu to choose a group and a survey
 
       {selectedGroup && selectedSurvey && (
         <SurveyAssignToGroupButton
-        /*
-        Pass the selected group ID to the SurveyAssignToGroupButton
-        */
-          group={{ id: selectedGroup }}
-
-          /*
-          Pass the onClick handler to the SurveyAssignToGroupButton
-          */
-          onClick={handleAssignToGroup} 
-          
-          /*
-          Pass the selected survey ID to the SurveyAssignToGroupButton
-          */
-          surveyId={selectedSurvey } 
+          group={{ id: selectedGroup }} // Pass the selected group ID to the SurveyAssignToGroupButton
+          onClick={handleAssignToGroup} // Pass the onClick handler to the SurveyAssignToGroupButton
+          surveyId={selectedSurvey } // Pass the selected survey ID to the SurveyAssignToGroupButton
         />
       )}
     </div>

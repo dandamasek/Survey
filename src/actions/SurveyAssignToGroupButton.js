@@ -1,7 +1,6 @@
 import React from 'react';
 import { SurveyAssignToGroupFetch } from '../async/SurveyAssignToGroupFetch';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export const SurveyAssignToGroupButton = (props) => {

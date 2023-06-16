@@ -44,7 +44,6 @@ Retrieve the new question from the action payload and log the new question for d
 */
     addQuestion: (state, action) => {
       const newQuestion = action.payload;
-      console.log("addQuestion action", newQuestion);
 
       /*
       Find specific survey by id and then add a new question to its questions list
@@ -52,6 +51,7 @@ Retrieve the new question from the action payload and log the new question for d
       state.forEach((survey) => {
         if (survey.id === newQuestion.survey.id) {
           survey.questions.push(newQuestion);
+          console.log('Question "' + newQuestion.name + '" added to store');  
         }
       });
     },
@@ -59,16 +59,12 @@ Retrieve the new question from the action payload and log the new question for d
     Retrieve the payload values from the action, 
     */
     updateSurveyName: (state, action) => {
-      const [id, lastchange, newName] = action.payload;
-
-      state.forEach((survey) => {
-        /*
-        Check if the current survey's id matches the id provided in the action
-        Update the survey's name with the new name or the survey's last change timestamp
-        */
-        if (survey.id === id) {
-          survey.name = newName;
-          survey.lastchange = lastchange;
+      const newSurvey = action.payload;
+      state.forEach((survey ,index) => {
+        if (survey.id === newSurvey.id) {
+          survey.name = newSurvey.name;
+          survey.lastchange = newSurvey.lastchange;
+          console.log('Survey "' + newSurvey.name + '" updated in store');  
         }
       });
     },
@@ -82,11 +78,7 @@ Retrieve the new question from the action payload and log the new question for d
       const newQuestion = action.payload.question;
       const surveyId = action.payload.surveyId;
 
-      console.log('Question "' + newQuestion.name + '" updated in store');
-
- /*
-Iterate over each survey in the state and find the survey matching the surveyId
-*/
+ 
       state.forEach((survey) => {
         if (survey.id === surveyId) {
           survey.questions.forEach((question) => {
@@ -95,6 +87,7 @@ Iterate over each survey in the state and find the survey matching the surveyId
               question.lastchange = newQuestion.lastchange;
               question.order = newQuestion.order;
               question.type = newQuestion.type;
+              console.log('Question "' + newQuestion.name + '" updated in store');
             }
           });
         }
@@ -103,7 +96,6 @@ Iterate over each survey in the state and find the survey matching the surveyId
 
     updateQuestionValues: (state, action) => {
       const { id, lastchange, name, order } = action.payload;
-      console.log('QuestionValue "' + name + '" updated in store');
 
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
@@ -112,6 +104,7 @@ Iterate over each survey in the state and find the survey matching the surveyId
               value.lastchange = lastchange;
               value.name = name;
               value.order = order;
+              console.log('QuestionValue "' + name + '" updated in store');
             }
           });
         });
@@ -120,37 +113,30 @@ Iterate over each survey in the state and find the survey matching the surveyId
 
     insertQuestionValues: (state, action) => {
       const value = action.payload;
-      console.log('QuestionValue "' + value.name + '" updated in store');
 
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           if (question.id === value.question.id) {
             question.values.push(value);
+            console.log('QuestionValue "' + value.name + '" updated in store');
+
           }
         });
       });
     },
 
     updateAnswerValue: (state, action) => {
-      const id = action.payload.lastchange;
-      const lastchange = action.payload.lastchange;
-      const value = action.payload.value;
-      const expired = action.payload.expired;
-      const aswered = action.payload.aswered;
-
-      console.log("STORE", action.payload);
-      
+      const newAnswer = action.payload.answer;  
+    
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           question.answers.forEach((answer) => {
-            if (answer.id === id) {
-              answer.value = value;
-              answer.lastchange = lastchange;
-              answer.expired = expired; 
-              answer.aswered = aswered; 
-              console.log(answer.value);
-              console.log('Answer "' + value + '" updated in store');
-
+            if (answer.id === newAnswer.id) {
+              answer.value = newAnswer.value;
+              answer.lastchange = newAnswer.lastchange;
+              answer.expired = newAnswer.expired; 
+              answer.aswered = newAnswer.aswered; 
+              console.log('Answer "' + newAnswer.value + '" updated in store');
             }
           });
         });
@@ -201,10 +187,6 @@ Iterate over each survey in the state and find the survey matching the surveyId
         }
       });
     },
-
-
-
-   
   },
 });
 

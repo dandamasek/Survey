@@ -10,7 +10,6 @@ export const OccupedQuestionUpdateFetchData = (props) => (dispatch, getState) =>
      */
     //  console.log('OccupedQuestionUpdateFetchData',props.occupiedQuestion);
     try {
-    console.log('OccupedQuestionUpdateFetchData',props.occupiedQuestion);
     QuestionUpdateMutation({lastchange: props.occupiedQuestion.lastchange, id: props.occupiedQuestion.id, name : props.occupiedQuestion.name, order: props.preOrder , type: props.occupiedQuestion.type.id})
      .then(response => response.json())
      .then(json => {
@@ -18,7 +17,7 @@ export const OccupedQuestionUpdateFetchData = (props) => (dispatch, getState) =>
 
        if (question) {
          dispatch(updateQuestion({question,surveyId: props.surveyId}));
-         console.log('Question 2 "'+question.name+'" updated on server')
+         console.log('Question with occupied order: "'+question.name+'" updated on server')
        }
  
        return json

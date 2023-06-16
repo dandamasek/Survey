@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector,useDispatch } from 'react-redux';
 import AnswerShowButton from 'actions/AnswerShowButton';
-import { SurveyFetchAsync } from 'actions/LoadSurveyDataAsync';
+import { SurveyFetchAsync } from 'async/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 
 

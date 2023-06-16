@@ -6,9 +6,9 @@ import AssignUsers from "../components/AssignUser";
 import AssignGroups from 'components/AssignToGroup';
 import { SurveyInsertButton } from '../actions/SurveyInsertButton';
 import { useEffect } from 'react';
-import { fetchUsers } from '../actions/LoadUserDataAsync';
-import { SurveyFetchAsync } from '../actions/LoadSurveyDataAsync';
-import { fetchGroups } from '../actions/LoadGroupDataAsync';
+import { fetchUsers } from '../async/LoadUserDataAsync';
+import { SurveyFetchAsync } from '../async/LoadSurveyDataAsync';
+import { fetchGroups } from '../async/LoadGroupDataAsync';
 
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);

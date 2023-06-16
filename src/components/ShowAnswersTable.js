@@ -1,80 +1,100 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import {Chart as ChartJS,
+//         LineElement,
+//         PointElement,
+//         Tooltip,
+//         Legend,
+//         RadialLinearScale} from 'chart.js';
+// import { Radar } from 'react-chartjs-2';
+
+// ChartJS.register(
+//   LineElement,
+//   PointElement,
+//   Tooltip,
+//   Legend,
+//   RadialLinearScale
+// )
+
+
+
 
 /*
-Counts the occurrences of answer values in the given questions.
+Counts the occurrences of answer values in the given question.
 */
-function ShowAnswersTable(props) {
-  const countAnswerValues = (questions) => {
-    const answerCounts = {};
+function countAnswerValues(question) {
+  const answerCounts = {};
 
-    questions.forEach((question) => {
-      if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
-        question.answers.forEach((answer) => {
-          const answerValue = answer.value;
 
-          if (answerValue in answerCounts) {
-            answerCounts[answerValue] += 1;
-          } else {
-            answerCounts[answerValue] = 1;
+
+
+  if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+    question.values.forEach((value) => {
+      answerCounts[value.name] = 0; // Initialize answer count for each value
+    });
+
+    question.answers.forEach((answer) => {
+      const answerValue = answer.value;
+      
+      if (answerValue !== null && typeof answerValue === 'string') {
+        const answerValues = answerValue.split(';'); // Split multiple answers by semicolon
+
+        answerValues.forEach((value) => {
+          if (value in answerCounts) {
+            answerCounts[value] += 1;
           }
         });
       }
     });
-
-    return answerCounts;
-  };
-
-  const answerCounts = countAnswerValues(props.questions);
+  }
+  return answerCounts;
+}
 
 /*
-Renders a table to display question answers and their counts.
+Renders a table to display question values and their counts.
 */
-  return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Question</th>
-          <th>Answer</th>
-          <th>Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.questions.map((question) => {
-          if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
-            const uniqueAnswers = Array.from(
-              new Set(question.answers.map((answer) => answer.value))
-            );
+function ShowValuesTable(props) {
+  const { questions } = props;
 
-            /*
-            Renders a table row for a question with its unique answers and counts
-            */
+  return (
+    <div className="card">
+      <div className="card-body">
+        {questions.map((question) => {
+          if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+            const answerCounts = countAnswerValues(question); // Calculate answer counts for the current question
+
             return (
-              <tr key={question.id}>
-                <td>{question.name}</td>
-                <td>
-                  {uniqueAnswers.map((answerValue) => (
-                    <div key={`${question.id}-${answerValue}`}>
-                      {answerValue}
-                    </div>
-                  ))}
-                </td>
-                <td>
-                  {uniqueAnswers.map((answerValue) => (
-                    <div key={`${question.id}-${answerValue}`}>
-                      {answerCounts[answerValue] || 0}
-                    </div>
-                  ))}
-                </td>
-              </tr>
+              <div key={question.id}>
+                <h5 className="card-title">{question.name}</h5>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Value</th>
+                      <th>Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {question.values.map((value) => (
+                      <tr key={`${question.id}-${value.id}`}>
+                        <td>{value.name}</td>
+                        <td>{answerCounts[value.name] || 0}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             );
           }
 
           return null;
         })}
-      </tbody>
-    </table>
+      </div>
+      {/* <div>
+        <Radar data = {data} options={options}>
+        </Radar>
+      </div> */}
+    </div>
   );
 }
 
-export default ShowAnswersTable;
+export default ShowValuesTable;
