@@ -2,7 +2,7 @@ import { authorizedFetch } from './authorizedFetch';
 /*
 Function that returns the questionInsertMutationJSON in JSON format.
 */
-const questionInsertMutationJSON = (name,surveyId,typeId,order) => ({
+const QuestionInsertMutationJSON = (name,surveyId,typeId,order) => ({
   query: `
   mutation {
     questionInsert (question:{
@@ -47,7 +47,8 @@ const questionInsertMutationJSON = (name,surveyId,typeId,order) => ({
 });
 /*
 Sends a mutation request to insert a new question.
-*/
+n*/
+
 export const QuestionInsertMutation = (name, surveyId, typeId, order) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(QuestionInsertMutationJSON(name, surveyId, typeId, order)),
