@@ -102,7 +102,7 @@ export const QuestionInsertButton = (props) => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => dispatch(QuestionInsertFetch({name: name, surveyId: props.surveyId, type:typeId, orderLength: props.orderLength+1}))}>
+          <Button variant="primary" onClick={() => dispatch(QuestionInsertFetch({ name: name, surveyId: props.surveyId, type:typeId, order: props.orderLength+1}))}>
             Save
           </Button>
         </Modal.Footer>

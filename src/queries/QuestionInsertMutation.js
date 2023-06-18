@@ -49,7 +49,7 @@ const QuestionInsertMutationJSON = (name,surveyId,typeId,order) => ({
 Sends a mutation request to insert a new question.
 n*/
 
-export const QuestionInsertMutation = (name, surveyId, typeId, order) => 
+export const QuestionInsertMutation = (props) => 
   authorizedFetch('/gql', {
-    body: JSON.stringify(QuestionInsertMutationJSON(name, surveyId, typeId, order)),
+    body: JSON.stringify(QuestionInsertMutationJSON(props.name, props.surveyId, props.typeId, props.order)),
   })
