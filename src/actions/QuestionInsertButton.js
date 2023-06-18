@@ -4,9 +4,9 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
 import { useSelector } from 'react-redux';
-import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
-import { insertQuestionValues } from 'features/SurveySlice';
+
 import { QuestionInsertFetch } from'../async/QuestionInsertFetch';
+import { QuestionValueInsertFetch } from'../async/QuestionValueInsertFetch';
 
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
@@ -47,6 +47,7 @@ export const QuestionInsertButton = (props) => {
   */
   const addCopyQuestion = async () => {
     try {
+      // create question from copy needed to be local new created question Id needed for values
       const response = await QuestionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
       const data = await response.json();
       const questionId = data.data.questionInsert.question.id;
@@ -55,24 +56,15 @@ export const QuestionInsertButton = (props) => {
         console.log('Question ' + data.data.questionInsert.question.name + ' was created on the server');
         dispatch(addQuestion(data.data.questionInsert.question));
       }
-
       setShowModal(false);
 
+      // create questionValues from copy 
       for (const value of copy.values) {
-        try {
-          const response = await QuestionValueInsertMutation({ questionId, nameValue: value.name, order: props.orderLength + 1 });
-          const data = await response.json();
-
-          if (data.data.questionValueInsert.msg === 'ok') {
-            const newProps = data.data.questionValueInsert.question;
-
-            dispatch(insertQuestionValues(newProps));
-            console.log('New questionValue "' + data.data.questionValueInsert.question.name + '" was inserted on the server');
-          }
-        } catch (error) {
-          console.error('Error fetching group names:', error);
-        }
+        (() => {
+            dispatch(QuestionValueInsertFetch({ questionId, nameValue: value.name, order: props.orderLength + 1 }));
+        })();
       }
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -84,7 +76,7 @@ export const QuestionInsertButton = (props) => {
         Insert question
       </button>
 
-      {/* Bootstrap modal settings */}
+      {/* Bootstrap modal settings, display */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Hello</Modal.Title>
