@@ -11,7 +11,7 @@ const QuestionValueUpdateJSON = (lastchange,id,name,order) => ({
         name:"${name}", 
         order:${order}})
         {
-          sg
+          msg
           id
           question
             {

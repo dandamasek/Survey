@@ -10,7 +10,7 @@ export const QuestionValueUpdateFetch = (props) => (dispatch, getState) => {
         const question = json.data?.questionValueUpdate.question;
 
         if (question) {
-            console.log('QuestionValue "' + question.name + '" updated on server');
+            console.log('QuestionValue "' +question.name+ '" updated on server');
             dispatch(updateQuestionValues(question));
         }
   
