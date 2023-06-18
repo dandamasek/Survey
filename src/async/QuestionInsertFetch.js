@@ -9,7 +9,6 @@ import { addQuestion } from 'features/SurveySlice';
 
 
 export const QuestionInsertFetch = (props) => (dispatch, getState) => {
-  console.log("HEEELP",props)
   QuestionInsertMutation({name: props.name, surveyId: props.surveyId, typeId: props.type, order: props.order})
   .then(response => response.json())
   .then(json => {

@@ -48,7 +48,7 @@ export const QuestionInsertButton = (props) => {
   const addCopyQuestion = async () => {
     try {
       // create question from copy needed to be local new created question Id needed for values
-      const response = await QuestionInsertMutation(copy.name, props.surveyId, copy.type, props.orderLength + 1);
+      const response = await QuestionInsertMutation({name: copy.name, surveyId: props.surveyId, typeId: copy.type, order: props.orderLength + 1});
       const data = await response.json();
       const questionId = data.data.questionInsert.question.id;
 
@@ -102,7 +102,9 @@ export const QuestionInsertButton = (props) => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => dispatch(QuestionInsertFetch({ name: name, surveyId: props.surveyId, type:typeId, order: props.orderLength+1}))}>
+          <Button variant="primary" onClick={() => {dispatch(QuestionInsertFetch({ name: name, surveyId: props.surveyId, type:typeId, order: props.orderLength+1}))
+            setShowModal(false);
+            }}>
             Save
           </Button>
         </Modal.Footer>
