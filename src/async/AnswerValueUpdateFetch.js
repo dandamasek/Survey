@@ -1,12 +1,16 @@
 import { updateAnswerValue } from 'features/SurveySlice';
 import { AnswerValueMutation } from '../queries/AnswerValueMutation';
 
+/**
+ * Action creator function to fetch and update answer values.
+ * @param {Object} props - The component props.
+ * @returns {Function} - The async action function.
+ */
+
 export const AnswerValueUpdateFetch = (props) => (dispatch, getState) => {
-    // Call the ProjectsQuery function to fetch projects
     AnswerValueMutation(props)
       .then(response => response.json())
       .then(json => {
-        // Extract the projects data from the JSON response
         const answer = json.data?.answerUpdate.answer;
 
         if (answer) {

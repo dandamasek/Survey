@@ -1,14 +1,17 @@
 import { updateQuestion } from 'features/SurveySlice';
 import {QuestionUpdateMutation} from '../queries/QuestionUpdateMutation';
 
-
+/**
+ * Action creator function to update an occupied question's data and fetch projects.
+ * @param {Object} props - The component props.
+ * @returns {Function} - The async action function.
+ */
 
 export const OccupedQuestionUpdateFetchData = (props) => (dispatch, getState) => {
 
      /*
      Call the ProjectsQuery function to fetch projects and extract the projects data from the JSON response
      */
-    //  console.log('OccupedQuestionUpdateFetchData',props.occupiedQuestion);
     try {
     QuestionUpdateMutation({lastchange: props.occupiedQuestion.lastchange, id: props.occupiedQuestion.id, name : props.occupiedQuestion.name, order: props.preOrder , type: props.occupiedQuestion.type.id})
      .then(response => response.json())

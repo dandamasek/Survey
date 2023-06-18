@@ -97,7 +97,7 @@ export const QuestionInsertButton = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={addCopyQuestion}>
-            Add copy question
+            Add copied question
           </Button>
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
@@ -105,7 +105,7 @@ export const QuestionInsertButton = (props) => {
           <Button variant="primary" onClick={() => {dispatch(QuestionInsertFetch({ name: name, surveyId: props.surveyId, type:typeId, order: props.orderLength+1}))
             setShowModal(false);
             }}>
-            Save
+            Add question
           </Button>
         </Modal.Footer>
       </Modal>

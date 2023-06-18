@@ -7,6 +7,7 @@ import { loadData } from '../features/SurveySlice';
  *
  * @returns {Function} A function that accepts the 'dispatch' and 'getState' functions from Redux.
  */
+
 export const SurveyFetchAsync = () => (dispatch, getState) => {
   /*
   Call the ProjectsQuery function to fetch projects and extract the projects data from the JSON response

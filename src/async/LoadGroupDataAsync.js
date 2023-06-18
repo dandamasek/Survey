@@ -2,10 +2,10 @@ import { loadGroups } from '../features/GroupSlice';
 import { groupPageQuery } from '../queries/GroupPageQuery';
 
 /**
- * An asynchronous action creator that fetches projects and dispatches the 'loadProjects' action.
- *
- * @returns {Function} A function that accepts the 'dispatch' and 'getState' functions from Redux.
+ * Action creator function to fetch groups.
+ * @returns {Function} - The async action function.
  */
+
 export const fetchGroups = () => (dispatch) => {
      /*
      Call the groupPageQuery function to fetch users
