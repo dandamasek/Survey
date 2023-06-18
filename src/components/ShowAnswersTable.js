@@ -16,7 +16,7 @@ function countAnswerValues(question) {
     question.answers.forEach((answer) => {
       const answerValue = answer.value;
 
-      if (answerValue !== null && typeof answerValue === 'string') {
+      if (answerValue !== null && typeof answerValue === 'string' && answer.aswered === true) {
         const answerValues = answerValue.split(';'); // Split multiple answers by semicolon
 
         answerValues.forEach((value) => {
@@ -91,11 +91,16 @@ function ShowValuesTable(props) {
                   <div className="card-body">
                     <h5 className="card-title">{question.name}</h5>
                     <div className="card-text">
-                      {question.answers.map((answer) => (
-                        <div key={`${question.id}-${answer.id}`}>
-                          <p>{answer.value}</p>
-                        </div>
-                      ))}
+                      {question.answers.map((answer) => {
+                        if (answer.aswered === true) {
+                          return(
+                            <div key={`${question.id}-${answer.id}`}>
+                              <p>{answer.value}</p>
+                            </div>
+                          )
+                        }
+                        else {return null}
+                      })}
                     </div>
                   </div>
                 </div>
