@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { SurveyAssignToGroupButton } from 'actions/SurveyAssignToGroupButton';
 
+/**
+ * Component used to assign a survey to a group.
+ * @param {object} props - The component props containing the groups and surveys data.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const AssignGroups = (props) => {
   const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
 
-  // console.log("ssss",props);
   const handleGroupChange = (event) => {
     const selectedGroupId = event.target.value;
     setSelectedGroup(selectedGroupId);
@@ -19,6 +23,7 @@ const AssignGroups = (props) => {
   const handleGroupClick = (event) => {
     const selectedGroupId = event.target.value;
     console.log(`Clicked group ID: ${selectedGroupId}`);
+
   };
 /*
 Perform the necessary action to assign the selected survey to the selected group and make the necessary API call or dispatch an action to assign the survey to the group
@@ -54,9 +59,9 @@ Perform the necessary action to assign the selected survey to the selected group
 
       {selectedGroup && selectedSurvey && (
         <SurveyAssignToGroupButton
-          group={{ id: selectedGroup }} // Pass the selected group ID to the SurveyAssignToGroupButton
-          onClick={handleAssignToGroup} // Pass the onClick handler to the SurveyAssignToGroupButton
-          surveyId={selectedSurvey } // Pass the selected survey ID to the SurveyAssignToGroupButton
+          group={{ id: selectedGroup }} 
+          onClick={handleAssignToGroup} 
+          surveyId={selectedSurvey } 
         />
       )}
     </div>

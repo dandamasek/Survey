@@ -3,10 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerFromUser } from './AnswerFromUser';
 import { AnswerUpdateAsweredGroupButton } from '../actions/AnswerUpdateAswereGroupButton';
 
-
-/*
-Renders a table of questions and answers for a specific user.
-*/
+/**
+ * Component used to display a table of questions and answers for a specific user.
+ * @param {object} props - The component props containing the questions, currentUser, and other data.
+ * @returns {JSX.Element} - The rendered component.
+ */
 function QuestionAnswerTable(props) {
   const sortedQuestions = [...props.questions].sort((a, b) => a.order - b.order);
   return (

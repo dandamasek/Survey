@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
-/*
-Renders a table to display answer results.
-*/
+/**
+ * Component used to render a table of answer results.
+ * @param {object} props - The component props containing the answer data.
+ * @returns {JSX.Element} - The rendered component.
+ */
 function AnswerResultsTable(props) {
 
   return (

@@ -1,10 +1,10 @@
 import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
 import { surveyAssignTo } from 'features/SurveySlice';
 
-  /**
- * An asynchronous action creator that fetches projects and dispatches the 'loadProjects' action.
- *
- * @returns {Function} A function that accepts the 'dispatch' and 'getState' functions from Redux.
+ /**
+ * Action creator function to assign a user to a survey and fetch the updated survey.
+ * @param {Object} props - The component props.
+ * @returns {Function} - The async action function.
  */
 
 

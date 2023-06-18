@@ -2,9 +2,11 @@ import React from 'react';
 import { QuestionValueUpdateButton } from 'actions/QuestionValueUpdateButton';
 import { useState } from 'react';
 
-/*
-function for insert and update questionValues
-*/
+/**
+ * Component used for inserting and updating question values.
+ * @param {object} props - The component props containing the questionValue object.
+ * @returns {JSX.Element} - The rendered component.
+ */
 function QuestionValue(props) {
 
   const [name, setName] = useState(props.questionValue.name);
@@ -13,8 +15,6 @@ function QuestionValue(props) {
   const updateQuestionValue = (event) => {
     setName(event.target.value);
   }
-
-
 
   /*
   Map the question values with changing options

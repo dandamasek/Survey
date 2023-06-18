@@ -1,9 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-/*
-Renders a table displaying user information.
-*/
+/**
+ * Component used to render a table displaying user information.
+ * @param {object} props - The component props containing the currentUser object.
+ * @returns {JSX.Element} - The rendered component.
+ */
 export function UserTable(props) {
     return (
       <div className='row'>

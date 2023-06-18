@@ -1,10 +1,16 @@
 import { SurveyAssignToMutation } from 'queries/SurveyAssignToMutation';
 import { surveyAssignTo } from 'features/SurveySlice';
 import { useDispatch } from 'react-redux';
-/*
+/**
+ * Component for a button that assigns a survey to the current user.
+ * @param {Object} props - The component props.
+ * @returns {JSX.Element} - The rendered component.
+ */
+
+export const SurveyAssignToUserButton = (props) => {
+  /*
  Renders a button to assign a survey to the current user.
  */
-export const SurveyAssignToUserButton = (props) => {
   const dispatch = useDispatch();
 
   const fetchData = async () => {

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShowAnswerTable from '../components/ShowAnswersTable';
-
-// Component used to display a dropdown menu of surveys and show the selected survey's answers
+/**
+ * Component for displaying a dropdown menu of surveys and showing the selected survey's answers.
+ * @param {object} props - The component props containing the necessary details.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const AnswerShowButton = (props) => {
-  // State to track the selected survey
   const [selectedOption, setSelectedOption] = useState('');
 
-  // Event handler for when a dropdown option is selected
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-    // Find the selected survey based on its name
     const selectedSurvey = props.surveys.find((survey) => survey.name === selectedValue);
 
-    // Update the selected option if a valid survey is found
     if (selectedSurvey && selectedSurvey.name === selectedValue) {
       setSelectedOption(selectedSurvey.name);
     } else {

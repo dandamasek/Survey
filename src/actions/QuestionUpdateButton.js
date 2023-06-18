@@ -3,6 +3,11 @@ import { useDispatch } from 'react-redux';
 import { FetchData } from 'async/QuestionUpdateFetch';
 import { OccupedQuestionUpdateFetchData } from 'async/OccupedQuestionUpdateFetch';
 
+/**
+ * Component for a button that updates a question.
+ * @param {object} props - The component props containing the question details.
+ * @returns {JSX.Element} - The rendered component.
+ */
 export const QuestionUpdateButton = (props) => {
   const dispatch = useDispatch();
 
@@ -10,7 +15,6 @@ export const QuestionUpdateButton = (props) => {
   Function to handle question update
   */
   const handleQuestionUpdate = () => {
-    // Dispatch actions to update question data
     dispatch(OccupedQuestionUpdateFetchData(props));
     dispatch(FetchData(props));
   };

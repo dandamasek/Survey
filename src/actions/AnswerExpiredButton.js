@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AnswerExpiredFetch } from 'async/AnswerExpiredFetch';
-/*
-A button component used to close a survey
-*/
+
+/**
+ * Button component used to close a survey.
+ * @param {object} props - The component props containing the necessary details.
+ * @returns {JSX.Element} - The rendered component.
+ */
 export const AnswerExpiredButton = (props) => {
   const dispatch = useDispatch();
 
-  /*
-  Handle button click event by dispatching an action with the 'AnswerExpiredFetch' function
-  */
   return (
     <button className="btn btn-danger" onClick={() => dispatch(AnswerExpiredFetch(props))}>
       Close survey

@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux';
 import { loadData } from 'features/SurveySlice';
 import { useState } from 'react';
 
+/**
+ * Component for a button that fetches data from the survey select query and dispatches the loaded data to the store.
+ * @returns {JSX.Element} - The rendered component.
+ */
 export const SurveySelectButton = () => {
   const dispatch = useDispatch();
   const [dataLoaded, setDataLoaded] = useState(false);
