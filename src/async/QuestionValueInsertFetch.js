@@ -2,8 +2,16 @@
 import { QuestionValueInsertMutation } from 'queries/QuestionValueInsertMutation';
 import { insertQuestionValues } from 'features/SurveySlice';
 
+/**
+ * Action creator function to insert a new question value and fetch the updated question.
+ * @param {Object} props - The component props.
+ * @returns {Function} - The async action function.
+ */
 
 export const QuestionValueInsertFetch = (props) => (dispatch, getState) => {
+  /*
+  Call the QuestionValueInsertMutation function to insert the new question value
+  */
     QuestionValueInsertMutation({
       questionId: props.questionId,
       nameValue: props.nameValue,
@@ -11,11 +19,9 @@ export const QuestionValueInsertFetch = (props) => (dispatch, getState) => {
     })
       .then(response => response.json())
       .then(json => {
-        // Extract the projects data from the JSON response
         const question = json.data?.questionValueInsert.question;
-
+        
         if (question) {
-        // Dispatch action to insert the new question value
         dispatch(insertQuestionValues(question));
         console.log('New questionValue "' + question.name + '" inserted on server');
         }
