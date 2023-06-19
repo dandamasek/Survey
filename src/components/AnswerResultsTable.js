@@ -4,9 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Component used to render a table of answer results.
- * @param {object} props - The component props containing the answer data.
+ * @param {Object} props - The component props containing the answer data.
+ * @param {Array} props.answers - An array of answer objects.
  * @returns {JSX.Element} - The rendered component.
  */
+
 function AnswerResultsTable(props) {
 
   return (

@@ -1,8 +1,9 @@
 import { authorizedFetch } from '../queries/authorizedFetch';
 
-/*
-Function that returns the GroupPageQuery in JSON format.
-*/
+/**
+ * Generates the JSON object for the GroupPageQuery.
+ * @returns {Object} - JSON object for the query
+ */
 export const groupPageQueryJSON = () => ({
   query: `
   
@@ -21,9 +22,11 @@ export const groupPageQueryJSON = () => ({
   `,
 });
 
-/*
-Sends the GroupPageQuery to the server using authorizedFetch.
-*/
+
+/**
+ * Sends the GroupPageQuery to the server using authorizedFetch.
+ * @returns {Promise} - Promise with the query result
+ */
 export const groupPageQuery = () =>
   authorizedFetch('/gql', {
     body: JSON.stringify(groupPageQueryJSON()),

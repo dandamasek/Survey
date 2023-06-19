@@ -8,9 +8,12 @@ const globalFetchParams = {
     redirect: 'follow', // manual, *follow, error
 }
 
-/*
- Encapsulation function for fetch, creates an intermediate layer for communication with the server
- Allow owerwrite default parameters (globalFetchParams)
+/**
+ * Encapsulation function for fetch, creates an intermediate layer for communication with the server.
+ * Allows overwriting default parameters (globalFetchParams).
+ * @param {string} path - The server path for the fetch request.
+ * @param {Object} params - Additional parameters to override the default fetch parameters.
+ * @returns {Promise} - Promise with the fetch request.
  */
 export const authorizedFetch = (path, params) => {
     const newParams = {...globalFetchParams, ...params} 

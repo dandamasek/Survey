@@ -2,6 +2,7 @@ import { authorizedFetch } from '../queries/authorizedFetch'
 
 /**
  * Function that returns the SurveySelectQueryJSON in JSON format.
+ * @returns {Object} - JSON object for the survey select query
  */
 export const SurveySelectQueryJSON = () => ({
     "query":
@@ -41,9 +42,10 @@ export const SurveySelectQueryJSON = () => ({
         }`
 })
 
-/*
- Realizace dotazu na server. Vyuziva autorizedFetch (zapouzdreni)
-*/
+/**
+ * Sends a query request to retrieve survey data.
+ * @returns {Promise} - Promise with the survey query result
+ */
 export const SurveySelectQuery = () =>
     authorizedFetch('/gql', {
         body: JSON.stringify(SurveySelectQueryJSON()),

@@ -1,6 +1,12 @@
 import { authorizedFetch } from './authorizedFetch';
+
+
 /**
  * Function that returns the SurveyUpdateMutationJSON in JSON format.
+ * @param {string} id - The ID of the survey
+ * @param {string} lastchange - The last change timestamp of the survey
+ * @param {string} newName - The new name for the survey
+ * @returns {Object} - JSON object for the survey update mutation
  */
 const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
   query: `
@@ -27,8 +33,11 @@ const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
       name: newName
   }
 });
-/*
-  Sends a mutation request to update a survey
+
+/**
+ * Sends a mutation request to update a survey.
+ * @param {Object} props - Object containing the id, lastchange, and newName of the survey
+ * @returns {Promise} - Promise with the survey update mutation result
  */
 export const SurveyUpdateMutation = (props) => 
   authorizedFetch('/gql', {

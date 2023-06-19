@@ -4,6 +4,9 @@ import { authorizedFetch } from './authorizedFetch';
 
 /**
  * Function that returns the SurveyInsertMutationJSON in JSON format.
+ * @param {string} name - The name of the survey
+ * @param {string} typeId - The ID of the survey type
+ * @returns {Object} - JSON object for the survey insert mutation
  */
 const SurveyInsertMutationJSON = (name, typeId) => ({
   query: `
@@ -49,9 +52,11 @@ const SurveyInsertMutationJSON = (name, typeId) => ({
    }
 });
 
-/*
-Sends a mutation request to insert a new survey.
-*/
+/**
+ * Sends a mutation request to insert a new survey.
+ * @param {Object} props - Object containing the name and typeId of the survey
+ * @returns {Promise} - Promise with the survey insert mutation result
+ */
 export const SurveyInsertMutation = (props) =>
 authorizedFetch('/gql', {
 body: JSON.stringify(SurveyInsertMutationJSON(props.name, props.typeId))
