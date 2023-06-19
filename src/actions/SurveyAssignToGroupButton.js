@@ -19,7 +19,7 @@ export const SurveyAssignToGroupButton = (props) => {
 */
   return (
     <div>
-      <button className="btn btn-outline-dark" onClick={() =>
+      <button className="btn btn-outline-dark mb-3" onClick={() =>
         dispatch(SurveyAssignToGroupFetch({
           groups: groups,  
           surveyId: props.surveyId,

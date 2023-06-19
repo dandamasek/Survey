@@ -8,6 +8,7 @@ import { OccupedQuestionUpdateFetchData } from 'async/OccupedQuestionUpdateFetch
  * @param {object} props - The component props containing the question details.
  * @returns {JSX.Element} - The rendered component.
  */
+
 export const QuestionUpdateButton = (props) => {
   const dispatch = useDispatch();
 
@@ -21,7 +22,7 @@ export const QuestionUpdateButton = (props) => {
 
   return (
     <button className="btn btn-secondary" onClick={handleQuestionUpdate}>
-      Change
+      Save changes
     </button>
   );
 };

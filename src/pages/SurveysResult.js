@@ -27,7 +27,7 @@ export default function SurveyResult() {
   return (
     <div>
       <div>
-        <h1 className="p-4 mb-2 bg-primary text-white">Surveys results</h1>
+        <h1 className="p-4 mb-2 bg-warning text-white">Surveys results</h1>
       </div>
       
       <div className="container">

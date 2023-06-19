@@ -27,7 +27,7 @@ Renders a dropdown menu to choose a user and a survey, and a button to assign th
 */
   return (
     <div>
-      <label>Choose a user:</label>
+      <label>Choose a user:  </label>
       <select value={selectedUser} onChange={handleUserChange}>
         <option value="">Select an option</option>
         {props.users.map(user => (
@@ -41,7 +41,7 @@ Renders a dropdown menu to choose a user and a survey, and a button to assign th
         ))}
       </select>
 
-      <label>Choose a survey:</label>
+      <label>Choose a survey:  </label>
       <select value={selectedSurvey} onChange={handleSurveyChange}>
         <option value="">Select an option</option>
         {props.surveys.map(survey => (

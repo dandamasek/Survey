@@ -12,8 +12,8 @@ export const AnswerValueUpdateButton = (props) => {
 Component used to update an answer value
 */
   return (
-    <button className="btn btn-outline-dark" onClick={() => dispatch(AnswerValueUpdateFetch({id : props.id, lastchange: props.lastchange, value: props.value}))}>
-      Change Value
+    <button className="btn btn-secondary" onClick={() => dispatch(AnswerValueUpdateFetch({id : props.id, lastchange: props.lastchange, value: props.value}))}>
+      Save changes
     </button>
   );
 };

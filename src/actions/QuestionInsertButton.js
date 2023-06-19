@@ -73,17 +73,17 @@ export const QuestionInsertButton = (props) => {
   return (
     <div>
       <button className="btn btn-success" onClick={() => setShowModal(true)}>
-        Insert question
+        New question
       </button>
 
       {/* Bootstrap modal settings, display */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Hello</Modal.Title>
+          <Modal.Title>Creating new question</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>Name:</Form.Label>
+            <Form.Label>Question name:</Form.Label>
             <Form.Control type="text" value={name} onChange={handleNameChange} />
           </Form.Group>
           <Form.Group>

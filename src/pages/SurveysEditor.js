@@ -34,14 +34,14 @@ export default function SurveyEditor() {
   */
   return (
     <div>
-      <div><h1 className="p-4 mb-2 bg-primary text-white">Survey editor</h1></div>
+      <div><h1 className="p-4 mb-2 bg-primary text-white mb-3">Survey editor</h1></div>
       
       <div className='container fluid'>
         <AssignUsers surveys={surveys} users={users} />
         <AssignGroups surveys={surveys} groups={groups} />
 
         {surveys.map((survey) => (
-          <div className="card m-5 border-secondary" key={survey.id + "Survey"}>
+          <div className="card m-5 border-secondary mb-3" key={survey.id + "Survey"}>
             <div className='card-header bg-primary text-white'>
               <SurveyNameBox name={survey.name} id={survey.id} lastchange={survey.lastchange} />
             </div>

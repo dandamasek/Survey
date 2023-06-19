@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
  * Component for a button that inserts a new survey.
  * @returns {JSX.Element} - The rendered component.
  */
+
 export const SurveyInsertButton = () => {
   /*
 Renders a button to insert a new survey.
@@ -54,7 +55,7 @@ Renders a button to insert a new survey.
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>Name:</Form.Label>
+            <Form.Label>Survey Name:</Form.Label>
             {/* Input field for survey name */}
             <Form.Control type="text" value={name} onChange={handleNameChange} />
           </Form.Group>

@@ -12,7 +12,7 @@ export const QuestionValueUpdateButton = (props) => {
   return (
     <div>
       <button className="btn btn-secondary btn-sm" onClick={() => dispatch(QuestionValueUpdateFetch(props))}>
-        Change value
+        Save value
       </button>
     </div>
   );

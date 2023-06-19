@@ -11,7 +11,7 @@ export const SurveyAssignToUserButton = (props) => {
 
   return (
     <div>
-      <button className="btn btn-outline-dark" onClick={() => dispatch(SurveyAssignToFetch(props))}>
+      <button className="btn btn-outline-dark mb-3" onClick={() => dispatch(SurveyAssignToFetch(props))}>
         Assign survey to currentUser
       </button>
     </div>

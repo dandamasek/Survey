@@ -16,6 +16,27 @@ import { AnswerExpiredButton } from 'actions/AnswerExpiredButton';
 
   return (
     <div>
+          <div className='row mb-3' >
+            <div className='col-1'>
+            </div>
+
+              {/* Order headline */}
+            <div className='col-2'>
+            <h5 className="font-weight-bold">Order</h5>
+            </div>
+            {/* Question name headline */}
+            <div className='col-4'>
+            <h5 className="font-weight-bold">Question name</h5>
+            </div>
+
+            {/* Question type headline */}
+            <div className='col-4'>
+              <h5 className="font-weight-bold">Type of question</h5>
+            </div>
+
+            <div className='col-1'>
+            </div>
+          </div>
         { 
         sortedQuestions.map((question) => (
           <div className='row mb-2' key={question.id + "Survey question table"}>

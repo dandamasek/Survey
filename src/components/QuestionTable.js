@@ -85,7 +85,7 @@ change from store and also changing in box
     <div className='row' >
 
         <div className='col-1'>
-            <button className="btn btn-outline-dark" onClick={copyQuestion}>Copy</button>
+            <button className="btn btn-outline-dark" onClick={copyQuestion}>Copy question</button>
         </div>
 
           {/* Order input */}

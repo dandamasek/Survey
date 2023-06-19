@@ -29,14 +29,15 @@ export default function SurveyAnswer() {
 
   return (
     <div>
-      <div><h1 className="p-4 mb-2 bg-primary text-white">Survey answer</h1></div>
+      <div><h1 className="p-4 mb-2 bg-info text-white">Survey answer</h1></div>
 
       <div className='container-fluid'>
 
-        {/* Render the UserTable component */}
-        <UserTable currentUser={currentUser} /> 
+        {/* Created not used Render the UserTable component */}
+        {/* <UserTable currentUser={currentUser} />  */}
         
          {/* Render an input for user ID selection */}
+         <h1>User ID</h1>
         <input type="text" value={id} onChange={handleIdChange} />
 
         {/* Iterate over surveys and render the QuestionAnswerTable for surveys containing user answers */}
@@ -50,7 +51,7 @@ export default function SurveyAnswer() {
           if (found) {
             return (
               <div className='card m-5 border-secondary' key={survey.id + "Survey answer table"}>
-                <div className='card-header bg-primary text-white'>
+                <div className='card-header bg-info text-white'>
                   <h1>{survey.name}</h1>
                 </div>
                 <QuestionAnswerTable questions={survey.questions} currentUser={{ id: id }} />
