@@ -7,7 +7,7 @@ import { addSurvey } from 'features/SurveySlice';
  * @returns {Function} - The async action function.
  */
  
-export const FetchData = (props) => (dispatch, getState) => {
+export const FetchData = (props) => (dispatch, getState) => (
   /*
   Call the SurveyInsertMutation function to insert a new survey
   */
@@ -22,4 +22,4 @@ export const FetchData = (props) => (dispatch, getState) => {
       }
       return json
     })
-};
+);

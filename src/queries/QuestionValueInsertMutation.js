@@ -5,11 +5,15 @@ Function that returns the QuestionValueInsertJSON in JSON format.
 */
 const QuestionValueInsertJSON = (questionId,nameValue,order) => ({
   query: `
-  mutation {
+  mutation(
+    $questionId: ID!,
+    $name: String!,
+    $order: Int,
+  ) {
     questionValueInsert(questionValue:{
-      questionId:"${questionId}",
-      name:"${nameValue}",
-      order: ${order}
+      questionId: $questionId,
+      name: $name,
+      order: $order
     }){
       msg
       id
@@ -29,9 +33,14 @@ const QuestionValueInsertJSON = (questionId,nameValue,order) => ({
         }
       }
     }
+  } `,
+  variables: {
+    questionId: questionId,
+    name: nameValue,
+    order: order
   }
-  `
 });
+
 /*
 Sends a mutation request to insert a new question value.
 */

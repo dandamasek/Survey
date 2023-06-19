@@ -4,11 +4,15 @@ import { authorizedFetch } from './authorizedFetch';
  */
 const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
   query: `
-    mutation {
+    mutation (
+      $id: String,
+      $lastchange: DateTime!,
+      $name: String,
+    ){
       surveyUpdate(survey: {
-        id: "${id}",
-        lastchange: "${lastchange}",
-        name: "${newName}"  }) {
+        id: $id,
+        lastchange: $lastchange,
+        name: $name, }) {
         msg
         survey {
           id
@@ -17,7 +21,11 @@ const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
         }
       }
     }
-  `
+  `, variables: {
+      id: id,
+      lastchange: lastchange,
+      name: newName
+  }
 });
 /*
   Sends a mutation request to update a survey

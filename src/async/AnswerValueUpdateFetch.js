@@ -7,7 +7,7 @@ import { AnswerValueMutation } from '../queries/AnswerValueMutation';
  * @returns {Function} - The async action function.
  */
 
-export const AnswerValueUpdateFetch = (props) => (dispatch, getState) => {
+export const AnswerValueUpdateFetch = (props) => (dispatch, getState) => (
     AnswerValueMutation(props)
       .then(response => response.json())
       .then(json => {
@@ -20,4 +20,4 @@ export const AnswerValueUpdateFetch = (props) => (dispatch, getState) => {
   
         return json
       })
-  };
+);

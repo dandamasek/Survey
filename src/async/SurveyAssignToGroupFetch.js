@@ -14,18 +14,18 @@ export const SurveyAssignToGroupFetch = (props) => (dispatch, getState) => {
   const group = props.groups.find((group) => group.id === props.group.id);
   if (group) {
     for (const user of group.memberships) {
-  SurveyAssignToMutation({userId: user.user.id, surveyId: props.surveyId})
-    .then(response => response.json())
-    .then(json => {
+      SurveyAssignToMutation({userId: user.user.id, surveyId: props.surveyId})
+        .then(response => response.json())
+        .then(json => {
 
-      const survey = json.data?.surveyAssingTo.survey;
-      if (survey) {
-        
-        dispatch(surveyAssignTo(survey));
-        console.log('User: "'+user.user.name+'" assigned to survey: "'+survey.name+'"');
-      }
-      return json
-      })
-    }
+          const survey = json.data?.surveyAssingTo.survey;
+          if (survey) {
+            
+            dispatch(surveyAssignTo(survey));
+            console.log('User: "'+user.user.name+'" assigned to survey: "'+survey.name+'"');
+          }
+          return json
+          })
+        }
   }
 };

@@ -4,10 +4,13 @@ Function that returns the SurveyAssignToMutationJSON in JSON format.
 */
 const SurveyAssignToMutationJSON = (surveyId,userId) => ({
   query: `
-    mutation {
+    mutation (
+      $surveyId: ID!,
+      $userId: ID!
+    ) {
       surveyAssingTo( 
-        surveyId: "${surveyId}",
-        userId:"${userId}"){
+        surveyId: $surveyId,
+        userId: $userId){
         id
         msg
         survey {
@@ -44,7 +47,11 @@ const SurveyAssignToMutationJSON = (surveyId,userId) => ({
         }
       }
     }
-  `
+  `, 
+  variables:{
+    surveyId: surveyId,
+    userId: userId
+  }
   
 });
 

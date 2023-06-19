@@ -7,11 +7,14 @@ import { authorizedFetch } from './authorizedFetch';
  */
 const SurveyInsertMutationJSON = (name, typeId) => ({
   query: `
-  mutation {
+  mutation(
+    $name: String!,
+    $typeId: ID,
+  ) {
     surveyInsert(
       survey: {
-        name: "${name}", 
-        typeId: "${typeId}"}
+        name: $name, 
+        typeId: $typeId}
     ) {
       msg
       id
@@ -39,8 +42,11 @@ const SurveyInsertMutationJSON = (name, typeId) => ({
         }
       }
     }
-  }
-  `
+  } `, 
+  variables: { 
+    name: name,
+    typeId: typeId
+   }
 });
 
 /*

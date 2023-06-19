@@ -9,7 +9,8 @@ const GroupsSelectQueryJSON = (id, lastchange, value) => ({
       answer: {
         id: "${id}",
         lastchange: "${lastchange}",
-        value: "${value}"}) {
+        value: "${value}"
+      }) {
       id
       msg
       answer {

@@ -8,7 +8,7 @@ import { surveyAssignTo } from 'features/SurveySlice';
  */
 
 
-export const SurveyAssignToFetch = (props) => (dispatch, getState) => {
+export const SurveyAssignToFetch = (props) => (dispatch, getState) => (
 
   SurveyAssignToMutation({userId: props.userId, surveyId: props.surveyId})
     .then(response => response.json())
@@ -22,6 +22,6 @@ export const SurveyAssignToFetch = (props) => (dispatch, getState) => {
       }
       return json
       })
-};
+);
 
 

@@ -8,7 +8,7 @@ import { insertQuestionValues } from 'features/SurveySlice';
  * @returns {Function} - The async action function.
  */
 
-export const QuestionValueInsertFetch = (props) => (dispatch, getState) => {
+export const QuestionValueInsertFetch = (props) => (dispatch, getState) => (
   /*
   Call the QuestionValueInsertMutation function to insert the new question value
   */
@@ -28,4 +28,4 @@ export const QuestionValueInsertFetch = (props) => (dispatch, getState) => {
   
         return json
       })
-  };
+  );

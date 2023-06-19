@@ -6,7 +6,7 @@ import { groupPageQuery } from '../queries/GroupPageQuery';
  * @returns {Function} - The async action function.
  */
 
-export const fetchGroups = () => (dispatch) => {
+export const fetchGroups = () => (dispatch) => (
      /*
      Call the groupPageQuery function to fetch users
      */
@@ -28,5 +28,5 @@ export const fetchGroups = () => (dispatch) => {
       })
       .catch((error) => {
         console.log("Failed to fetch groups:", error);
-      });
-  };
+      })
+);

@@ -6,7 +6,7 @@ import { AnswerUpdateExpiredMutation } from '../queries/AnswerUpdateExpiredMutat
  * @param {Object} props - The component props.
  * @returns {Function} - The async action function.
  */
-export const AnswerExpiredFetch = (props) => (dispatch, getState) => {
+export const AnswerExpiredFetch = (props) => (dispatch, getState) => (
   props.questions.forEach((question) => {
     question.answers.forEach((answer) => {
       /*
@@ -21,8 +21,8 @@ export const AnswerExpiredFetch = (props) => (dispatch, getState) => {
             console.log('Answer closed on server');
           }
           return json;
-        });
-    });
-  });
-};
+        })
+    })
+  })
+);
 

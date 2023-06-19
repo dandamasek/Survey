@@ -7,7 +7,7 @@ import { updateQuestionValues } from 'features/SurveySlice';
  * @returns {Function} - The async action function.
  */
 
-export const QuestionValueUpdateFetch = (props) => (dispatch, getState) => {
+export const QuestionValueUpdateFetch = (props) => (dispatch, getState) => (
   /*
   Call the QuestionValueUpdateMutation function to update the question value
   */
@@ -23,4 +23,4 @@ export const QuestionValueUpdateFetch = (props) => (dispatch, getState) => {
   
         return json
       })
-  };
+);

@@ -8,7 +8,7 @@ import {QuestionUpdateMutation} from '../queries/QuestionUpdateMutation';
  */
 
 
-export const FetchData = (props) => (dispatch, getState) => {
+export const FetchData = (props) => (dispatch, getState) => (
     /*
     Call the ProjectsQuery function to fetch projects and extract the projects data from the JSON response
     */
@@ -25,4 +25,4 @@ export const FetchData = (props) => (dispatch, getState) => {
   
         return json
       })
-  };
+);

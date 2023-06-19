@@ -6,7 +6,7 @@ import { updateSurveyName } from 'features/SurveySlice';
  * @param {Object} props - The component props.
  * @returns {Function} - The async action function.
  */
-export const SurveyUpdateFetch = (props) => (dispatch, getState) => {
+export const SurveyUpdateFetch = (props) => (dispatch, getState) => (
   /*
   Call the ProjectsQuery function to fetch projects
   */
@@ -23,4 +23,4 @@ export const SurveyUpdateFetch = (props) => (dispatch, getState) => {
       }
       return json
     })
-};
+);

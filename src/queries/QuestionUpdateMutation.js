@@ -4,14 +4,20 @@ Function that returns the QuestionUpdateMutationJSON in JSON format.
 */
 const QuestionUpdateMutationJSON = (lastchange,id,name,order,type) => ({
   query: `
-  mutation {
+  mutation(
+    $lastchange: DateTime!, 
+    $id: ID!, 
+    $name: String,
+    $order: Int,
+    $typeId: ID,
+  ) {
     questionUpdate(
       question: {
-        lastchange: "${lastchange}", 
-        id: "${id}", 
-        name: "${name}",  
-        order: ${order},
-        typeId: "${type}"
+        lastchange: $lastchange, 
+        id: $id, 
+        name: $name,  
+        order: $order,
+        typeId: $typeId,
       }
     ) {
       msg
@@ -30,8 +36,14 @@ const QuestionUpdateMutationJSON = (lastchange,id,name,order,type) => ({
       }
       }
     }
-  }
-  `
+  }`,
+  variables: {
+    lastchange: lastchange,
+    id: id,
+    name: name,
+    order : order,
+    typeId: type,
+  },
 });
 
 /*

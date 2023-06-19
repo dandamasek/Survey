@@ -11,7 +11,7 @@ import { updateAnswerAswered } from 'features/SurveySlice';
  */
 
 
-export const AnswerUpdateAsweredGroupFetch = (props) => (dispatch, getState) => {
+export const AnswerUpdateAsweredGroupFetch = (props) => (dispatch, getState) => (
     
     props.questions.forEach((question) => {
       question.answers.forEach((answer) => {
@@ -30,8 +30,5 @@ export const AnswerUpdateAsweredGroupFetch = (props) => (dispatch, getState) => 
             })
         }
       })  
-    })
-
-
-   
-};
+    })  
+);

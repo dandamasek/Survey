@@ -10,7 +10,7 @@ import { updateAnswerAswered } from 'features/SurveySlice';
  * @returns {Function} - The async action function.
  */
 
-export const AnswerUpdateAsweredFetch = (props) => (dispatch, getState) => {
+export const AnswerUpdateAsweredFetch = (props) => (dispatch, getState) => (
 
     AnswerUpdateAsweredMutation({id: props.id , lastchange: props.lastchange, aswered: props.aswered})
         .then(response => response.json())
@@ -24,4 +24,4 @@ export const AnswerUpdateAsweredFetch = (props) => (dispatch, getState) => {
         }
         return json
         })
-};
+);
