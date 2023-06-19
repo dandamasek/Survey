@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { SurveyFetchAsync } from 'async/LoadSurveyDataAsync';
 import { useEffect, useState } from 'react';
 import QuestionAnswerTable from '../components/QuestionAnswerTable';
-import { UserTable } from 'components/UserTable';
+// import { UserTable } from 'components/UserTable';
 
 export default function SurveyAnswer() {
   const surveys = useSelector(state => state.surveys);
