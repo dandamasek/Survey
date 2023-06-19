@@ -76,7 +76,7 @@ function ShowValuesTable(props) {
                       scales: {
                         y: {
                           beginAtZero: true,
-                          max: 10, // Set the maximum value of the y-axis scale
+                          max: 20, // Set the maximum value of the y-axis scale
                         },
                       },
                     }}
