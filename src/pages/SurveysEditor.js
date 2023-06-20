@@ -10,18 +10,21 @@ import { fetchUsers } from '../async/LoadUserDataAsync';
 import { SurveyFetchAsync } from '../async/LoadSurveyDataAsync';
 import { fetchGroups } from '../async/LoadGroupDataAsync';
 
+/**
+ * Component for rendering the survey editor interface.
+ */
 export default function SurveyEditor() {
   const surveys = useSelector(state => state.surveys);
   const users = useSelector(state => state.users);
   const groups = useSelector(state => state.groups);
  
   /*
-  Create a dispatch function from the useDispatch hook
+  Create a dispatch function from the useDispatch hook.
   */
   const dispatch = useDispatch();
 
   /*
-  Fetch necessary data when the component mounts
+  Fetch necessary data when the component mounts.
   */
   useEffect(() => {
     dispatch(fetchGroups());
@@ -30,7 +33,7 @@ export default function SurveyEditor() {
   }, [dispatch]);
 
   /*
-  Return the JSX elements for rendering the Survey Editor interface
+  Return the JSX elements for rendering the Survey Editor interface.
   */
   return (
     <div>

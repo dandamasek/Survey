@@ -9,7 +9,7 @@ import { SurveyUpdateButton } from '../actions/SurveyUpdateButton';
  */
 function SurveyNameBox(props) {
   const [name, setName] = useState(props.name);
-    
+
   /**
    * Event handler for when the survey name input field value changes.
    * @param {object} event - The event object.
@@ -19,16 +19,21 @@ function SurveyNameBox(props) {
   };
 
   return (
-    <div className='row'>       
+    <div className="row">
       <div className="col-10">
-        <input className="form-control text-center" type="text" key={props.id+"SurveyName"}  value={name} onChange={handleNameChange}/>
+        <input
+          className="form-control text-center"
+          type="text"
+          key={props.id + "SurveyName"}
+          value={name}
+          onChange={handleNameChange}
+        />
       </div>
-      
-      <div className='col-2'>
-        <SurveyUpdateButton  id={props.id} lastchange={props.lastchange} newName={name}/>
+
+      <div className="col-2">
+        <SurveyUpdateButton id={props.id} lastchange={props.lastchange} newName={name} />
       </div>
     </div>
-
   );
 }
 

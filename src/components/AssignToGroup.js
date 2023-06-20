@@ -10,27 +10,41 @@ const AssignGroups = (props) => {
   const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
 
+  /**
+   * Handles the change event for the group selection.
+   * @param {object} event - The change event.
+   */
   const handleGroupChange = (event) => {
     const selectedGroupId = event.target.value;
     setSelectedGroup(selectedGroupId);
   };
 
+  /**
+   * Handles the change event for the survey selection.
+   * @param {object} event - The change event.
+   */
   const handleSurveyChange = (event) => {
     const selectedSurveyId = event.target.value;
     setSelectedSurvey(selectedSurveyId);
   };
 
+  /**
+   * Handles the click event for the group selection.
+   * @param {object} event - The click event.
+   */
   const handleGroupClick = (event) => {
     const selectedGroupId = event.target.value;
     console.log(`Clicked group ID: ${selectedGroupId}`);
-
   };
-/*
-Perform the necessary action to assign the selected survey to the selected group and make the necessary API call or dispatch an action to assign the survey to the group
-*/
+
+  /**
+   * Handles the assign to group action.
+   * Performs the necessary action to assign the selected survey to the selected group.
+   */
   const handleAssignToGroup = () => {
     console.log(`Assigning survey to Group ${selectedGroup}`);
   };
+
   return (
     <div>
       <label>Choose a group:</label>
@@ -59,9 +73,9 @@ Perform the necessary action to assign the selected survey to the selected group
 
       {selectedGroup && selectedSurvey && (
         <SurveyAssignToGroupButton
-          group={{ id: selectedGroup }} 
-          onClick={handleAssignToGroup} 
-          surveyId={selectedSurvey } 
+          group={{ id: selectedGroup }}
+          onClick={handleAssignToGroup}
+          surveyId={selectedSurvey}
         />
       )}
     </div>

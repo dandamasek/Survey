@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// A Redux slice for managing the state of the surveys
+/**
+ * Redux slice for managing the state of the users.
+ */
 export const UserSlice = createSlice({
   name: "Users",
   initialState: [],
   reducers: {
-
+    /**
+     * Action to load users into the state.
+     * @param {Array} state - The current state of users.
+     * @param {Object} action - The action object.
+     * @param {Array} action.payload - The array of users to be loaded.
+     */
     loadUsers: (state, action) => {
       const users = action.payload;
       let newUsers = [];
@@ -29,11 +36,10 @@ export const UserSlice = createSlice({
   },
 });
 
-// Export the action creators from the surveySlice
+// Export the action creators from the userSlice
 export const {
   loadUsers,
-
 } = UserSlice.actions;
 
-// Export the surveySlice reducer
+// Export the userSlice reducer
 export default UserSlice.reducer;

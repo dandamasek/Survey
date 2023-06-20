@@ -1,20 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-/*
-A Redux slice for managing the state of the surveys
-*/
+/**
+ * Redux slice for managing the state of the surveys.
+ */
 export const surveySlice = createSlice({
   name: "surveys",
   initialState: [],
   reducers: {
+    /**
+     * Action to load surveys into the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     loadData: (state, action) => {
       const surveys = action.payload;
       let newSurveys = [];
       let isAlreadyinStore = false;
 
-      /*
-      Iterate through the surveys to be loaded and check if the survey is already present in the state
-      */
       for (let survey of surveys) {
         for (let surv of state) {
           if (survey.id === surv.id) {
@@ -31,54 +33,58 @@ export const surveySlice = createSlice({
       state.push(...newSurveys);
     },
 
-/*
-Retrieve the new survey from the action payload and add the new survey to the state's surveys array
-*/
+    /**
+     * Action to add a new survey to the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     addSurvey: (state, action) => {
       const newSurvey = action.payload;
       state.push(newSurvey);
-      console.log('Survey "' + newSurvey.name + '" added to store');  
+      console.log('Survey "' + newSurvey.name + '" added to store');
     },
-/*
-Retrieve the new question from the action payload and log the new question for debugging or informational purposes
-*/
+
+    /**
+     * Action to add a new question to a survey in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     addQuestion: (state, action) => {
       const newQuestion = action.payload;
 
-      /*
-      Find specific survey by id and then add a new question to its questions list
-      */
       state.forEach((survey) => {
         if (survey.id === newQuestion.survey.id) {
           survey.questions.push(newQuestion);
-          console.log('Question "' + newQuestion.name + '" added to store');  
+          console.log('Question "' + newQuestion.name + '" added to store');
         }
       });
     },
-    /*
-    Retrieve the payload values from the action, 
-    */
+
+    /**
+     * Action to update the name of a survey in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     updateSurveyName: (state, action) => {
       const newSurvey = action.payload;
-      state.forEach((survey ,index) => {
+      state.forEach((survey, index) => {
         if (survey.id === newSurvey.id) {
           survey.name = newSurvey.name;
           survey.lastchange = newSurvey.lastchange;
-          console.log('Survey "' + newSurvey.name + '" updated in store');  
+          console.log('Survey "' + newSurvey.name + '" updated in store');
         }
       });
     },
 
-    /*
-    Update a specific question in the state with the new question details
-    */
-
+    /**
+     * Action to update a specific question in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     updateQuestion: (state, action) => {
-      
       const newQuestion = action.payload.question;
       const surveyId = action.payload.surveyId;
 
- 
       state.forEach((survey) => {
         if (survey.id === surveyId) {
           survey.questions.forEach((question) => {
@@ -94,6 +100,11 @@ Retrieve the new question from the action payload and log the new question for d
       });
     },
 
+    /**
+     * Action to update the values of a question in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     updateQuestionValues: (state, action) => {
       const { id, lastchange, name, order } = action.payload;
 
@@ -111,6 +122,11 @@ Retrieve the new question from the action payload and log the new question for d
       });
     },
 
+    /**
+     * Action to insert question values into the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     insertQuestionValues: (state, action) => {
       const value = action.payload;
 
@@ -119,23 +135,27 @@ Retrieve the new question from the action payload and log the new question for d
           if (question.id === value.question.id) {
             question.values.push(value);
             console.log('QuestionValue "' + value.name + '" updated in store');
-
           }
         });
       });
     },
 
+    /**
+     * Action to update the value of an answer in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     updateAnswerValue: (state, action) => {
-      const newAnswer = action.payload.answer;  
-    
+      const newAnswer = action.payload.answer;
+
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           question.answers.forEach((answer) => {
             if (answer.id === newAnswer.id) {
               answer.value = newAnswer.value;
               answer.lastchange = newAnswer.lastchange;
-              answer.expired = newAnswer.expired; 
-              answer.aswered = newAnswer.aswered; 
+              answer.expired = newAnswer.expired;
+              answer.aswered = newAnswer.aswered;
               console.log('Answer "' + newAnswer.value + '" updated in store');
             }
           });
@@ -143,6 +163,11 @@ Retrieve the new question from the action payload and log the new question for d
       });
     },
 
+    /**
+     * Action to update the expiration status of an answer in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     updateAnswerExpired: (state, action) => {
       const id = action.payload.answer.id;
       const lastchange = action.payload.answer.lastchange;
@@ -154,17 +179,22 @@ Retrieve the new question from the action payload and log the new question for d
             if (answer.id === id) {
               answer.expired = expired;
               answer.lastchange = lastchange;
-              console.log('Answer" is expired in store')
+              console.log('Answer is expired in store');
               console.log(expired);
             }
           });
         });
       });
     },
-    
+
+    /**
+     * Action to update the answered status of an answer in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     updateAnswerAswered: (state, action) => {
       const newAnswer = action.payload;
-      
+
       state.forEach((survey) => {
         survey.questions.forEach((question) => {
           question.answers.forEach((answer, index) => {
@@ -176,8 +206,11 @@ Retrieve the new question from the action payload and log the new question for d
       });
     },
 
-
-
+    /**
+     * Action to assign a user to a survey in the state.
+     * @param {Array} state - The current state.
+     * @param {Object} action - The action object containing the payload.
+     */
     surveyAssignTo: (state, action) => {
       const newSurvey = action.payload;
       state.forEach((survey, index) => {
@@ -193,7 +226,6 @@ Retrieve the new question from the action payload and log the new question for d
 // Export the action creators from the surveySlice
 export const {
   loadData,
-  
   addSurvey,
   updateSurveyName,
   updateQuestion,
@@ -204,7 +236,6 @@ export const {
   surveyAssignTo,
   updateAnswerExpired,
   updateAnswerAswered,
-
 } = surveySlice.actions;
 
 // Export the surveySlice reducer

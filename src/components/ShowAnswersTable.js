@@ -5,6 +5,11 @@ import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'c
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
+/**
+ * Counts the answer values for a given question.
+ * @param {object} question - The question object.
+ * @returns {object} - An object containing the counts of each answer value.
+ */
 function countAnswerValues(question) {
   const answerCounts = {};
 
@@ -27,9 +32,15 @@ function countAnswerValues(question) {
       }
     });
   }
+
   return answerCounts;
 }
 
+/**
+ * Component used to display a table of question values and corresponding charts.
+ * @param {object} props - The component props containing the questions.
+ * @returns {JSX.Element} - The rendered component.
+ */
 function ShowValuesTable(props) {
   const { questions } = props;
 
@@ -93,13 +104,14 @@ function ShowValuesTable(props) {
                     <div className="card-text">
                       {question.answers.map((answer) => {
                         if (answer.aswered === true) {
-                          return(
+                          return (
                             <div key={`${question.id}-${answer.id}`}>
                               <p>{answer.value}</p>
                             </div>
-                          )
+                          );
+                        } else {
+                          return null;
                         }
-                        else {return null}
                       })}
                     </div>
                   </div>

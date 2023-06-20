@@ -5,24 +5,28 @@ import { useEffect, useState } from 'react';
 import QuestionAnswerTable from '../components/QuestionAnswerTable';
 // import { UserTable } from 'components/UserTable';
 
+/**
+ * Component for rendering the survey answer page.
+ */
 export default function SurveyAnswer() {
   const surveys = useSelector(state => state.surveys);
 
   const currentUser = { id: "2d9dc5ca-a4a2-11ed-b9df-0242ac120003" };
   const dispatch = useDispatch();
 
-  /*
-  Fetch survey data when the component mounts
-  */
+  /**
+   * Fetch survey data when the component mounts.
+   */
   useEffect(() => {
     dispatch(SurveyFetchAsync());
   }, [dispatch]);
 
   const [id, setId] = useState(currentUser.id);
 
-  /*
-  Handle ID change event
-  */
+  /**
+   * Event handler for ID change.
+   * @param {Object} event - The event object.
+   */
   const handleIdChange = (event) => {
     setId(event.target.value);
   };
@@ -65,5 +69,3 @@ export default function SurveyAnswer() {
     </div>
   );
 }
-
-

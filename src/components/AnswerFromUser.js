@@ -3,19 +3,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnswerValueUpdateButton } from '../actions/AnswerValueUpdateButton';
 import { AnswerUpdateAsweredButton } from '../actions/AnswerUpdateAsweredButton';
 
+/**
+ * Component for rendering an answer from a user.
+ * @param {Object} props - The component props.
+ * @param {Object} props.question - The question object.
+ * @param {Object} props.answer - The answer object.
+ * @returns {JSX.Element} - The rendered component.
+ */
 export function AnswerFromUser(props) {
   const [AnswerValue, setAnswerValue] = useState(props.answer.value !== null ? props.answer.value : "");
 
   const question = props.question;
 
+  /**
+   * Event handler for input changes.
+   * @param {Object} event - The input change event.
+   */
   const handleInputChange = (event) => {
     const value = event.target.value;
     if (event.target.type === 'checkbox') {
       if (event.target.checked) {
-        /*Add the selected value to AnswerValue
-        * If the value already exists, return the previous value
-        * Else add the new value to the existing values
-        */
         setAnswerValue((prevValue) => {
           if (prevValue.includes(value)) {
             return prevValue;
@@ -25,26 +32,22 @@ export function AnswerFromUser(props) {
           }
         });
       } else {
-        /*
-        Remove the unselected value from AnswerValue
-        */
         setAnswerValue((prevValue) =>
           prevValue.replace(new RegExp(`${value};?`), '')
         );
       }
     } else {
-      /*
-      Handle text input changes
-      */
       setAnswerValue(value);
     }
   };
 
-
+  /**
+   * Renders the question based on its type.
+   * @returns {JSX.Element} - The rendered question.
+   */
   const renderQuestionByType = () => {
     switch (props.question.type.id) {
-      // Škála
-      case '2a6a1731-1efa-4644-a1d8-5848e4b29ce5':
+      case '2a6a1731-1efa-4644-a1d8-5848e4b29ce5': // Škála
         return (
           <div>
             <h5>Škála</h5>
@@ -61,8 +64,7 @@ export function AnswerFromUser(props) {
             ))}
           </div>
         );
-      // Otevřené
-      case '949d74a2-63b1-4478-82f1-e025d8bc6c8b':
+      case '949d74a2-63b1-4478-82f1-e025d8bc6c8b': // Otevřené
         return (
           <div>
             <h5>Otevřené</h5>
@@ -75,20 +77,15 @@ export function AnswerFromUser(props) {
             </div>
           </div>
         );
-
-     // Uzavřené
-      case 'ad0f53fb-240b-47de-ab1d-871bbde6f973':
+      case 'ad0f53fb-240b-47de-ab1d-871bbde6f973': // Uzavřené
         return (
           <div>
               <h5>Uzavřené</h5>
             {question.values.map((value) => (
               <div key={value.id}>
                 <input
-                /*
-                 Change the input type to 'radio' and set the same name for all radio buttons in the group
-                 */
-                  type="radio" 
-                  name={question.id} 
+                  type="radio"
+                  name={question.id}
                   value={value.name}
                   onChange={handleInputChange}
                   checked={AnswerValue === value.name}
@@ -98,14 +95,11 @@ export function AnswerFromUser(props) {
             ))}
           </div>
         );
-
       default:
         return null;
     }
   };
-/*
-Renders the question based on its type.
-*/
+
   return (
     <div>
       {renderQuestionByType()}
@@ -115,7 +109,6 @@ Renders the question based on its type.
         value={AnswerValue}
       />
       <AnswerUpdateAsweredButton id={props.answer.id}  lastchange={props.answer.lastchange} aswered={true} />
-      
     </div>
   );
 }

@@ -1,27 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AnswerShowButton from 'actions/AnswerShowButton';
 import { SurveyFetchAsync } from 'async/LoadSurveyDataAsync';
 import { useEffect } from 'react';
 
-
+/**
+ * Component for rendering the survey results.
+ */
 export default function SurveyResult() {
   const surveys = useSelector(state => state.surveys); 
   
   /*
-  Create a dispatch function from the useDispatch hoo
+  Create a dispatch function from the useDispatch hook.
   */
   const dispatch = useDispatch(); 
 
   /*
-  Fetch survey data when the component mounts
+  Fetch survey data when the component mounts.
   */
   useEffect(() => {
     dispatch(SurveyFetchAsync()); 
     
-  /*
-  eslint-disable-next-line react-hooks/exhaustive-deps
-  */
+    /*
+    eslint-disable-next-line react-hooks/exhaustive-deps
+    */
   }, []);
 
   return (

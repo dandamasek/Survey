@@ -1,30 +1,46 @@
 import React, { useState } from 'react';
-import {SurveyAssignToUserButton} from 'actions/SurveyAssignToButton';
+import { SurveyAssignToUserButton } from 'actions/SurveyAssignToButton';
 
-/*
-Handles the click event on a user.
-*/
+/**
+ * Handles the click event on a user.
+ * @param {object} props - The component props containing the users and surveys data.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const AssignUsers = (props) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedSurvey, setSelectedSurvey] = useState('');
 
-  const handleUserChange = event => {
+  /**
+   * Handles the change event for the user selection.
+   * @param {object} event - The change event.
+   */
+  const handleUserChange = (event) => {
     const selectedUserId = event.target.value;
     setSelectedUser(selectedUserId);
   };
 
-  const handleSurveyChange = event => {
+  /**
+   * Handles the change event for the survey selection.
+   * @param {object} event - The change event.
+   */
+  const handleSurveyChange = (event) => {
     const selectedSurveyId = event.target.value;
     setSelectedSurvey(selectedSurveyId);
   };
 
-  const handleUserClick = event => {
+  /**
+   * Handles the click event for the user selection.
+   * @param {object} event - The click event.
+   */
+  const handleUserClick = (event) => {
     const selectedUserId = event.target.value;
     console.log(`Clicked user ID: ${selectedUserId}`);
   };
-/*
-Renders a dropdown menu to choose a user and a survey, and a button to assign the selected survey to the selected user.
-*/
+
+  /**
+   * Renders a dropdown menu to choose a user and a survey, and a button to assign the selected survey to the selected user.
+   * @returns {JSX.Element} - The rendered component.
+   */
   return (
     <div>
       <label>Choose a user:  </label>

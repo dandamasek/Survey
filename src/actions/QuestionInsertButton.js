@@ -5,21 +5,28 @@ import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
 import { useSelector } from 'react-redux';
 
-import { QuestionInsertFetch } from'../async/QuestionInsertFetch';
-import { QuestionValueInsertFetch } from'../async/QuestionValueInsertFetch';
+import { QuestionInsertFetch } from '../async/QuestionInsertFetch';
+import { QuestionValueInsertFetch } from '../async/QuestionValueInsertFetch';
 
+/**
+ * Component for the question insertion button.
+ * @param {Object} props - The component props.
+ * @param {string} props.surveyId - The ID of the survey to add the question to.
+ * @param {number} props.orderLength - The length of the order.
+ * @returns {JSX.Element} - The question insertion button component.
+ */
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();
   const copy = useSelector((state) => state.copy);
 
-  /*
-  State for controlling the visibility of the modal
-  */
+  /**
+   * State for controlling the visibility of the modal.
+   */
   const [showModal, setShowModal] = useState(false);
 
-  /*
-  State for storing the values for questionInsert
-  */
+  /**
+   * State for storing the values for questionInsert.
+   */
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('949d74a2-63b1-4478-82f1-e025d8bc6c8b'); // Default typeID is Otevřená
 
@@ -28,27 +35,34 @@ export const QuestionInsertButton = (props) => {
     setShowModal(false);
   };
 
-  /*
-  Event handler for name input change
-  */
+  /**
+   * Event handler for name input change.
+   * @param {Object} event - The event object.
+   */
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
-  /*
-  Event handler for question type selection change
-  */
+  /**
+   * Event handler for question type selection change.
+   * @param {Object} event - The event object.
+   */
   const handleTypeChange = (event) => {
     setTypeId(event.target.value);
   };
 
-  /*
-  Function to add a copy question with question values
-  */
+  /**
+   * Function to add a copy question with question values.
+   */
   const addCopyQuestion = async () => {
     try {
       // create question from copy needed to be local new created question Id needed for values
-      const response = await QuestionInsertMutation({name: copy.name, surveyId: props.surveyId, typeId: copy.type, order: props.orderLength + 1});
+      const response = await QuestionInsertMutation({
+        name: copy.name,
+        surveyId: props.surveyId,
+        typeId: copy.type,
+        order: props.orderLength + 1,
+      });
       const data = await response.json();
       const questionId = data.data.questionInsert.question.id;
 
@@ -58,13 +72,12 @@ export const QuestionInsertButton = (props) => {
       }
       setShowModal(false);
 
-      // create questionValues from copy 
+      // create questionValues from copy
       for (const value of copy.values) {
         (() => {
-            dispatch(QuestionValueInsertFetch({ questionId, nameValue: value.name, order: props.orderLength + 1 }));
+          dispatch(QuestionValueInsertFetch({ questionId, nameValue: value.name, order: props.orderLength + 1 }));
         })();
       }
-
     } catch (error) {
       console.error('Error:', error);
     }
@@ -102,9 +115,15 @@ export const QuestionInsertButton = (props) => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => {dispatch(QuestionInsertFetch({ name: name, surveyId: props.surveyId, type:typeId, order: props.orderLength+1}))
-            setShowModal(false);
-            }}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              dispatch(
+                QuestionInsertFetch({ name: name, surveyId: props.surveyId, type: typeId, order: props.orderLength + 1 })
+              );
+              setShowModal(false);
+            }}
+          >
             Add question
           </Button>
         </Modal.Footer>
