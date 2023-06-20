@@ -2,6 +2,7 @@ import { authorizedFetch } from './authorizedFetch';
 
 /**
  * Generates the JSON object for the AnswerUpdateExpiredMutation.
+ *
  * @param {string} id - ID of the answer
  * @param {string} lastchange - Last change timestamp
  * @param {boolean} expired - Expiration status
@@ -9,12 +10,13 @@ import { authorizedFetch } from './authorizedFetch';
  */
 const AnswerUpdateExpiredMutationJSON = (id, lastchange, expired) => ({
   query: `
-  mutation {
+  mutation ($id: ID!, $lastchange: DateTime!, $expired: Boolean) {
     answerUpdate(
       answer: {
-        id: "${id}",
-        lastchange: "${lastchange}",
-        expired: ${expired}}) {
+        id: $id,
+        lastchange: $lastchange,
+        expired: $expired
+      }) {
       id
       msg
       answer {
@@ -29,11 +31,17 @@ const AnswerUpdateExpiredMutationJSON = (id, lastchange, expired) => ({
         }
       }
     }
-  }`
+  }`,
+  variables: {
+    id: id,
+    lastchange: lastchange,
+    expired: expired
+  }
 });
 
 /**
  * Executes the AnswerUpdateExpiredMutation to update the expiration status of an answer.
+ *
  * @param {Object} props - Mutation properties
  * @param {string} props.id - ID of the answer
  * @param {string} props.lastchange - Last change timestamp
@@ -44,4 +52,3 @@ export const AnswerUpdateExpiredMutation = (props) =>
   authorizedFetch('/gql', {
     body: JSON.stringify(AnswerUpdateExpiredMutationJSON(props.id, props.lastchange, props.expired))
   });
-

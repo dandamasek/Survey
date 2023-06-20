@@ -180,7 +180,6 @@ export const surveySlice = createSlice({
               answer.expired = expired;
               answer.lastchange = lastchange;
               console.log('Answer is expired in store');
-              console.log(expired);
             }
           });
         });

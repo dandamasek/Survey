@@ -2,6 +2,7 @@ import { authorizedFetch } from './authorizedFetch';
 
 /**
  * Generates the JSON object for the AnswerUpdateAsweredMutation.
+ *
  * @param {string} id - ID of the answer
  * @param {string} lastchange - Last change timestamp
  * @param {boolean} aswered - Answered status
@@ -9,12 +10,13 @@ import { authorizedFetch } from './authorizedFetch';
  */
 const AnswerUpdateAsweredMutationJSON = (id, lastchange, aswered) => ({
   query: `
-  mutation {
+  mutation ($id: ID!, $lastchange: DateTime!, $aswered: Boolean) {
     answerUpdate(
       answer: {
-        lastchange: "${lastchange}",
-        id: "${id}",
-        aswered: ${aswered}}) {
+        id: $id,
+        lastchange: $lastchange,
+        aswered: $aswered
+      }) {
       id
       msg
       answer {
@@ -30,11 +32,17 @@ const AnswerUpdateAsweredMutationJSON = (id, lastchange, aswered) => ({
         }
       }
     }
-  }`
+  }`,
+  variables: {
+    id: id,
+    lastchange: lastchange,
+    aswered: aswered
+  }
 });
 
 /**
  * Executes the AnswerUpdateAsweredMutation to update the answered status of an answer.
+ *
  * @param {Object} props - Mutation properties
  * @param {string} props.id - ID of the answer
  * @param {string} props.lastchange - Last change timestamp
@@ -44,5 +52,4 @@ const AnswerUpdateAsweredMutationJSON = (id, lastchange, aswered) => ({
 export const AnswerUpdateAsweredMutation = (props) => 
   authorizedFetch('/gql', {
     body: JSON.stringify(AnswerUpdateAsweredMutationJSON(props.id, props.lastchange, props.aswered))
-  })
-
+  });
