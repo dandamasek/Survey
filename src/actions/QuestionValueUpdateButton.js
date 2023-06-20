@@ -5,7 +5,8 @@ import { QuestionValueUpdateFetch } from '../async/QuestionValueUpdateFetch';
 /**
  * Component for a button that updates a question value.
  * @param {Object} props - The component props.
- * @returns {JSX.Element} - The rendered component.
+ * @returns {JSX.Element} - The rendered component.¨
+ * @function 
  */
 export const QuestionValueUpdateButton = (props) => {
   const dispatch = useDispatch();

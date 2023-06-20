@@ -14,6 +14,7 @@ import { QuestionValueInsertFetch } from '../async/QuestionValueInsertFetch';
  * @param {string} props.surveyId - The ID of the survey to add the question to.
  * @param {number} props.orderLength - The length of the order.
  * @returns {JSX.Element} - The question insertion button component.
+ * @function 
  */
 export const QuestionInsertButton = (props) => {
   const dispatch = useDispatch();

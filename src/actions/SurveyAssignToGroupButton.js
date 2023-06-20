@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
  * Component for a button that assigns a survey to a group.
  * @param {Object} props - The component props.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 export const SurveyAssignToGroupButton = (props) => {
   /*

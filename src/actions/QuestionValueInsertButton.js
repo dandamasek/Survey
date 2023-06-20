@@ -6,6 +6,7 @@ import { QuestionValueInsertFetch } from '../async/QuestionValueInsertFetch'
  * Component for a button that inserts a new question value.
  * @param {Object} props - The component props.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 export const QuestionValueInsertButton = (props) => {
   const dispatch = useDispatch();

@@ -5,6 +5,7 @@ import {SurveyAssignToFetch } from '../async/SurveyAssignToFetch';
  * Component for a button that assigns a survey to the current user.
  * @param {Object} props - The component props.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 export const SurveyAssignToUserButton = (props) => {
   const dispatch = useDispatch();

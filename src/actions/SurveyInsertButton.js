@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 /**
  * Component for a button that inserts a new survey.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 
 export const SurveyInsertButton = () => {

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/ShowAnswersTable.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/ShowAnswersTable.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Bar } from 'react-chartjs-2';
+import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'chart.js';
+
+Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
+
+/**
+ * Counts the answer values for a given question.
+ * @param {object} question - The question object.
+ * @returns {object} - An object containing the counts of each answer value.
+ */
+function countAnswerValues(question) {
+  const answerCounts = {};
+
+  if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+    question.values.forEach((value) => {
+      answerCounts[value.name] = 0; // Initialize answer count for each value
+    });
+
+    question.answers.forEach((answer) => {
+      const answerValue = answer.value;
+
+      if (answerValue !== null &amp;&amp; typeof answerValue === 'string' &amp;&amp; answer.aswered === true) {
+        const answerValues = answerValue.split(';'); // Split multiple answers by semicolon
+
+        answerValues.forEach((value) => {
+          if (value in answerCounts) {
+            answerCounts[value] += 1;
+          }
+        });
+      }
+    });
+  }
+
+  return answerCounts;
+}
+
+/**
+ * Component used to display a table of question values and corresponding charts.
+ * @param {object} props - The component props containing the questions.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function ShowValuesTable(props) {
+  const { questions } = props;
+
+  useEffect(() => {
+    Chart.register(Title, Tooltip);
+  }, []);
+
+  return (
+    &lt;div className="card">
+      &lt;div className="card-body">
+        {questions.map((question) => {
+          if (question.type.name === 'Uzavřené' || question.type.name === 'Škála') {
+            const answerCounts = countAnswerValues(question); // Calculate answer counts for the current question
+
+            const chartData = {
+              labels: question.values.map((value) => value.name),
+              datasets: [
+                {
+                  label: 'Count',
+                  data: question.values.map((value) => answerCounts[value.name] || 0),
+                  backgroundColor: 'rgba(75,192,192,0.6)',
+                },
+              ],
+            };
+
+            return (
+              &lt;div key={question.id}>
+                &lt;div className="card">
+                  &lt;div className="card-body">
+                    &lt;h5 className="card-title">{question.name}&lt;/h5>
+                    &lt;div className="card-text">
+                      {question.values.map((value) => (
+                        &lt;div key={`${question.id}-${value.id}`}>
+                          &lt;p>{value.name}: {answerCounts[value.name] || 0}&lt;/p>
+                        &lt;/div>
+                      ))}
+                    &lt;/div>
+                  &lt;/div>
+                &lt;/div>
+                &lt;div key={`chart-${question.id}`} className="col-md-6 mx-auto text-center">
+                  &lt;Bar
+                    data={chartData}
+                    options={{
+                      scales: {
+                        y: {
+                          beginAtZero: true,
+                          max: 20, // Set the maximum value of the y-axis scale
+                        },
+                      },
+                    }}
+                  />
+                &lt;/div>
+              &lt;/div>
+            );
+          } else if (question.type.name === 'Otevřené') {
+            return (
+              &lt;div key={question.id}>
+                &lt;div className="card">
+                  &lt;div className="card-body">
+                    &lt;h5 className="card-title">{question.name}&lt;/h5>
+                    &lt;div className="card-text">
+                      {question.answers.map((answer) => {
+                        if (answer.aswered === true) {
+                          return (
+                            &lt;div key={`${question.id}-${answer.id}`}>
+                              &lt;p>{answer.value}&lt;/p>
+                            &lt;/div>
+                          );
+                        } else {
+                          return null;
+                        }
+                      })}
+                    &lt;/div>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            );
+          }
+
+          return null;
+        })}
+      &lt;/div>
+    &lt;/div>
+  );
+}
+
+export default ShowValuesTable;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#AnswerExpiredButton">AnswerExpiredButton</a></li><li><a href="global.html#AnswerExpiredFetch">AnswerExpiredFetch</a></li><li><a href="global.html#AnswerFromUser">AnswerFromUser</a></li><li><a href="global.html#AnswerResultsTable">AnswerResultsTable</a></li><li><a href="global.html#AnswerShowButton">AnswerShowButton</a></li><li><a href="global.html#AnswerUpdateAsweredButton">AnswerUpdateAsweredButton</a></li><li><a href="global.html#AnswerUpdateAsweredFetch">AnswerUpdateAsweredFetch</a></li><li><a href="global.html#AnswerUpdateAsweredGroupButton">AnswerUpdateAsweredGroupButton</a></li><li><a href="global.html#AnswerUpdateAsweredGroupFetch">AnswerUpdateAsweredGroupFetch</a></li><li><a href="global.html#AnswerUpdateAsweredMutation">AnswerUpdateAsweredMutation</a></li><li><a href="global.html#AnswerUpdateAsweredMutationJSON">AnswerUpdateAsweredMutationJSON</a></li><li><a href="global.html#AnswerUpdateExpiredMutation">AnswerUpdateExpiredMutation</a></li><li><a href="global.html#AnswerUpdateExpiredMutationJSON">AnswerUpdateExpiredMutationJSON</a></li><li><a href="global.html#AnswerValueMutation">AnswerValueMutation</a></li><li><a href="global.html#AnswerValueUpdateButton">AnswerValueUpdateButton</a></li><li><a href="global.html#AnswerValueUpdateFetch">AnswerValueUpdateFetch</a></li><li><a href="global.html#AssignGroups">AssignGroups</a></li><li><a href="global.html#AssignUsers">AssignUsers</a></li><li><a href="global.html#CopySlice">CopySlice</a></li><li><a href="global.html#FetchData">FetchData</a></li><li><a href="global.html#GroupSlice">GroupSlice</a></li><li><a href="global.html#GroupsSelectQueryJSON">GroupsSelectQueryJSON</a></li><li><a href="global.html#OccupedQuestionUpdateFetchData">OccupedQuestionUpdateFetchData</a></li><li><a href="global.html#QuestionAnswerTable">QuestionAnswerTable</a></li><li><a href="global.html#QuestionInsertButton">QuestionInsertButton</a></li><li><a href="global.html#QuestionInsertFetch">QuestionInsertFetch</a></li><li><a href="global.html#QuestionInsertMutation">QuestionInsertMutation</a></li><li><a href="global.html#QuestionInsertMutationJSON">QuestionInsertMutationJSON</a></li><li><a href="global.html#QuestionTable">QuestionTable</a></li><li><a href="global.html#QuestionUpdateButton">QuestionUpdateButton</a></li><li><a href="global.html#QuestionUpdateMutation">QuestionUpdateMutation</a></li><li><a href="global.html#QuestionUpdateMutationJSON">QuestionUpdateMutationJSON</a></li><li><a href="global.html#QuestionValue">QuestionValue</a></li><li><a href="global.html#QuestionValueInsertButton">QuestionValueInsertButton</a></li><li><a href="global.html#QuestionValueInsertFetch">QuestionValueInsertFetch</a></li><li><a href="global.html#QuestionValueInsertJSON">QuestionValueInsertJSON</a></li><li><a href="global.html#QuestionValueInsertMutation">QuestionValueInsertMutation</a></li><li><a href="global.html#QuestionValueUpdateButton">QuestionValueUpdateButton</a></li><li><a href="global.html#QuestionValueUpdateFetch">QuestionValueUpdateFetch</a></li><li><a href="global.html#QuestionValueUpdateJSON">QuestionValueUpdateJSON</a></li><li><a href="global.html#QuestionValueUpdateMutation">QuestionValueUpdateMutation</a></li><li><a href="global.html#QuestionValues">QuestionValues</a></li><li><a href="global.html#ShowValuesTable">ShowValuesTable</a></li><li><a href="global.html#SurveyAssignToFetch">SurveyAssignToFetch</a></li><li><a href="global.html#SurveyAssignToGroupButton">SurveyAssignToGroupButton</a></li><li><a href="global.html#SurveyAssignToGroupFetch">SurveyAssignToGroupFetch</a></li><li><a href="global.html#SurveyAssignToMutation">SurveyAssignToMutation</a></li><li><a href="global.html#SurveyAssignToMutationJSON">SurveyAssignToMutationJSON</a></li><li><a href="global.html#SurveyAssignToUserButton">SurveyAssignToUserButton</a></li><li><a href="global.html#SurveyFetchAsync">SurveyFetchAsync</a></li><li><a href="global.html#SurveyInsertButton">SurveyInsertButton</a></li><li><a href="global.html#SurveyInsertMutation">SurveyInsertMutation</a></li><li><a href="global.html#SurveyInsertMutationJSON">SurveyInsertMutationJSON</a></li><li><a href="global.html#SurveyNameBox">SurveyNameBox</a></li><li><a href="global.html#SurveyQuestionTable">SurveyQuestionTable</a></li><li><a href="global.html#SurveySelectButton">SurveySelectButton</a></li><li><a href="global.html#SurveySelectQuery">SurveySelectQuery</a></li><li><a href="global.html#SurveySelectQueryJSON">SurveySelectQueryJSON</a></li><li><a href="global.html#SurveyUpdateButton">SurveyUpdateButton</a></li><li><a href="global.html#SurveyUpdateFetch">SurveyUpdateFetch</a></li><li><a href="global.html#SurveyUpdateMutation">SurveyUpdateMutation</a></li><li><a href="global.html#SurveyUpdateMutationJSON">SurveyUpdateMutationJSON</a></li><li><a href="global.html#UserSelectQuery">UserSelectQuery</a></li><li><a href="global.html#UserSelectQueryJSON">UserSelectQueryJSON</a></li><li><a href="global.html#UserSlice">UserSlice</a></li><li><a href="global.html#UserTable">UserTable</a></li><li><a href="global.html#authorizedFetch">authorizedFetch</a></li><li><a href="global.html#countAnswerValues">countAnswerValues</a></li><li><a href="global.html#fetchGroups">fetchGroups</a></li><li><a href="global.html#fetchUsers">fetchUsers</a></li><li><a href="global.html#groupPageQuery">groupPageQuery</a></li><li><a href="global.html#groupPageQueryJSON">groupPageQueryJSON</a></li><li><a href="global.html#surveySlice">surveySlice</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jun 20 2023 08:37:28 GMT+0200 (středoevropský letní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

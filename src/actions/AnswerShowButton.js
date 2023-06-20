@@ -5,6 +5,7 @@ import ShowAnswerTable from '../components/ShowAnswersTable';
  * Component for displaying a dropdown menu of surveys and showing the selected survey's answers.
  * @param {object} props - The component props containing the necessary details.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 const AnswerShowButton = (props) => {
   const [selectedOption, setSelectedOption] = useState('');

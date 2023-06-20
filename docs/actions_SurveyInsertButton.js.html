@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: actions/SurveyInsertButton.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: actions/SurveyInsertButton.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { FetchData } from '../async/SurveyInsertFetch';
+import { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+
+/**
+ * Component for a button that inserts a new survey.
+ * @returns {JSX.Element} - The rendered component.
+ * @function 
+ */
+
+export const SurveyInsertButton = () => {
+  /*
+Renders a button to insert a new survey.
+*/
+  const dispatch = useDispatch();
+  const [name, setName] = useState(" ");
+  const [type, setType] = useState("712029b6-2dbc-4952-9d3e-e897899edf0a");
+  const [showModal, setShowModal] = useState(false);
+
+/**
+   * Function to handle closing the modal.
+   */
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+/**
+   * Function to handle changes in the survey name input field.
+   * @param {Object} event - The event object.
+   */
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+   /**
+   * Function to handle changes in the survey type dropdown select.
+   * @param {Object} event - The event object.
+   */
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+  };
+
+  return (
+    &lt;div>
+      {/* Button to trigger the modal */}
+      &lt;button className="btn btn-success btn-lg m-2" onClick={() => setShowModal(true)}>
+        New survey
+      &lt;/button>
+
+      {/* Modal component */}
+      &lt;Modal show={showModal} onHide={handleCloseModal}>
+        &lt;Modal.Header closeButton>
+          &lt;Modal.Title>Creating new survey&lt;/Modal.Title>
+        &lt;/Modal.Header>
+        &lt;Modal.Body>
+          &lt;Form.Group>
+            &lt;Form.Label>Survey Name:&lt;/Form.Label>
+            {/* Input field for survey name */}
+            &lt;Form.Control type="text" value={name} onChange={handleNameChange} />
+          &lt;/Form.Group>
+          &lt;Form.Group>
+            &lt;Form.Label>Type:&lt;/Form.Label>
+            {/* Dropdown select for survey type */}
+            &lt;Form.Control as="select" value={type} onChange={handleTypeChange}>
+              &lt;option value="712029b6-2dbc-4952-9d3e-e897899edf0a">Hodnocení výuky&lt;/option>
+            &lt;/Form.Control>
+          &lt;/Form.Group>
+        &lt;/Modal.Body>
+        &lt;Modal.Footer>
+          {/* Close button to dismiss the modal */}
+          &lt;Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          &lt;/Button>
+          {/* Save button to submit the survey data */}
+          &lt;Button
+            variant="primary"
+            onClick={() => {
+              setShowModal(false);
+              dispatch(FetchData({ name, type }));
+            }}
+          >
+            Save
+          &lt;/Button>
+        &lt;/Modal.Footer>
+      &lt;/Modal>
+    &lt;/div>
+  );
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#AnswerExpiredButton">AnswerExpiredButton</a></li><li><a href="global.html#AnswerExpiredFetch">AnswerExpiredFetch</a></li><li><a href="global.html#AnswerFromUser">AnswerFromUser</a></li><li><a href="global.html#AnswerResultsTable">AnswerResultsTable</a></li><li><a href="global.html#AnswerShowButton">AnswerShowButton</a></li><li><a href="global.html#AnswerUpdateAsweredButton">AnswerUpdateAsweredButton</a></li><li><a href="global.html#AnswerUpdateAsweredFetch">AnswerUpdateAsweredFetch</a></li><li><a href="global.html#AnswerUpdateAsweredGroupButton">AnswerUpdateAsweredGroupButton</a></li><li><a href="global.html#AnswerUpdateAsweredGroupFetch">AnswerUpdateAsweredGroupFetch</a></li><li><a href="global.html#AnswerUpdateAsweredMutation">AnswerUpdateAsweredMutation</a></li><li><a href="global.html#AnswerUpdateAsweredMutationJSON">AnswerUpdateAsweredMutationJSON</a></li><li><a href="global.html#AnswerUpdateExpiredMutation">AnswerUpdateExpiredMutation</a></li><li><a href="global.html#AnswerUpdateExpiredMutationJSON">AnswerUpdateExpiredMutationJSON</a></li><li><a href="global.html#AnswerValueMutation">AnswerValueMutation</a></li><li><a href="global.html#AnswerValueUpdateButton">AnswerValueUpdateButton</a></li><li><a href="global.html#AnswerValueUpdateFetch">AnswerValueUpdateFetch</a></li><li><a href="global.html#AssignGroups">AssignGroups</a></li><li><a href="global.html#AssignUsers">AssignUsers</a></li><li><a href="global.html#CopySlice">CopySlice</a></li><li><a href="global.html#FetchData">FetchData</a></li><li><a href="global.html#GroupSlice">GroupSlice</a></li><li><a href="global.html#GroupsSelectQueryJSON">GroupsSelectQueryJSON</a></li><li><a href="global.html#OccupedQuestionUpdateFetchData">OccupedQuestionUpdateFetchData</a></li><li><a href="global.html#QuestionAnswerTable">QuestionAnswerTable</a></li><li><a href="global.html#QuestionInsertButton">QuestionInsertButton</a></li><li><a href="global.html#QuestionInsertFetch">QuestionInsertFetch</a></li><li><a href="global.html#QuestionInsertMutation">QuestionInsertMutation</a></li><li><a href="global.html#QuestionInsertMutationJSON">QuestionInsertMutationJSON</a></li><li><a href="global.html#QuestionTable">QuestionTable</a></li><li><a href="global.html#QuestionUpdateButton">QuestionUpdateButton</a></li><li><a href="global.html#QuestionUpdateMutation">QuestionUpdateMutation</a></li><li><a href="global.html#QuestionUpdateMutationJSON">QuestionUpdateMutationJSON</a></li><li><a href="global.html#QuestionValue">QuestionValue</a></li><li><a href="global.html#QuestionValueInsertButton">QuestionValueInsertButton</a></li><li><a href="global.html#QuestionValueInsertFetch">QuestionValueInsertFetch</a></li><li><a href="global.html#QuestionValueInsertJSON">QuestionValueInsertJSON</a></li><li><a href="global.html#QuestionValueInsertMutation">QuestionValueInsertMutation</a></li><li><a href="global.html#QuestionValueUpdateButton">QuestionValueUpdateButton</a></li><li><a href="global.html#QuestionValueUpdateFetch">QuestionValueUpdateFetch</a></li><li><a href="global.html#QuestionValueUpdateJSON">QuestionValueUpdateJSON</a></li><li><a href="global.html#QuestionValueUpdateMutation">QuestionValueUpdateMutation</a></li><li><a href="global.html#QuestionValues">QuestionValues</a></li><li><a href="global.html#ShowValuesTable">ShowValuesTable</a></li><li><a href="global.html#SurveyAssignToFetch">SurveyAssignToFetch</a></li><li><a href="global.html#SurveyAssignToGroupButton">SurveyAssignToGroupButton</a></li><li><a href="global.html#SurveyAssignToGroupFetch">SurveyAssignToGroupFetch</a></li><li><a href="global.html#SurveyAssignToMutation">SurveyAssignToMutation</a></li><li><a href="global.html#SurveyAssignToMutationJSON">SurveyAssignToMutationJSON</a></li><li><a href="global.html#SurveyAssignToUserButton">SurveyAssignToUserButton</a></li><li><a href="global.html#SurveyFetchAsync">SurveyFetchAsync</a></li><li><a href="global.html#SurveyInsertButton">SurveyInsertButton</a></li><li><a href="global.html#SurveyInsertMutation">SurveyInsertMutation</a></li><li><a href="global.html#SurveyInsertMutationJSON">SurveyInsertMutationJSON</a></li><li><a href="global.html#SurveyNameBox">SurveyNameBox</a></li><li><a href="global.html#SurveyQuestionTable">SurveyQuestionTable</a></li><li><a href="global.html#SurveySelectButton">SurveySelectButton</a></li><li><a href="global.html#SurveySelectQuery">SurveySelectQuery</a></li><li><a href="global.html#SurveySelectQueryJSON">SurveySelectQueryJSON</a></li><li><a href="global.html#SurveyUpdateButton">SurveyUpdateButton</a></li><li><a href="global.html#SurveyUpdateFetch">SurveyUpdateFetch</a></li><li><a href="global.html#SurveyUpdateMutation">SurveyUpdateMutation</a></li><li><a href="global.html#SurveyUpdateMutationJSON">SurveyUpdateMutationJSON</a></li><li><a href="global.html#UserSelectQuery">UserSelectQuery</a></li><li><a href="global.html#UserSelectQueryJSON">UserSelectQueryJSON</a></li><li><a href="global.html#UserSlice">UserSlice</a></li><li><a href="global.html#UserTable">UserTable</a></li><li><a href="global.html#authorizedFetch">authorizedFetch</a></li><li><a href="global.html#countAnswerValues">countAnswerValues</a></li><li><a href="global.html#fetchGroups">fetchGroups</a></li><li><a href="global.html#fetchUsers">fetchUsers</a></li><li><a href="global.html#groupPageQuery">groupPageQuery</a></li><li><a href="global.html#groupPageQueryJSON">groupPageQueryJSON</a></li><li><a href="global.html#surveySlice">surveySlice</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jun 20 2023 08:37:28 GMT+0200 (středoevropský letní čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

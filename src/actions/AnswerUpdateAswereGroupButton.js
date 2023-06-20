@@ -6,6 +6,7 @@ import { AnswerUpdateAsweredGroupFetch } from '../async/AnswerUpdateAsweredGroup
  * Component for a button to close a group's answered survey.
  * @param {object} props - The component props containing the necessary details.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 
 export const AnswerUpdateAsweredGroupButton = (props) => {

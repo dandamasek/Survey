@@ -7,6 +7,7 @@ import { OccupedQuestionUpdateFetchData } from 'async/OccupedQuestionUpdateFetch
  * Component for a button that updates a question.
  * @param {object} props - The component props containing the question details.
  * @returns {JSX.Element} - The rendered component.
+ * @function 
  */
 
 export const QuestionUpdateButton = (props) => {
