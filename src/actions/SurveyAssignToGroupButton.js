@@ -13,10 +13,7 @@ export const SurveyAssignToGroupButton = (props) => {
   */
  const groups = useSelector((state) => state.groups);
   const dispatch = useDispatch();
-
-/*
- Renders a button to assign a survey to a group.
-*/
+  
   return (
     <div>
       <button className="btn btn-outline-dark mb-3" onClick={() =>
