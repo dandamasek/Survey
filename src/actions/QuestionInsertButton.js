@@ -4,9 +4,8 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from 'features/SurveySlice';
 import { useSelector } from 'react-redux';
-
-import { QuestionInsertFetch } from '../async/QuestionInsertFetch';
 import { QuestionValueInsertFetch } from '../async/QuestionValueInsertFetch';
+import AddQuestionButton from './AddQuestionButton';
 
 /**
  * Component for the question insertion button.
@@ -116,17 +115,14 @@ export const QuestionInsertButton = (props) => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              dispatch(
-                QuestionInsertFetch({ name: name, surveyId: props.surveyId, type: typeId, order: props.orderLength + 1 })
-              );
-              setShowModal(false);
-            }}
-          >
-            Add question
-          </Button>
+          {/* Use the AddQuestionButton component */}
+          <AddQuestionButton
+    closeModal={handleCloseModal}
+    name={name}
+    typeId={typeId}
+    surveyId={props.surveyId}
+    orderLength={props.orderLength}
+  />
         </Modal.Footer>
       </Modal>
     </div>
