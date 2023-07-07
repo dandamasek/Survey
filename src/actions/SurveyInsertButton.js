@@ -1,7 +1,8 @@
 import React from 'react';
+import { FetchData } from '../async/SurveyInsertFetch';
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import SurveySaveButton from './SurveySaveButton';
+import { useDispatch } from 'react-redux';
 
 /**
  * Component for a button that inserts a new survey.
@@ -13,7 +14,7 @@ export const SurveyInsertButton = () => {
   /*
 Renders a button to insert a new survey.
 */
-
+  const dispatch = useDispatch();
   const [name, setName] = useState(" ");
   const [type, setType] = useState("712029b6-2dbc-4952-9d3e-e897899edf0a");
   const [showModal, setShowModal] = useState(false);
@@ -68,12 +69,21 @@ Renders a button to insert a new survey.
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-  <Button variant="secondary" onClick={handleCloseModal}>
-    Close
-  </Button>
-  {/* Use the SaveButton component */}
-  <SurveySaveButton closeModal={handleCloseModal} name={name} type={type} />
-</Modal.Footer>
+          {/* Close button to dismiss the modal */}
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+          {/* Save button to submit the survey data */}
+          <Button
+            variant="primary"
+            onClick={() => {
+              setShowModal(false);
+              dispatch(FetchData({ name, type }));
+            }}
+          >
+            Save
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
