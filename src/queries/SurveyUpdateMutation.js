@@ -11,7 +11,7 @@ import { authorizedFetch } from './authorizedFetch';
 const SurveyUpdateMutationJSON = (id, lastchange, newName) => ({
   query: `
     mutation (
-      $id: String,
+      $id: ID!,
       $lastchange: DateTime!,
       $name: String,
     ){
