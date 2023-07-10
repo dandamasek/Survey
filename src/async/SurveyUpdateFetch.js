@@ -19,6 +19,8 @@ export const SurveyUpdateFetch = (props) => (dispatch, getState) => (
       if (survey) {
         dispatch(updateSurveyName(survey));
         console.log('New survey "'+survey.name+'" is updated on server')
+        
+
       }
       return json
     })
