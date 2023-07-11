@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { QuestionInsertMutation } from '../queries/QuestionInsertMutation';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { addQuestion } from 'features/SurveySlice';
-import { useSelector } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 
 import { QuestionValueInsertFetch } from '../async/QuestionValueInsertFetch';
 import AddQuestionButton from './AddQuestionButton';
@@ -17,7 +17,7 @@ import AddQuestionButton from './AddQuestionButton';
  */
 export const QuestionInsertButton = (props) => {
   const copy = useSelector((state) => state.copy);
-
+  const dispatch = useDispatch(); // Get the dispatch function from Redux
   /**
    * State for controlling the visibility of the modal.
    */
