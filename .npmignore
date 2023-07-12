@@ -1,0 +1,6 @@
+/.vscode
+/public
+/src
+/.jsdoc.json
+/build
+/node_modules

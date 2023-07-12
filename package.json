@@ -1,10 +1,15 @@
 {
-  "name": "survey",
+  "name": "uo_survey",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "/ui",
   "proxy": "http://localhost:31180/",
-  "dependencies": {
+  "babel": {  
+    "presets": [  
+      "@babel/preset-react"   
+    ] 
+  }, 
+  "peerDependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -37,7 +42,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish:npm": "babel src/components -d dist/components --copy-files   && babel src/actions -d dist/actions --copy-files && babel src/async -d dist/async --copy-files && babel src/features -d dist/features --copy-files && babel src/pages -d dist/pages --copy-files && babel src/queries -d dist/queries --copy-files && babel src/redux -d dist/redux --copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +64,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.6",
+    "@babel/preset-react": "^7.22.5",
     "jsdoc": "^4.0.2"
   }
 }
